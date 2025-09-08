@@ -21,8 +21,7 @@ cniConfig:
 nodes:
   - hostname: "talos-clus01-cp01"
     ipAddress: "10.10.16.221"
-    installDiskSelector:
-      serial: "sda"
+    installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
     talosImageURL: factory.talos.dev/installer/e3fab82b561b5e559cdf1c0b1e5950c0e52700b9208a2cfaa5b18454796f3a7e
@@ -41,8 +40,7 @@ nodes:
           ip: "10.10.16.220"
   - hostname: "talos-clus01-cp02"
     ipAddress: "10.10.16.222"
-    installDiskSelector:
-      serial: "sda"
+    installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
     talosImageURL: factory.talos.dev/installer/e3fab82b561b5e559cdf1c0b1e5950c0e52700b9208a2cfaa5b18454796f3a7e
@@ -61,8 +59,7 @@ nodes:
           ip: "10.10.16.220"
   - hostname: "talos-clus01-cp03"
     ipAddress: "10.10.16.223"
-    installDiskSelector:
-      serial: "sda"
+    installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
     talosImageURL: factory.talos.dev/installer/e3fab82b561b5e559cdf1c0b1e5950c0e52700b9208a2cfaa5b18454796f3a7e
@@ -81,8 +78,7 @@ nodes:
           ip: "10.10.16.220"
   - hostname: "talos-clus01-wk01"
     ipAddress: "10.10.16.231"
-    installDiskSelector:
-      serial: "sda"
+    installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
     talosImageURL: factory.talos.dev/installer/95d432d6bb450a67e801a6ae77c96a67e38820b62ba4159ae7e997e1695207f7
