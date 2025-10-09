@@ -13,5 +13,4 @@ customization:
   systemExtensions:
     officialExtensions:
       - siderolabs/intel-ucode
-      - siderolabs/nfsrahead # NFS Performance
       - siderolabs/qemu-guest-agent

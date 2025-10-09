@@ -1,31 +1,26 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/budimanjojo/talhelper/master/pkg/config/schemas/talconfig.json
 ---
 clusterName: k8s-clus01
-
 talosVersion: "${talosVersion}"
 kubernetesVersion: "${kubernetesVersion}"
-
 endpoint: https://10.10.16.130:6443
 additionalApiServerCertSans: &sans
   - "127.0.0.1"
   - "10.10.16.130"
   - "k8s.internal"
 additionalMachineCertSans: *sans
-
 clusterPodNets: ["10.42.0.0/16"]
 clusterSvcNets: ["10.43.0.0/16"]
-
 # Disable built-in CNI to use Cilium
 cniConfig:
   name: none
-
 nodes:
   - hostname: "talos-clus01-cp01"
     ipAddress: "10.10.16.131"
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba
+    talosImageURL: factory.talos.dev/installer/27c006c61185fc860f848e16cad265db959a24af02fe04a2a6c92965c34c697b
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
@@ -41,7 +36,7 @@ nodes:
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba
+    talosImageURL: factory.talos.dev/installer/27c006c61185fc860f848e16cad265db959a24af02fe04a2a6c92965c34c697b
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
@@ -57,7 +52,7 @@ nodes:
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba
+    talosImageURL: factory.talos.dev/installer/27c006c61185fc860f848e16cad265db959a24af02fe04a2a6c92965c34c697b
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
@@ -73,7 +68,7 @@ nodes:
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba
+    talosImageURL: factory.talos.dev/installer/bb0399c2a5dee832dd964871b3e712a43d6a31138ec0055e4733a2c0f0412dde
     controlPlane: false
     networkInterfaces:
       - deviceSelector:
@@ -88,15 +83,12 @@ nodes:
           - vlanId: 14 # Surveillance VLAN
             dhcp: false
             mtu: 1500
-    patches:
-      - "@./patches/worker-intel/labels.yaml"
-      - "@./patches/worker-intel/machine-customization.yaml"
   - hostname: "talos-clus01-wk02"
     ipAddress: "10.10.16.142"
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba
+    talosImageURL: factory.talos.dev/installer/bb0399c2a5dee832dd964871b3e712a43d6a31138ec0055e4733a2c0f0412dde
     controlPlane: false
     networkInterfaces:
       - deviceSelector:
@@ -111,15 +103,12 @@ nodes:
           - vlanId: 14 # Surveillance VLAN
             dhcp: false
             mtu: 1500
-    patches:
-      - "@./patches/worker-intel/labels.yaml"
-      - "@./patches/worker-intel/machine-customization.yaml"
   - hostname: "talos-clus01-wk03"
     ipAddress: "10.10.16.143"
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba
+    talosImageURL: factory.talos.dev/installer/bb0399c2a5dee832dd964871b3e712a43d6a31138ec0055e4733a2c0f0412dde
     controlPlane: false
     networkInterfaces:
       - deviceSelector:
@@ -134,15 +123,12 @@ nodes:
           - vlanId: 14 # Surveillance VLAN
             dhcp: false
             mtu: 1500
-    patches:
-      - "@./patches/worker-intel/labels.yaml"
-      - "@./patches/worker-intel/machine-customization.yaml"
   - hostname: "talos-clus01-wk04"
     ipAddress: "10.10.16.144"
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba
+    talosImageURL: factory.talos.dev/installer/b47b142096e85e6b809e1a242b8c529aa2c9c31c1ea7d98fd79535bcdbe6c1a8
     controlPlane: false
     networkInterfaces:
       - deviceSelector:
@@ -157,15 +143,12 @@ nodes:
           - vlanId: 14 # Surveillance VLAN
             dhcp: false
             mtu: 1500
-    patches:
-      - "@./patches/worker-nvidia/labels.yaml"
-      - "@./patches/worker-nvidia/machine-customization.yaml"
   - hostname: "talos-clus01-wk05"
     ipAddress: "10.10.16.145"
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba
+    talosImageURL: factory.talos.dev/installer/b47b142096e85e6b809e1a242b8c529aa2c9c31c1ea7d98fd79535bcdbe6c1a8
     controlPlane: false
     networkInterfaces:
       - deviceSelector:
@@ -180,15 +163,12 @@ nodes:
           - vlanId: 14 # Surveillance VLAN
             dhcp: false
             mtu: 1500
-    patches:
-      - "@./patches/worker-nvidia/labels.yaml"
-      - "@./patches/worker-nvidia/machine-customization.yaml"
   - hostname: "talos-clus01-wk06"
     ipAddress: "10.10.16.146"
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba
+    talosImageURL: factory.talos.dev/installer/b47b142096e85e6b809e1a242b8c529aa2c9c31c1ea7d98fd79535bcdbe6c1a8
     controlPlane: false
     networkInterfaces:
       - deviceSelector:
@@ -203,10 +183,6 @@ nodes:
           - vlanId: 14 # Surveillance VLAN
             dhcp: false
             mtu: 1500
-    patches:
-      - "@./patches/worker-nvidia/labels.yaml"
-      - "@./patches/worker-nvidia/machine-customization.yaml"
-
 # Global patches
 patches:
   - "@./patches/global/machine-features.yaml"
@@ -215,19 +191,14 @@ patches:
   - "@./patches/global/machine-network.yaml"
   - "@./patches/global/machine-sysctls.yaml"
   - "@./patches/global/machine-time.yaml"
-
 # Controller patches
 controlPlane:
   patches:
     - "@./patches/controller/admission-controller-patch.yaml"
     - "@./patches/controller/cluster.yaml"
     - "@./patches/controller/labels.yaml"
-    - "@./patches/controller/machine-ca.yaml"
-    - "@./patches/controller/machine-customization.yaml"
     - "@./patches/controller/machine-features.yaml"
-
 # Worker patches
 worker:
   patches:
     - "@./patches/worker/labels.yaml"
-    - "@./patches/worker/machine-ca.yaml"

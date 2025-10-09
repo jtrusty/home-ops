@@ -1,4 +1,0 @@
----
-machine:
-  ca:
-    key: op://kubernetes/talos/MACHINE_CA_KEY
