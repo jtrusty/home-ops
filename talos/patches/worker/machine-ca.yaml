@@ -1,0 +1,4 @@
+---
+machine:
+  ca:
+    crt: op://kubernetes/talos/MACHINE_CA_CRT

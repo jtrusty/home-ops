@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/budimanjojo/talhelper/master/pkg/config/schemas/talconfig.json
 ---
-clusterName: kubernetes
+clusterName: k8s-clus01
 
 talosVersion: "${talosVersion}"
 kubernetesVersion: "${kubernetesVersion}"
@@ -25,19 +25,15 @@ nodes:
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/e3fab82b561b5e559cdf1c0b1e5950c0e52700b9208a2cfaa5b18454796f3a7e
+    talosImageURL: factory.talos.dev/installer/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "bc:24:11:a5:d8:78"
         vlans:
-          - vlanId: 16
-            addresses:
-              - "10.10.16.131/24"
+          - vlanId: 16 # k8s VLAN
+            dhcp: true
             mtu: 1500
-            routes:
-              - network: "0.0.0.0/0"
-                gateway: "10.10.16.1"
             vip:
               ip: "10.10.16.130"
   - hostname: "talos-clus01-cp02"
@@ -45,19 +41,15 @@ nodes:
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/e3fab82b561b5e559cdf1c0b1e5950c0e52700b9208a2cfaa5b18454796f3a7e
+    talosImageURL: factory.talos.dev/installer/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "bc:24:11:24:49:96"
         vlans:
-          - vlanId: 16
-            addresses:
-              - "10.10.16.132/24"
+          - vlanId: 16 # k8s VLAN
+            dhcp: true
             mtu: 1500
-            routes:
-              - network: "0.0.0.0/0"
-                gateway: "10.10.16.1"
             vip:
               ip: "10.10.16.130"
   - hostname: "talos-clus01-cp03"
@@ -65,19 +57,15 @@ nodes:
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/e3fab82b561b5e559cdf1c0b1e5950c0e52700b9208a2cfaa5b18454796f3a7e
+    talosImageURL: factory.talos.dev/installer/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "bc:24:11:8d:5c:0d"
         vlans:
-          - vlanId: 16
-            addresses:
-              - "10.10.16.133/24"
+          - vlanId: 16 # k8s VLAN
+            dhcp: true
             mtu: 1500
-            routes:
-              - network: "0.0.0.0/0"
-                gateway: "10.10.16.1"
             vip:
               ip: "10.10.16.130"
   - hostname: "talos-clus01-wk01"
@@ -85,112 +73,143 @@ nodes:
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/95d432d6bb450a67e801a6ae77c96a67e38820b62ba4159ae7e997e1695207f7
+    talosImageURL: factory.talos.dev/installer/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba
     controlPlane: false
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "bc:24:11:39:7b:20"
         vlans:
-          - vlanId: 16
-            addresses:
-              - "10.10.16.141/24"
+          - vlanId: 16 # k8s VLAN
+            dhcp: true
             mtu: 1500
-            routes:
-              - network: "0.0.0.0/0"
-                gateway: "10.10.16.1"
+          - vlanId: 30 # IoT VLAN
+            dhcp: false
+            mtu: 1500
+          - vlanId: 14 # Surveillance VLAN
+            dhcp: false
+            mtu: 1500
+    patches:
+      - "@./patches/worker-intel/labels.yaml"
+      - "@./patches/worker-intel/machine-customization.yaml"
   - hostname: "talos-clus01-wk02"
     ipAddress: "10.10.16.142"
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/95d432d6bb450a67e801a6ae77c96a67e38820b62ba4159ae7e997e1695207f7
+    talosImageURL: factory.talos.dev/installer/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba
     controlPlane: false
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "bc:24:11:9a:56:31"
         vlans:
-          - vlanId: 16
-            addresses:
-              - "10.10.16.142/24"
+          - vlanId: 16 # k8s VLAN
+            dhcp: true
             mtu: 1500
-            routes:
-              - network: "0.0.0.0/0"
-                gateway: "10.10.16.1"
+          - vlanId: 30 # IoT VLAN
+            dhcp: false
+            mtu: 1500
+          - vlanId: 14 # Surveillance VLAN
+            dhcp: false
+            mtu: 1500
+    patches:
+      - "@./patches/worker-intel/labels.yaml"
+      - "@./patches/worker-intel/machine-customization.yaml"
   - hostname: "talos-clus01-wk03"
     ipAddress: "10.10.16.143"
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/95d432d6bb450a67e801a6ae77c96a67e38820b62ba4159ae7e997e1695207f7
+    talosImageURL: factory.talos.dev/installer/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba
     controlPlane: false
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "bc:24:11:a1:79:cb"
         vlans:
-          - vlanId: 16
-            addresses:
-              - "10.10.16.143/24"
+          - vlanId: 16 # k8s VLAN
+            dhcp: true
             mtu: 1500
-            routes:
-              - network: "0.0.0.0/0"
-                gateway: "10.10.16.1"
+          - vlanId: 30 # IoT VLAN
+            dhcp: false
+            mtu: 1500
+          - vlanId: 14 # Surveillance VLAN
+            dhcp: false
+            mtu: 1500
+    patches:
+      - "@./patches/worker-intel/labels.yaml"
+      - "@./patches/worker-intel/machine-customization.yaml"
   - hostname: "talos-clus01-wk04"
     ipAddress: "10.10.16.144"
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/bf0b8c6a87efc63ff96dad94c3b84e463f271df04aad6744a6b25ae1a84991f5
+    talosImageURL: factory.talos.dev/installer/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba
     controlPlane: false
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "bc:24:11:71:e6:88"
         vlans:
-          - vlanId: 16
-            addresses:
-              - "10.10.16.144/24"
+          - vlanId: 16 # k8s VLAN
+            dhcp: true
             mtu: 1500
-            routes:
-              - network: "0.0.0.0/0"
-                gateway: "10.10.16.1"
+          - vlanId: 30 # IoT VLAN
+            dhcp: false
+            mtu: 1500
+          - vlanId: 14 # Surveillance VLAN
+            dhcp: false
+            mtu: 1500
+    patches:
+      - "@./patches/worker-nvidia/labels.yaml"
+      - "@./patches/worker-nvidia/machine-customization.yaml"
   - hostname: "talos-clus01-wk05"
     ipAddress: "10.10.16.145"
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/bf0b8c6a87efc63ff96dad94c3b84e463f271df04aad6744a6b25ae1a84991f5
+    talosImageURL: factory.talos.dev/installer/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba
     controlPlane: false
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "bc:24:11:e0:c4:8d"
         vlans:
-          - vlanId: 16
-            addresses:
-              - "10.10.16.145/24"
+          - vlanId: 16 # k8s VLAN
+            dhcp: true
             mtu: 1500
-            routes:
-              - network: "0.0.0.0/0"
-                gateway: "10.10.16.1"
+          - vlanId: 30 # IoT VLAN
+            dhcp: false
+            mtu: 1500
+          - vlanId: 14 # Surveillance VLAN
+            dhcp: false
+            mtu: 1500
+    patches:
+      - "@./patches/worker-nvidia/labels.yaml"
+      - "@./patches/worker-nvidia/machine-customization.yaml"
   - hostname: "talos-clus01-wk06"
     ipAddress: "10.10.16.146"
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/bf0b8c6a87efc63ff96dad94c3b84e463f271df04aad6744a6b25ae1a84991f5
+    talosImageURL: factory.talos.dev/installer/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba
     controlPlane: false
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "bc:24:11:2f:e4:5d"
         vlans:
-          - vlanId: 16
-            addresses:
-              - "10.10.16.146/24"
+          - vlanId: 16 # k8s VLAN
+            dhcp: true
             mtu: 1500
-            routes:
-              - network: "0.0.0.0/0"
-                gateway: "10.10.16.1"
+          - vlanId: 30 # IoT VLAN
+            dhcp: false
+            mtu: 1500
+          - vlanId: 14 # Surveillance VLAN
+            dhcp: false
+            mtu: 1500
+    patches:
+      - "@./patches/worker-nvidia/labels.yaml"
+      - "@./patches/worker-nvidia/machine-customization.yaml"
 
 # Global patches
 patches:
+  - "@./patches/global/machine-features.yaml"
   - "@./patches/global/machine-files.yaml"
   - "@./patches/global/machine-kubelet.yaml"
   - "@./patches/global/machine-network.yaml"
@@ -202,4 +221,13 @@ controlPlane:
   patches:
     - "@./patches/controller/admission-controller-patch.yaml"
     - "@./patches/controller/cluster.yaml"
+    - "@./patches/controller/labels.yaml"
+    - "@./patches/controller/machine-ca.yaml"
+    - "@./patches/controller/machine-customization.yaml"
+    - "@./patches/controller/machine-features.yaml"
 
+# Worker patches
+worker:
+  patches:
+    - "@./patches/worker/labels.yaml"
+    - "@./patches/worker/machine-ca.yaml"
