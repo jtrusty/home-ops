@@ -37,14 +37,7 @@ spec:
                 mkdir -p /var/cache/nginx/client_temp &&
                 chown -R 101:101 /var/cache/nginx /var/run /tmp &&
                 chmod -R 775 /var/cache/nginx /var/run /tmp
-            # mount the same volumes as the app
-            volumeMounts:
-              - name: nginx-cache
-                mountPath: /var/cache/nginx
-              - name: nginx-run
-                mountPath: /var/run
-              - name: tmp
-                mountPath: /tmp
+
         containers:
           app:
             image:
