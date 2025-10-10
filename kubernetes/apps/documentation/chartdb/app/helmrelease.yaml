@@ -36,21 +36,21 @@ spec:
               liveness: &probes
                 enabled: true
               readiness: *probes
-            securityContext:
-              allowPrivilegeEscalation: false
-              capabilities: { drop: ["ALL"] }
+            # securityContext:
+            #   allowPrivilegeEscalation: false
+            #   capabilities: { drop: ["ALL"] }
             resources:
               requests:
                 cpu: 25m
               limits:
                 memory: 128M
-    defaultPodOptions:
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 65534
-        runAsGroup: 65534
-        fsGroup: 65534
-        fsGroupChangePolicy: OnRootMismatch
+    # defaultPodOptions:
+    #   securityContext:
+    #     runAsNonRoot: true
+    #     runAsUser: 65534
+    #     runAsGroup: 65534
+    #     fsGroup: 65534
+    #     fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         ports:
