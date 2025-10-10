@@ -52,10 +52,11 @@ spec:
               TZ: "America/Chicago"
             probes:
               liveness: &probes
-                enabled: true
+                enabled: false
               readiness: *probes
             securityContext:
               runAsNonRoot: true
+              # nginx user
               runAsUser: 101
               runAsGroup: 101
               readOnlyRootFilesystem: true
@@ -78,10 +79,12 @@ spec:
         ports:
           http:
             port: &port 80
+
     serviceMonitor:
       app:
         endpoints:
           - port: http
+
     route:
       app:
         annotations:

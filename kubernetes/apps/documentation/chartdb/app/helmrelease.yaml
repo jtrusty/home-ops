@@ -39,6 +39,7 @@ spec:
               readiness: *probes
             securityContext:
               runAsNonRoot: true
+              # nginx user
               runAsUser: 101
               runAsGroup: 101
               readOnlyRootFilesystem: true
