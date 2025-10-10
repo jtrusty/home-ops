@@ -35,7 +35,7 @@ spec:
               # OPENAI_API_KEY: "your-openai-api-key"
             probes:
               liveness: &probes
-                enabled: true
+                enabled: false
               readiness: *probes
             securityContext:
               runAsNonRoot: true
