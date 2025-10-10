@@ -23,6 +23,7 @@ spec:
     controllers:
       chartdb:
         strategy: RollingUpdate
+
         containers:
           app:
             image:
@@ -36,30 +37,36 @@ spec:
               liveness: &probes
                 enabled: true
               readiness: *probes
-            # securityContext:
-            #   allowPrivilegeEscalation: false
-            #   capabilities: { drop: ["ALL"] }
+            securityContext:
+              runAsNonRoot: true
+              runAsUser: 65534
+              runAsGroup: 65534
+              readOnlyRootFilesystem: true
+              allowPrivilegeEscalation: false
+              capabilities: { drop: ["ALL"] }
             resources:
               requests:
                 cpu: 25m
               limits:
                 memory: 128M
-    # defaultPodOptions:
-    #   securityContext:
-    #     runAsNonRoot: true
-    #     runAsUser: 65534
-    #     runAsGroup: 65534
-    #     fsGroup: 65534
-    #     fsGroupChangePolicy: OnRootMismatch
+
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 65534
+        fsGroupChangePolicy: OnRootMismatch
+        seccompProfile: { type: RuntimeDefault }
+
     service:
       app:
         ports:
           http:
             port: &port 80
+
     serviceMonitor:
       app:
         endpoints:
           - port: http
+
     route:
       app:
         annotations:
