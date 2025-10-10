@@ -7,7 +7,22 @@ metadata:
 spec:
   allowFirstLastIPs: "No"
   blocks:
-    - cidr: "10.10.16.150/29"
+    - cidr: "10.10.16.0/24"
+---
+# yaml-language-server: $schema=https://datreeio.github.io/CRDs-catalog/cilium.io/ciliuml2announcementpolicy_v2alpha1.json
+apiVersion: cilium.io/v2alpha1
+kind: CiliumL2AnnouncementPolicy
+metadata:
+  name: l2-policy
+spec:
+  loadBalancerIPs: true
+  # NOTE: interfaces might need to be set if you have more than one active NIC on your hosts
+  # interfaces:
+  #   - ^eno[0-9]+
+  #   - ^eth[0-9]+
+  nodeSelector:
+    matchLabels:
+      kubernetes.io/os: linux
 ---
 # yaml-language-server: $schema=https://datreeio.github.io/CRDs-catalog/cilium.io/ciliumbgpadvertisement_v2alpha1.json
 apiVersion: cilium.io/v2alpha1
@@ -46,19 +61,14 @@ metadata:
   name: bgp-cluster-config
 spec:
   nodeSelector:
-    matchExpressions:
-      # Run BGP speakers on Linux worker nodes only (exclude control-plane)
-      - key: kubernetes.io/os
-        operator: In
-        values: [linux]
-      - key: node-role.kubernetes.io/control-plane
-        operator: DoesNotExist
+    matchLabels:
+      kubernetes.io/os: linux
   bgpInstances:
     - name: instance-64514
       localASN: 64514
       peers:
         - name: peer-64513-v4
           peerASN: 64513
-          peerAddress: 10.10.16.1
+          peerAddress: 192.168.1.1
           peerConfigRef:
             name: bgp-peer-config-v4
