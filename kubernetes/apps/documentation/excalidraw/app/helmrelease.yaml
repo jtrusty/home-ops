@@ -50,6 +50,7 @@ spec:
                 enabled: true
               readiness: *probes
             securityContext:
+              runAsNonRoot: true
               readOnlyRootFilesystem: true
               allowPrivilegeEscalation: false
               capabilities: { drop: ["ALL"] }
@@ -60,7 +61,6 @@ spec:
                 memory: 200M
     defaultPodOptions:
       securityContext:
-        runAsNonRoot: true
         runAsUser: 101
         runAsGroup: 101
         fsGroup: 101
