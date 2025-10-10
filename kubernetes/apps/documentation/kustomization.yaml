@@ -2,7 +2,10 @@
 # yaml-language-server: $schema=https://json.schemastore.org/kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: default
+namespace: documentation
 components:
   - ../../components/common
 resources:
+  - ./chartdb/ks.yaml
+  - ./drawio/ks.yaml
+  - ./excalidraw/ks.yaml

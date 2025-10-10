@@ -1,0 +1,86 @@
+{
+  "libraries": [
+    {
+      "title": {
+        "main": "Custom"
+      },
+      "entries": [
+        {
+          "id": "Ubiquiti",
+          "title": {
+            "main": "Ubiquiti"
+          },
+          "desc": {
+            "main": "Collection of Ubiquiti Products"
+          },
+          "libs": [
+            {
+              "title": {
+                "main": "Ubiquiti - Cloud Gateway"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ubiquiti_CloudGateways.xml"
+            },
+            {
+              "title": {
+                "main": "Ubiquiti - NVRs"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ubiquiti-NVRs.xml"
+            },
+            {
+              "title": {
+                "main": "Ubiquiti - Panels"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ubiquiti-Panels.xml"
+            },
+            {
+              "title": {
+                "main": "Ubiquiti - Switching"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ubiquiti-Switching.xml"
+            },
+            {
+              "title": {
+                "main": "Ubiquiti - Power Tech"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ubiquiti-PowerTech.xml"
+            }
+          ]
+        },
+        {
+          "id:": "Dell",
+          "title": {
+            "main": "Dell"
+          },
+          "desc": {
+            "main": "Collection of Dell Products"
+          },
+          "libs": [
+            {
+              "title": {
+                "main": "Dell - PowerEdge"
+              },
+              "url": "https://raw.githubusercontent.com/dtc-tech/drawio-libs/refs/heads/main/Dell/Dell-PowerEdge-RackServers.drawio.xml"
+            }
+          ]
+        },
+        {
+          "id": "APC",
+          "title": {
+            "main": "APC"
+          },
+          "desc": {
+            "main": "Collection of APC Products"
+          },
+          "libs": [
+            {
+              "title": {
+                "main": "APC - UPS"
+              },
+              "url": "https://raw.githubusercontent.com/dtc-tech/drawio-libs/refs/heads/main/APC/APC%20Smart%20UPS%20(US%20units).drawio.xml"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
