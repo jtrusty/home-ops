@@ -34,9 +34,9 @@ spec:
               liveness: &probes
                 enabled: true
               readiness: *probes
-            securityContext:
-              allowPrivilegeEscalation: false
-              capabilities: { drop: ["ALL"] }
+            # securityContext:
+            #   allowPrivilegeEscalation: false
+            #   capabilities: { drop: ["ALL"] }
             resources:
               requests:
                 cpu: 50m
