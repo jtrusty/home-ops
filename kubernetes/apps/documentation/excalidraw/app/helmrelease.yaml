@@ -21,7 +21,7 @@ spec:
       namespace: network
   values:
     controllers:
-      echo:
+      excalidraw:
         strategy: RollingUpdate
         containers:
           app:
@@ -47,6 +47,8 @@ spec:
         runAsNonRoot: true
         runAsUser: 65534
         runAsGroup: 65534
+        fsGroup: 65534
+        fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         ports:
@@ -56,6 +58,23 @@ spec:
       app:
         endpoints:
           - port: http
+    # Provide writable paths for nginx while keeping the root filesystem read-only
+    persistence:
+      nginx-cache:
+        type: emptyDir
+        # memory-backed cache is fine for stateless frontend; remove medium to use disk
+        medium: Memory
+        sizeLimit: 128Mi
+        globalMounts:
+          - path: /var/cache/nginx
+      nginx-run:
+        type: emptyDir
+        globalMounts:
+          - path: /var/run/nginx
+      tmp:
+        type: emptyDir
+        globalMounts:
+          - path: /tmp
     route:
       app:
         annotations:
