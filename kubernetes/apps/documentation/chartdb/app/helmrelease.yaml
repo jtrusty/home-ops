@@ -29,7 +29,7 @@ spec:
               repository: ghcr.io/chartdb/chartdb
               tag: 1.16.0
             env:
-              TZ: ${CLUSTER_TIMEZONE}
+              TZ: "America/Chicago"
               # Optional: Uncomment and configure if you want AI features
               # OPENAI_API_KEY: "your-openai-api-key"
             probes:
