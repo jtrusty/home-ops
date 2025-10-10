@@ -24,37 +24,6 @@ spec:
       drawio:
         strategy: RollingUpdate
 
-        initContainers:
-            perms:
-              image:
-                repository: busybox
-                tag: "1.36"
-              securityContext:
-                runAsUser: 0
-                runAsGroup: 0
-                readOnlyRootFilesystem: false
-                allowPrivilegeEscalation: false
-                capabilities:
-                  add: ["CHOWN"]
-              command: ["sh", "-c"]
-              args:
-                - >
-                  mkdir -p \
-                    /usr/local/tomcat/temp \
-                    /usr/local/tomcat/work/Catalina/localhost \
-                    /usr/local/tomcat/logs \
-                    /usr/local/tomcat/conf/Catalina/localhost &&
-                  chown -R 1000:1000 \
-                    /usr/local/tomcat/temp \
-                    /usr/local/tomcat/work \
-                    /usr/local/tomcat/logs \
-                    /usr/local/tomcat/conf/Catalina/localhost &&
-                  chmod -R 775 \
-                    /usr/local/tomcat/temp \
-                    /usr/local/tomcat/work \
-                    /usr/local/tomcat/logs \
-                    /usr/local/tomcat/conf/Catalina/localhost
-
         containers:
           app:
             image:
@@ -118,8 +87,6 @@ spec:
     persistence:
       tomcat-temp:
         type: emptyDir
-        medium: Memory
-        sizeLimit: 256Mi
         globalMounts:
           - path: /usr/local/tomcat/temp
       tomcat-work:
