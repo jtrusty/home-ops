@@ -32,7 +32,7 @@ spec:
               TZ: "America/Chicago"
             probes:
               liveness: &probes
-                enabled: true
+                enabled: false
               readiness: *probes
             # securityContext:
             #   allowPrivilegeEscalation: false
