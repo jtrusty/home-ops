@@ -90,29 +90,12 @@ spec:
         ports:
           http:
             port: &port 80
+
     serviceMonitor:
       app:
         endpoints:
           - port: http
-      persistence:
-        tomcat-temp:
-          type: emptyDir
-          medium: Memory
-          sizeLimit: 256Mi
-          globalMounts:
-            - path: /usr/local/tomcat/temp
-        tomcat-work:
-          type: emptyDir
-          globalMounts:
-            - path: /usr/local/tomcat/work
-        tomcat-logs:
-          type: emptyDir
-          globalMounts:
-            - path: /usr/local/tomcat/logs
-        tomcat-hosts:
-          type: emptyDir
-          globalMounts:
-            - path: /usr/local/tomcat/conf/Catalina/localhost
+
     route:
       app:
         annotations:
@@ -131,3 +114,23 @@ spec:
           - backendRefs:
               - identifier: app
                 port: *port
+
+    persistence:
+      tomcat-temp:
+        type: emptyDir
+        medium: Memory
+        sizeLimit: 256Mi
+        globalMounts:
+          - path: /usr/local/tomcat/temp
+      tomcat-work:
+        type: emptyDir
+        globalMounts:
+          - path: /usr/local/tomcat/work
+      tomcat-logs:
+        type: emptyDir
+        globalMounts:
+          - path: /usr/local/tomcat/logs
+      tomcat-hosts:
+        type: emptyDir
+        globalMounts:
+          - path: /usr/local/tomcat/conf/Catalina/localhost
