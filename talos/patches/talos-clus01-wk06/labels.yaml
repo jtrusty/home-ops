@@ -1,5 +1,0 @@
-machine:
-  nodeLabels:
-    node-role.kubernetes.io/worker: ""
-    node.kubernetes.io/gpu: "true"
-    talos.gpu: "nvidia"

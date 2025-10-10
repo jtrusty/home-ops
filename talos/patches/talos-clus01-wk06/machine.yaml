@@ -1,0 +1,13 @@
+machine:
+  kernel:
+    modules:
+      - name: nvidia
+      - name: nvidia_uvm
+      - name: nvidia_drm
+      - name: nvidia_modeset
+  nodeLabels:
+    node-role.kubernetes.io/worker: ""
+    node.kubernetes.io/gpu: "true"
+    talos.gpu: "nvidia"
+  sysctls:
+    net.core.bpf_jit_harden: 1

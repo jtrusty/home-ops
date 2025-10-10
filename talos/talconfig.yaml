@@ -1,31 +1,26 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/budimanjojo/talhelper/master/pkg/config/schemas/talconfig.json
 ---
 clusterName: k8s-selfsvc
-
 talosVersion: "${talosVersion}"
 kubernetesVersion: "${kubernetesVersion}"
-
 endpoint: https://10.10.16.130:6443
 additionalApiServerCertSans: &sans
   - "127.0.0.1"
   - "10.10.16.130"
   - "k8s-selfsvc.internal"
 additionalMachineCertSans: *sans
-
 clusterPodNets: ["10.42.0.0/16"]
 clusterSvcNets: ["10.43.0.0/16"]
-
 # Disable built-in CNI to use Cilium
 cniConfig:
   name: none
-
 nodes:
   - hostname: "talos-clus01-cp01"
     ipAddress: "10.10.16.131"
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/e3fab82b561b5e559cdf1c0b1e5950c0e52700b9208a2cfaa5b18454796f3a7e
+    talosImageURL: factory.talos.dev/installer/27c006c61185fc860f848e16cad265db959a24af02fe04a2a6c92965c34c697b
     controlPlane: true
     networkInterfaces:
       - interface: "eth0"
@@ -45,7 +40,7 @@ nodes:
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/e3fab82b561b5e559cdf1c0b1e5950c0e52700b9208a2cfaa5b18454796f3a7e
+    talosImageURL: factory.talos.dev/installer/27c006c61185fc860f848e16cad265db959a24af02fe04a2a6c92965c34c697b
     controlPlane: true
     networkInterfaces:
       - interface: "eth0"
@@ -65,7 +60,7 @@ nodes:
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/e3fab82b561b5e559cdf1c0b1e5950c0e52700b9208a2cfaa5b18454796f3a7e
+    talosImageURL: factory.talos.dev/installer/27c006c61185fc860f848e16cad265db959a24af02fe04a2a6c92965c34c697b
     controlPlane: true
     networkInterfaces:
       - interface: "eth0"
@@ -85,7 +80,7 @@ nodes:
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/95d432d6bb450a67e801a6ae77c96a67e38820b62ba4159ae7e997e1695207f7
+    talosImageURL: factory.talos.dev/installer/bb0399c2a5dee832dd964871b3e712a43d6a31138ec0055e4733a2c0f0412dde
     controlPlane: false
     patches:
       - "@./patches/talos-clus01-wk01/labels.yaml"
@@ -105,7 +100,7 @@ nodes:
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/95d432d6bb450a67e801a6ae77c96a67e38820b62ba4159ae7e997e1695207f7
+    talosImageURL: factory.talos.dev/installer/bb0399c2a5dee832dd964871b3e712a43d6a31138ec0055e4733a2c0f0412dde
     controlPlane: false
     patches:
       - "@./patches/talos-clus01-wk02/labels.yaml"
@@ -125,7 +120,7 @@ nodes:
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/95d432d6bb450a67e801a6ae77c96a67e38820b62ba4159ae7e997e1695207f7
+    talosImageURL: factory.talos.dev/installer/bb0399c2a5dee832dd964871b3e712a43d6a31138ec0055e4733a2c0f0412dde
     controlPlane: false
     patches:
       - "@./patches/talos-clus01-wk03/labels.yaml"
@@ -145,7 +140,7 @@ nodes:
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/bf0b8c6a87efc63ff96dad94c3b84e463f271df04aad6744a6b25ae1a84991f5
+    talosImageURL: factory.talos.dev/installer/402134c742e0d63a25f5c42467e86eae50468dfb48c0be2a82e73f789b42ae63
     controlPlane: false
     patches:
       - "@./patches/talos-clus01-wk04/labels.yaml"
@@ -165,7 +160,7 @@ nodes:
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/bf0b8c6a87efc63ff96dad94c3b84e463f271df04aad6744a6b25ae1a84991f5
+    talosImageURL: factory.talos.dev/installer/402134c742e0d63a25f5c42467e86eae50468dfb48c0be2a82e73f789b42ae63
     controlPlane: false
     patches:
       - "@./patches/talos-clus01-wk05/labels.yaml"
@@ -185,7 +180,7 @@ nodes:
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/bf0b8c6a87efc63ff96dad94c3b84e463f271df04aad6744a6b25ae1a84991f5
+    talosImageURL: factory.talos.dev/installer/402134c742e0d63a25f5c42467e86eae50468dfb48c0be2a82e73f789b42ae63
     controlPlane: false
     patches:
       - "@./patches/talos-clus01-wk06/labels.yaml"
@@ -200,7 +195,6 @@ nodes:
             routes:
               - network: "0.0.0.0/0"
                 gateway: "10.10.16.1"
-
 # Global patches
 patches:
   - "@./patches/global/machine-features.yaml"
@@ -209,7 +203,6 @@ patches:
   - "@./patches/global/machine-network.yaml"
   - "@./patches/global/machine-sysctls.yaml"
   - "@./patches/global/machine-time.yaml"
-
 # Controller patches
 controlPlane:
   patches:
