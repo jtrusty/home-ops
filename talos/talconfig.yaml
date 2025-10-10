@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/budimanjojo/talhelper/master/pkg/config/schemas/talconfig.json
 ---
-clusterName: kubernetes
+clusterName: k8s-selfsvc
 
 talosVersion: "${talosVersion}"
 kubernetesVersion: "${kubernetesVersion}"
@@ -9,7 +9,7 @@ endpoint: https://10.10.16.130:6443
 additionalApiServerCertSans: &sans
   - "127.0.0.1"
   - "10.10.16.130"
-  - "k8s.internal"
+  - "k8s-selfsvc.internal"
 additionalMachineCertSans: *sans
 
 clusterPodNets: ["10.42.0.0/16"]
@@ -87,6 +87,8 @@ nodes:
       secureboot: false
     talosImageURL: factory.talos.dev/installer/95d432d6bb450a67e801a6ae77c96a67e38820b62ba4159ae7e997e1695207f7
     controlPlane: false
+    patches:
+      - "@./patches/talos-clus01-wk01/labels.yaml"
     networkInterfaces:
       - interface: "eth0"
         dhcp: false
@@ -105,6 +107,8 @@ nodes:
       secureboot: false
     talosImageURL: factory.talos.dev/installer/95d432d6bb450a67e801a6ae77c96a67e38820b62ba4159ae7e997e1695207f7
     controlPlane: false
+    patches:
+      - "@./patches/talos-clus01-wk02/labels.yaml"
     networkInterfaces:
       - interface: "eth0"
         dhcp: false
@@ -123,6 +127,8 @@ nodes:
       secureboot: false
     talosImageURL: factory.talos.dev/installer/95d432d6bb450a67e801a6ae77c96a67e38820b62ba4159ae7e997e1695207f7
     controlPlane: false
+    patches:
+      - "@./patches/talos-clus01-wk03/labels.yaml"
     networkInterfaces:
       - interface: "eth0"
         dhcp: false
@@ -141,6 +147,8 @@ nodes:
       secureboot: false
     talosImageURL: factory.talos.dev/installer/bf0b8c6a87efc63ff96dad94c3b84e463f271df04aad6744a6b25ae1a84991f5
     controlPlane: false
+    patches:
+      - "@./patches/talos-clus01-wk04/labels.yaml"
     networkInterfaces:
       - interface: "eth0"
         dhcp: false
@@ -159,6 +167,8 @@ nodes:
       secureboot: false
     talosImageURL: factory.talos.dev/installer/bf0b8c6a87efc63ff96dad94c3b84e463f271df04aad6744a6b25ae1a84991f5
     controlPlane: false
+    patches:
+      - "@./patches/talos-clus01-wk05/labels.yaml"
     networkInterfaces:
       - interface: "eth0"
         dhcp: false
@@ -177,6 +187,8 @@ nodes:
       secureboot: false
     talosImageURL: factory.talos.dev/installer/bf0b8c6a87efc63ff96dad94c3b84e463f271df04aad6744a6b25ae1a84991f5
     controlPlane: false
+    patches:
+      - "@./patches/talos-clus01-wk06/labels.yaml"
     networkInterfaces:
       - interface: "eth0"
         dhcp: false
@@ -191,6 +203,7 @@ nodes:
 
 # Global patches
 patches:
+  - "@./patches/global/machine-features.yaml"
   - "@./patches/global/machine-files.yaml"
   - "@./patches/global/machine-kubelet.yaml"
   - "@./patches/global/machine-network.yaml"
@@ -202,4 +215,5 @@ controlPlane:
   patches:
     - "@./patches/controller/admission-controller-patch.yaml"
     - "@./patches/controller/cluster.yaml"
-
+    - "@./patches/controller/labels.yaml"
+    - "@./patches/controller/machine-features.yaml"
