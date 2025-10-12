@@ -10,6 +10,8 @@ spec:
     name: intel-gpu-resource-driver
   interval: 1h
   values:
+    nodeSelector:
+      talos.gpu: "intel"
     cdi:
       staticPath: /var/cdi/static
       dynamicPath: /var/cdi/dynamic
