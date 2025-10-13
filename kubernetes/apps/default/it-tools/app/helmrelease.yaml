@@ -119,15 +119,9 @@ spec:
         enabled: true
         type: emptyDir
         medium: Memory
-        sizeLimit: 256Mi
-        path:
-          - /var/cache/nginx/
-      nginx-tmp:
-        enabled: true
-        type: emptyDir
         sizeLimit: 128Mi
         path:
-          - /var/lib/nginx/tmp
+          - /var/cache/nginx/
       run:
         enabled: true
         type: emptyDir
