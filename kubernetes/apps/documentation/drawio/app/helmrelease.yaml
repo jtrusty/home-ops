@@ -58,6 +58,7 @@ spec:
               # tomcat user
               runAsUser: 1001
               runAsGroup: 999
+              readOnlyRootFileSystem: false
               allowPrivilegeEscalation: false
               capabilities: { drop: ["ALL"] }
             resources:
