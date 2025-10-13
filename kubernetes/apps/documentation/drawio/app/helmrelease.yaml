@@ -108,3 +108,11 @@ spec:
         type: emptyDir
         globalMounts:
           - path: /usr/local/tomcat/logs
+      tomcat-work:
+        type: emptyDir
+        globalMounts:
+          - path: /usr/local/tomcat/work
+      tomcat-conf:
+        type: emptyDir
+        globalMounts:
+          - path: /usr/local/tomcat/conf
