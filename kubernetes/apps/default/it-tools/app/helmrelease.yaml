@@ -24,7 +24,7 @@ spec:
       it-tools:
         strategy: RollingUpdate
 
-        initContainer:
+        initContainers:
           perms:
             image:
               repository: busybox
