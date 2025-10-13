@@ -28,23 +28,6 @@ spec:
           reloader.stakater.com/auto: "true"
           configmap.reloader.stakater.com/reload-resources: &configuration drawio-configuration
 
-        initContainers:
-          config:
-            image:
-              repository: jgraph/drawio
-              tag: 28.2.5@sha256:96cc65358665458ed603fff458f7c5451cf36e6fc57eb42d0c4807a36ef5972e
-            securityContext:
-              runAsUser: 0
-              runAsGroup: 0
-              readOnlyRootFilesystem: false
-              allowPrivilegeEscalation: false
-            command:
-              - sh
-              - -c
-              - |
-                mkdir -p /usr/local/tomcat/webapps/draw/js && \
-                cp -a /usr/local/tomcat/webapps/draw/js/* /js/
-
         containers:
           app:
             image:
