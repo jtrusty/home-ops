@@ -16,34 +16,40 @@
           "libs": [
             {
               "title": {
-                "main": "Ubiquiti - Cloud Gateway"
+                "main": "Ubiquiti - Rack Cloud Gateway"
               },
-              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ubiquiti_CloudGateways.xml"
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Rack/ui-Rack-CloudGateways.xml"
             },
             {
               "title": {
-                "main": "Ubiquiti - NVRs"
+                "main": "Ubiquiti - Rack Camera Security"
               },
-              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ubiquiti-NVRs.xml"
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Rack/ui-Rack-Camera-Security.xml"
             },
             {
               "title": {
-                "main": "Ubiquiti - Panels"
+                "main": "Ubiquiti - Rack Accessories"
               },
-              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ubiquiti-Panels.xml"
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Rack/ui-Rack-Accessories-Rack-Mount.xml"
             },
             {
               "title": {
-                "main": "Ubiquiti - Switching"
+                "main": "Ubiquiti - Rack Switching"
               },
-              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ubiquiti-Switching.xml"
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Rack/ui-Rack-Switching.xml"
             },
             {
               "title": {
-                "main": "Ubiquiti - Power Tech"
+                "main": "Ubiquiti - Rack Integrations"
               },
-              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ubiquiti-PowerTech.xml"
-            }
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Rack/ui-Rack-Integrations.xml"
+            },
+            {
+              "title": {
+                "main": "Ubiquiti - Rack Advanced Hosting"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Rack/ui-Rack-Advanced-Hosting.xml"
+            },
           ]
         },
         {
