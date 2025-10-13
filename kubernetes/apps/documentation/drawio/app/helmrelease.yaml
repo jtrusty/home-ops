@@ -24,6 +24,10 @@ spec:
       drawio:
         strategy: RollingUpdate
 
+        annotations:
+          reloader.stakater.com/auto: "true"
+          configmap.reloader.stakater.com/reload-resources: &configuration drawio-configuration
+
         containers:
           app:
             image:
@@ -34,7 +38,7 @@ spec:
               DRAWIO_CONFIG:
                 valueFrom:
                   configMapKeyRef:
-                    name: drawio-configuration
+                    name: *configuration
                     key: configuration.json
             probes:
               liveness: &probes
