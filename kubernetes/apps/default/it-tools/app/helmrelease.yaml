@@ -118,14 +118,10 @@ spec:
       nginx-cache:
         enabled: true
         type: emptyDir
-        medium: Memory
-        sizeLimit: 128Mi
         path:
           - /var/cache/nginx/
       run:
         enabled: true
         type: emptyDir
-        medium: Memory
-        sizeLimit: 128Mi
         path:
           - /run
