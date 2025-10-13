@@ -42,6 +42,7 @@ spec:
               - sh
               - -c
               - |
+                mkdir -p /usr/local/tomcat/webapps/draw/js && \
                 cp -a /usr/local/tomcat/webapps/draw/js/* /js/
 
         containers:
