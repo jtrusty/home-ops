@@ -63,7 +63,7 @@
           "libs": [
             {
               "title": {
-                "main": "Dell - PowerEdge"
+                "main": "Dell - Rack PowerEdge"
               },
               "url": "https://raw.githubusercontent.com/dtc-tech/drawio-libs/refs/heads/main/Dell/Dell-PowerEdge-RackServers.drawio.xml"
             }
@@ -80,7 +80,7 @@
           "libs": [
             {
               "title": {
-                "main": "APC - UPS"
+                "main": "APC - Smart UPS"
               },
               "url": "https://raw.githubusercontent.com/dtc-tech/drawio-libs/refs/heads/main/APC/APC%20Smart%20UPS%20(US%20units).drawio.xml"
             }
