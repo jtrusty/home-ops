@@ -24,6 +24,25 @@ spec:
       it-tools:
         strategy: RollingUpdate
 
+        initContainer:
+          perms:
+            image:
+              repository: busybox
+              tag: "1.36"
+            securityContext:
+              runAsUser: 0
+              runAsGroup: 0
+              readOnlyRootFilesystem: false
+              allowPrivilegeEscalation: false
+              capabilities:
+                add: ["CHOWN"]
+            command: ["sh", "-c"]
+            args:
+              - >
+                mkdir -p /etc/nginx/conf.d &&
+                chown -R 101:101 /etc/nginx/conf.d &&
+                chmod -R 775 /etc/nginx/conf.d
+
         containers:
           app:
             image:
@@ -94,3 +113,25 @@ spec:
           - backendRefs:
               - identifier: app
                 port: *port
+
+    persistence:
+      nginx-cache:
+        enabled: true
+        type: emptyDir
+        medium: Memory
+        sizeLimit: 256Mi
+        path:
+          - /var/cache/nginx/
+      nginx-tmp:
+        enabled: true
+        type: emptyDir
+        sizeLimit: 128Mi
+        path:
+          - /var/lib/nginx/tmp
+      run:
+        enabled: true
+        type: emptyDir
+        medium: Memory
+        sizeLimit: 128Mi
+        path:
+          - /run
