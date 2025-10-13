@@ -10,8 +10,17 @@ spec:
     name: intel-gpu-resource-driver
   interval: 1h
   values:
-    nodeSelector:
-      intel.feature.node.kubernetes.io/gpu: "true"
     cdi:
       staticPath: /var/cdi/static
       dynamicPath: /var/cdi/dynamic
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              kind: DaemonSet
+              name: intel-gpu-resource-driver-kubelet-plugin
+            patch: |
+              - op: add
+                path: /spec/template/spec/nodeSelector
+                value:
+                  intel.feature.node.kubernetes.io/gpu: "true"
