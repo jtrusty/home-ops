@@ -93,7 +93,7 @@ spec:
           gethomepage.dev/name: "draw.io"
           gethomepage.dev/description: "diagramming application"
           gethomepage.dev/icon: "sh-draw-io"
-          gethomepage.dev/group: "Default"
+          gethomepage.dev/group: "Documentation"
         hostnames: ["{{ .Release.Name }}.${SECRET_DOMAIN}"]
         parentRefs:
           - name: external
