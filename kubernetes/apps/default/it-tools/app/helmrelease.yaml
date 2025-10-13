@@ -119,9 +119,9 @@ spec:
         enabled: true
         type: emptyDir
         globalMounts:
-          - /var/cache/nginx/
+          - path: /var/cache/nginx/
       run:
         enabled: true
         type: emptyDir
         globalMounts:
-          - /run
+          - path: /run
