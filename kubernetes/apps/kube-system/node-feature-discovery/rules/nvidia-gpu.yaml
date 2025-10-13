@@ -14,8 +14,8 @@ spec:
             device:
               op: In
               value:
-                - "1BB3" # GP104GL [Tesla P4]
+                - "0x1bb3" # GP104GL [Tesla P4]
             vendor:
               op: In
               value:
-                - "10DE" # NVIDIA Corporation
+                - "0x10de" # NVIDIA Corporation
