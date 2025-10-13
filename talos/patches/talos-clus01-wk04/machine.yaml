@@ -7,7 +7,5 @@ machine:
       - name: nvidia_modeset
   nodeLabels:
     node-role.kubernetes.io/worker: ""
-    node.kubernetes.io/gpu: "true"
-    talos.gpu: "nvidia"
   sysctls:
     net.core.bpf_jit_harden: 1
