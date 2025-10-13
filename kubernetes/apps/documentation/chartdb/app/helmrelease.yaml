@@ -51,7 +51,7 @@ spec:
               # nginx user
               runAsUser: 101
               runAsGroup: 101
-              readOnlyRootFileSystem: false
+              readOnlyRootFilesystem: false
               allowPrivilegeEscalation: false
               capabilities: { drop: ["ALL"] }
             resources:
