@@ -21,7 +21,7 @@ spec:
       namespace: network
   values:
     controllers:
-      chartdb:
+      it-tools:
         strategy: RollingUpdate
 
         containers:
@@ -49,7 +49,7 @@ spec:
               # nginx user
               runAsUser: 101
               runAsGroup: 101
-              readOnlyRootFilesystem: true
+              readOnlyRootFilesystem: false
               allowPrivilegeEscalation: false
               capabilities: { drop: ["ALL"] }
             resources:
@@ -93,22 +93,3 @@ spec:
           - backendRefs:
               - identifier: app
                 port: *port
-
-    persistence:
-      nginx:
-        type: emptyDir
-        globalMounts:
-          - path: /etc/nginx/
-      run:
-        type: emptyDir
-        medium: Memory
-        sizeLimit: 128Mi
-        globalMounts:
-          - path: /var/run
-
-      nginx-cache:
-        type: emptyDir
-        medium: Memory
-        sizeLimit: 128Mi
-        globalMounts:
-          - path: /var/cache/nginx/
