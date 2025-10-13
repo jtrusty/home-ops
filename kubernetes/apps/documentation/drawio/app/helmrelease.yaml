@@ -31,6 +31,11 @@ spec:
               tag: 28.2.5@sha256:96cc65358665458ed603fff458f7c5451cf36e6fc57eb42d0c4807a36ef5972e
             env:
               TZ: "America/Chicago"
+              DRAWIO_CONFIG:
+                valueFrom:
+                  configMapKeyRef:
+                    name: drawio-configuration
+                    key: configuration.json
             probes:
               liveness: &probes
                 enabled: false
