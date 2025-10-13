@@ -118,10 +118,10 @@ spec:
       nginx-cache:
         enabled: true
         type: emptyDir
-        hostPath:
+        globalMounts:
           - /var/cache/nginx/
       run:
         enabled: true
         type: emptyDir
-        hostPath:
+        globalMounts:
           - /run
