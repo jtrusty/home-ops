@@ -6,6 +6,6 @@ namespace: documentation
 components:
   - ../../components/common
 resources:
-  - ./chartdb/ks.yaml
+  # - ./chartdb/ks.yaml
   - ./drawio/ks.yaml
   - ./excalidraw/ks.yaml
