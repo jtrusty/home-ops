@@ -42,6 +42,7 @@ spec:
               # nginx user
               runAsUser: 101
               runAsGroup: 101
+              readOnlyRootFilesystem: true
               allowPrivilegeEscalation: false
               capabilities: { drop: ["ALL"] }
             resources:
@@ -86,3 +87,13 @@ spec:
           - backendRefs:
               - identifier: app
                 port: *port
+
+    persistence:
+     nginx-cache:
+        type: emptyDir
+        globalMounts:
+          - path: /var/cache/nginx
+      tmp:
+        type: emptyDir
+        globalMounts:
+          - path: /tmp
