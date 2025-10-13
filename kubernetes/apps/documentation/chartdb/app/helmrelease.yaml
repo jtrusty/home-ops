@@ -95,17 +95,3 @@ spec:
           - backendRefs:
               - identifier: app
                 port: *port
-
-    persistence:
-      nginx-cache:
-        type: emptyDir
-        globalMounts:
-          - path: /var/cache/nginx
-      tmp:
-        type: emptyDir
-        globalMounts:
-          - path: /tmp
-      run:
-        type: emptyDir
-        globalMounts:
-          - path: /var/run
