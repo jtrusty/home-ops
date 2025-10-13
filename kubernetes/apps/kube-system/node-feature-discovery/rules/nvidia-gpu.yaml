@@ -11,5 +11,11 @@ spec:
       matchFeatures:
         - feature: pci.device
           matchExpressions:
-            vendor: { op: In, value: ["10de"] } # NVIDIA Corporation
-            class: { op: In, value: ["1bb3"] } # GP104GL [Tesla P4]
+            product:
+              op: In
+              value:
+                - "1bb3" # GP104GL [Tesla P4]
+            vendor:
+              op: In
+              value:
+                - "10de" # NVIDIA Corporation
