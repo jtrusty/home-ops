@@ -11,7 +11,7 @@ spec:
   interval: 1h
   values:
     nodeSelector:
-      talos.gpu: "intel"
+      intel.feature.node.kubernetes.io/gpu: "true"
     cdi:
       staticPath: /var/cdi/static
       dynamicPath: /var/cdi/dynamic
