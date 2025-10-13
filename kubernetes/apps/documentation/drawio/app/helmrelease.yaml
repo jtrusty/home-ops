@@ -28,6 +28,15 @@ spec:
           reloader.stakater.com/auto: "true"
           configmap.reloader.stakater.com/reload-resources: &configuration drawio-configuration
 
+        initContainers:
+          - name: copy-js-config
+            image: jgraph/drawio:28.2.5@sha256:96cc65358665458ed603fff458f7c5451cf36e6fc57eb42d0c4807a36ef5972e
+            command:
+              - sh
+              - -c
+              - |
+                cp -a /usr/local/tomcat/webapps/draw/js/* /js/
+
         containers:
           app:
             image:
@@ -96,19 +105,15 @@ spec:
                 port: *port
 
     persistence:
+      tomcat-config:
+        type: emptyDir
+        globalMounts:
+          - path: /usr/local/tomcat/webapps/draw/js
       tomcat-temp:
         type: emptyDir
         globalMounts:
           - path: /usr/local/tomcat/temp
-      tomcat-work:
-        type: emptyDir
-        globalMounts:
-          - path: /usr/local/tomcat/work
       tomcat-logs:
         type: emptyDir
         globalMounts:
           - path: /usr/local/tomcat/logs
-      tomcat-hosts:
-        type: emptyDir
-        globalMounts:
-          - path: /usr/local/tomcat/conf/Catalina/localhost
