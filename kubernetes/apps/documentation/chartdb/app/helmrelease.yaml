@@ -40,7 +40,7 @@ spec:
                 spec:
                   httpGet:
                     path: /
-                    port: &port 80
+                    port: &targetPort 8080
                   initialDelaySeconds: 0
                   periodSeconds: 10
                   timeoutSeconds: 1
@@ -51,7 +51,7 @@ spec:
               # nginx user
               runAsUser: 101
               runAsGroup: 101
-              readOnlyRootFilesystem: false
+              readOnlyRootFileSystem: false
               allowPrivilegeEscalation: false
               capabilities: { drop: ["ALL"] }
             resources:
@@ -71,7 +71,7 @@ spec:
         ports:
           http:
             port: &port 80
-            targetPort: 80
+            targetPort: *targetPort
 
     serviceMonitor:
       app:
@@ -96,21 +96,3 @@ spec:
           - backendRefs:
               - identifier: app
                 port: *port
-
-    persistence:
-      nginx-conf:
-        type: emptyDir
-        globalMounts:
-          - path: /etc/nginx/conf.d
-      nginx-cache:
-        type: emptyDir
-        globalMounts:
-          - path: /var/cache/nginx
-      run:
-        type: emptyDir
-        globalMounts:
-          - path: /var/run
-      tmp:
-        type: emptyDir
-        globalMounts:
-          - path: /tmp
