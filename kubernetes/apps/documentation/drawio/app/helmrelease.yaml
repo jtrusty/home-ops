@@ -94,7 +94,7 @@ spec:
           gethomepage.dev/description: "diagramming application"
           gethomepage.dev/icon: "sh-draw-io"
           gethomepage.dev/group: "Documentation"
-        hostnames: ["{{ .Release.Name }}.${SECRET_DOMAIN}"]
+        hostnames: ["{{ .Release.Name }}.${PUBLIC_DOMAIN}"]
         parentRefs:
           - name: external
             namespace: kube-system

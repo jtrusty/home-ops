@@ -103,7 +103,7 @@ spec:
           gethomepage.dev/description: "whiteboard tool"
           gethomepage.dev/icon: "sh-excalidraw"
           gethomepage.dev/group: "Documentation"
-        hostnames: ["{{ .Release.Name }}.${SECRET_DOMAIN}"]
+        hostnames: ["{{ .Release.Name }}.${PUBLIC_DOMAIN}"]
         parentRefs:
           - name: external
             namespace: kube-system
