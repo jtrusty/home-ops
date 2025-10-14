@@ -16,13 +16,11 @@ spec:
     cleanupOnFail: true
     remediation:
       retries: 3
-  dependsOn:
-    - name: cloudflare-tunnel
-      namespace: network
   values:
     controllers:
       echo:
         strategy: RollingUpdate
+
         containers:
           app:
             image:
@@ -55,20 +53,24 @@ spec:
                 cpu: 10m
               limits:
                 memory: 64Mi
+
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
         runAsUser: 65534
         runAsGroup: 65534
+
     service:
       app:
         ports:
           http:
             port: *port
+
     serviceMonitor:
       app:
         endpoints:
           - port: http
+
     route:
       app:
         hostnames: ["{{ .Release.Name }}.${PUBLIC_DOMAIN}"]

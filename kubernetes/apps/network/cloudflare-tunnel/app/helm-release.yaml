@@ -20,8 +20,10 @@ spec:
     controllers:
       cloudflare-tunnel:
         strategy: RollingUpdate
+
         annotations:
           reloader.stakater.com/auto: "true"
+
         containers:
           app:
             image:
@@ -58,20 +60,24 @@ spec:
                 cpu: 10m
               limits:
                 memory: 256Mi
+
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
         runAsUser: 65534
         runAsGroup: 65534
+
     service:
       app:
         ports:
           http:
             port: *port
+
     serviceMonitor:
       app:
         endpoints:
           - port: http
+
     persistence:
       config-file:
         type: configMap
