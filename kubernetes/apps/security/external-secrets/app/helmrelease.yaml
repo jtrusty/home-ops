@@ -39,9 +39,9 @@ spec:
     grafanaDashboard:
       enabled: true
     reportsController:
-    serviceMonitor:
-      enabled: true
-      interval: 1m
+      serviceMonitor:
+        enabled: true
+        interval: 1m
     bitwarden-sdk-server:
       enabled: true
       podAnnotations:
