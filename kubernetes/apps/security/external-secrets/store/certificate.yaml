@@ -20,6 +20,6 @@ spec:
   duration: 168h # 7d
   renewBefore: 24h # 1d
   issuerRef:
-    name: cluster-signed-issuer
+    name: letsencrypt-production
     kind: ClusterIssuer
     group: cert-manager.io
