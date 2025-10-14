@@ -104,7 +104,7 @@ spec:
           gethomepage.dev/description: "handy online tools"
           gethomepage.dev/icon: "sh-it-tools"
           gethomepage.dev/group: "Default"
-        hostnames: ["{{ .Release.Name }}.${SECRET_DOMAIN}"]
+        hostnames: ["{{ .Release.Name }}.${PUBLIC_DOMAIN}"]
         parentRefs:
           - name: external
             namespace: kube-system
