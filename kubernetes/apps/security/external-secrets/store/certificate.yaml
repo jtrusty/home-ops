@@ -4,11 +4,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: &name bitwarden-tls-certs
-  namespace: security
 spec:
-  secretTemplate:
-    annotations:
-      cert-manager.io/allow-direct-injection: "true"
   secretName: *name
   dnsNames:
     - bitwarden-sdk-server.security.svc.cluster.local
@@ -21,27 +17,6 @@ spec:
     encoding: PKCS8
     size: 2048
     rotationPolicy: Always
-  issuerRef:
-    name: eso-ca
-    kind: ClusterIssuer
-    group: cert-manager.io
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: bitwarden-css-certs
-  namespace: security
-spec:
-  secretName: bitwarden-css-certs
-  dnsNames:
-    - bitwarden-secrets-manager.security.svc.cluster.local
-  privateKey:
-    algorithm: RSA
-    encoding: PKCS8
-    size: 2048
-    rotationPolicy: Always
-  usages:
-    - client auth
   issuerRef:
     name: eso-ca
     kind: ClusterIssuer
