@@ -13,7 +13,7 @@ spec:
           matchExpressions:
             vendor:
               op: In
-              value: ["0x10de"] # NVIDIA Corporation
+              value: ["10de"] # NVIDIA Corporation
             device:
               op: In
-              value: ["0x1bb3"] # GP104GL [Tesla P4]
+              value: ["1bb3"] # GP104GL [Tesla P4]
