@@ -33,6 +33,9 @@ metadata:
   namespace: &namespace security
 spec:
   interval: 1h
+  dependsOn:
+    - name: external-secrets
+      namespace: *namespace
   path: ./kubernetes/apps/security/external-secrets/store
   postBuild:
     substituteFrom:
