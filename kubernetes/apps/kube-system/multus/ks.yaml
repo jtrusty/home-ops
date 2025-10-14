@@ -6,8 +6,6 @@ metadata:
   name: &app multus
   namespace: &namespace kube-system
 spec:
-  dependsOn:
-    - name: multus-crds
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
@@ -35,7 +33,6 @@ metadata:
 spec:
   dependsOn:
     - name: multus
-    - name: multus-crds
   interval: 1h
   path: ./kubernetes/apps/kube-system/multus/networks
   postBuild:
