@@ -72,5 +72,5 @@ spec:
   healthCheckExprs:
     - apiVersion: ceph.rook.io/v1
       kind: CephCluster
-      current: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'True')
-      failed: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'False')
+      current: status.conditions.exists(e, e.type == 'Ready' && e.status == 'True')
+      failed: status.conditions.exists(e, e.type == 'Ready' && e.status == 'False')
