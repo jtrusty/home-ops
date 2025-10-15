@@ -2,14 +2,9 @@
 # yaml-language-server: $schema=https://json.schemastore.org/kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-configMapGenerator:
-  - name: rook-ceph-mon-endpoints
-    files:
-      - ./resources/config.yaml
 resources:
   - ./cluster-external.yaml
+  - ./endpoint-config.yaml
   - ./external-secret.yaml
   - ./storageclass-rbd.yaml
   - ./test-pod.yaml
-generatorOptions:
-  disableNameSuffixHash: true

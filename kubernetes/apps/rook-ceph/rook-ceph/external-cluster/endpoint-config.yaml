@@ -1,0 +1,10 @@
+---
+# yaml-language-server: $schema=https://kubernetesjsonschema.dev/master-standalone/configmap-v1.json
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rook-ceph-mon-endpoints
+data:
+  data: "a=v1:10.10.21.11:6789,b=v1:10.10.21.12:6789,c=v1:10.10.21.13:6789"
+  maxMonId: "2"
+  mapping: "{\"a\":\"pve-node1\",\"b\":\"pve-node2\",\"c\":\"pve-node3\"}"
