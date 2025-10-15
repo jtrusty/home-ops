@@ -4,7 +4,6 @@ apiVersion: ceph.rook.io/v1
 kind: CephCluster
 metadata:
   name: external-cluster
-  namespace: storage
 spec:
   external:
     enable: true
