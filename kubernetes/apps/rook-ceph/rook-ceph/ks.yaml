@@ -67,6 +67,10 @@ spec:
       name: external-cluster
       namespace: *namespace
     - apiVersion: v1
+      kind: Secret
+      name: rook-ceph-external-cluster-details
+      namespace: *namespace
+    - apiVersion: v1
       kind: ConfigMap
       name: rook-ceph-mon-endpoints
       namespace: *namespace
