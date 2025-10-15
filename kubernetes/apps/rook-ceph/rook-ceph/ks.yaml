@@ -66,6 +66,17 @@ spec:
       kind: CephCluster
       name: external-cluster
       namespace: *namespace
+    - apiVersion: v1
+      kind: ConfigMap
+      name: rook-ceph-mon-endpoints
+      namespace: *namespace
+    - apiVersion: v1
+      kind: Secret
+      name: rook-ceph-mon
+      namespace: *namespace
+    - apiVersion: storage.k8s.io/v1
+      kind: StorageClass
+      name: rook-ceph-rbd-external-cluster
   healthCheckExprs:
     - apiVersion: ceph.rook.io/v1
       kind: CephCluster
