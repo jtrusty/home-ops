@@ -66,11 +66,8 @@ spec:
       kind: CephCluster
       name: external-cluster
       namespace: *namespace
-    - apiVersion: storage.k8s.io/v1
-      kind: StorageClass
-      name: rook-ceph-rbd-external-cluster
   healthCheckExprs:
     - apiVersion: ceph.rook.io/v1
       kind: CephCluster
-      current: status.conditions.exists(e, e.type == 'Ready' && e.status == 'True')
-      failed: status.conditions.exists(e, e.type == 'Ready' && e.status == 'False')
+      current: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'True')
+      failed: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'False')
