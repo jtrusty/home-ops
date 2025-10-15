@@ -6,5 +6,6 @@ resources:
   - ./cluster-external.yaml
   - ./endpoint-config.yaml
   - ./external-secret.yaml
+  - ./service-account.yaml
   - ./storageclass-rbd.yaml
   - ./test-pod.yaml
