@@ -29,18 +29,6 @@ spec:
       kind: HelmRelease
       name: *app
       namespace: *namespace
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: cert-manager
-      namespace: *namespace
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: cert-manager-webhook
-      namespace: *namespace
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: cert-manager-cainjector
-      namespace: *namespace
   healthCheckExprs:
     - apiVersion: helm.toolkit.fluxcd.io/v2
       kind: HelmRelease
