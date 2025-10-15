@@ -8,3 +8,20 @@ spec:
   resources:
     requests:
       storage: 1Gi
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox-test
+spec:
+  containers:
+    - name: busybox
+      image: busybox
+      command: ["sleep", "3600"]
+      volumeMounts:
+        - name: rbd-volume
+          mountPath: /mnt
+  volumes:
+    - name: rbd-volume
+      persistentVolumeClaim:
+        claimName: rbd-smoke
