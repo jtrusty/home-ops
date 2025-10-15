@@ -32,7 +32,7 @@ spec:
           app:
             image:
               repository: jgraph/drawio
-              tag: 28.2.5@sha256:96cc65358665458ed603fff458f7c5451cf36e6fc57eb42d0c4807a36ef5972e
+              tag: 28.2.5@sha256:8a3328c7090fb1038edbb278d019283301e4194a26d7585c43e2b2c89d8c5bfb
             env:
               TZ: "America/Chicago"
               DRAWIO_CONFIG:
