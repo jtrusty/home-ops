@@ -6,4 +6,3 @@ resources:
   - ./cephcluster-external.yaml
   - ./external-secret.yaml
   - ./storageclass-rbd.yaml
-  - ./storageclass-cephfs.yaml

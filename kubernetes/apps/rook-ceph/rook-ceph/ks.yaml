@@ -69,9 +69,6 @@ spec:
     - apiVersion: storage.k8s.io/v1
       kind: StorageClass
       name: rook-ceph-rbd-external-cluster
-    - apiVersion: storage.k8s.io/v1
-      kind: StorageClass
-      name: rook-ceph-cephfs-external-cluster
   healthCheckExprs:
     - apiVersion: ceph.rook.io/v1
       kind: CephCluster
