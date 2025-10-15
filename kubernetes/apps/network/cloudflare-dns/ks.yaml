@@ -10,6 +10,9 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   interval: 1h
+  dependsOn:
+    - name: external-secrets-store
+      namespace: security
   path: ./kubernetes/apps/network/cloudflare-dns/app
   postBuild:
     substituteFrom:
