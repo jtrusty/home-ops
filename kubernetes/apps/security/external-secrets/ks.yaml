@@ -49,6 +49,8 @@ spec:
   dependsOn:
     - name: external-secrets
       namespace: *namespace
+    - name: cert-manager-issuers
+      namespace: cert-manager
   path: ./kubernetes/apps/security/external-secrets/store
   postBuild:
     substituteFrom:
