@@ -67,7 +67,7 @@ spec:
   healthChecks:
     - apiVersion: cert-manager.io/v1
       kind: Certificate
-      name: ${PUBLIC_DOMAIN/./-}-production
+      name: gateway-production
       namespace: *namespace
   healthCheckExprs:
     - apiVersion: cert-manager.io/v1
