@@ -1,0 +1,15 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/rook/rook/v1.12/deploy/examples/crds.yaml#/CephCluster
+apiVersion: ceph.rook.io/v1
+kind: CephCluster
+metadata:
+  name: external-cluster
+  namespace: storage
+spec:
+  external:
+    enable: true
+  dataDirHostPath: /var/lib/rook
+  crashCollector:
+    disable: true
+  cephVersion:
+    image: quay.io/ceph/ceph:v18
