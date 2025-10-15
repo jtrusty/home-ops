@@ -64,13 +64,3 @@ spec:
   targetNamespace: *namespace
   timeout: 15m
   wait: false
-  healthChecks:
-    - apiVersion: cert-manager.io/v1
-      kind: Certificate
-      name: ${PUBLIC_DOMAIN/./-}-production
-      namespace: *namespace
-  healthCheckExprs:
-    - apiVersion: cert-manager.io/v1
-      kind: Certificate
-      current: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'True')
-      failed: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'False')
