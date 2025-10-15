@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rbd-smoke
+spec:
+  accessModes: [ReadWriteOnce]
+  storageClassName: rook-ceph-rbd-external-cluster
+  resources:
+    requests:
+      storage: 1Gi
