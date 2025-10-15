@@ -7,7 +7,7 @@ configMapGenerator:
     files:
       - ./resources/configuration.json
 resources:
-  - ./helmrelease.yaml
-  - ./ocirepository.yaml
+  - ./helm-release.yaml
+  - ./oci-repository.yaml
 generatorOptions:
   disableNameSuffixHash: true
