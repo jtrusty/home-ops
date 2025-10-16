@@ -42,6 +42,14 @@ spec:
           app.kubernetes.io/name: flux
       kustomize:
         patches:
+          - # Cancel health checks on new Kustomizations revisions
+            patch: |-
+              - op: add
+                path: /spec/template/spec/containers/0/args/-
+                value: --feature-gates=CancelHealthCheckOnNewRevision=true
+            target:
+              kind: Deployment
+              name: kustomize-controller
           - # Increase the number of workers
             patch: |
               - op: add
