@@ -8,6 +8,11 @@ metadata:
 spec:
   external:
     enable: true
+  monitoring:
+      enabled: true
+      createPrometheusRules: true
+  toolbox:
+    enabled: true
   dataDirHostPath: /var/lib/rook
   crashCollector:
     disable: true
@@ -17,4 +22,4 @@ spec:
         disabled: false
         interval: 45s
   cephVersion:
-    image: quay.io/ceph/ceph:v18.2.7 # needs to match the version in proxmox
+    image: quay.io/ceph/ceph:v19.2.3 # needs to match the version in proxmox
