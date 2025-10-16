@@ -8,6 +8,10 @@ metadata:
 spec:
   interval: 1h
   path: ./kubernetes/apps/observability/grafana/app
+  postBuild:
+  substituteFrom:
+    - name: cluster-secrets
+      kind: Secret
   prune: true
   sourceRef:
     kind: GitRepository
@@ -30,10 +34,18 @@ spec:
       namespace: rook-ceph
   interval: 1h
   path: ./kubernetes/apps/observability/grafana/instance
+  postBuild:
+    substituteFrom:
+      - name: cluster-secrets
+        kind: Secret
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
   targetNamespace: *namespace
+  postBuild:
+    substituteFrom:
+      - name: cluster-secrets
+        kind: Secret
   wait: false

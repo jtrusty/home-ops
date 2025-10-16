@@ -11,6 +11,10 @@ spec:
       namespace: rook-ceph
   interval: 1h
   path: ./kubernetes/apps/observability/kube-prometheus-stack/app
+  postBuild:
+    substituteFrom:
+      - name: cluster-secrets
+        kind: Secret
   prune: true
   sourceRef:
     kind: GitRepository
@@ -31,6 +35,10 @@ spec:
       namespace: *namespace
   interval: 1h
   path: ./kubernetes/apps/observability/kube-prometheus-stack/dashboard
+  postBuild:
+    substituteFrom:
+      - name: cluster-secrets
+        kind: Secret
   prune: true
   sourceRef:
     kind: GitRepository
