@@ -15,8 +15,6 @@ spec:
       enableLiveness: true
       serviceMonitor:
         enabled: true
-    toolbox:
-      enabled: true
     image:
       repository: ghcr.io/rook/ceph
     monitoring:
