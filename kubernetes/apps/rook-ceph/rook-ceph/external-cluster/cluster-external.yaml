@@ -8,11 +8,6 @@ metadata:
 spec:
   external:
     enable: true
-  monitoring:
-      enabled: true
-      createPrometheusRules: true
-  toolbox:
-    enabled: true
   dataDirHostPath: /var/lib/rook
   crashCollector:
     disable: true
