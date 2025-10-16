@@ -52,6 +52,10 @@ spec:
     - name: external-secrets-store
       namespace: security
   path: ./kubernetes/apps/rook-ceph/rook-ceph/external-cluster
+  postBuild:
+    substituteFrom:
+      - name: cluster-secrets
+        kind: Secret
   prune: true
   retryInterval: 2m
   sourceRef:
