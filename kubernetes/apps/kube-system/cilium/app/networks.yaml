@@ -7,13 +7,13 @@ metadata:
 spec:
   allowFirstLastIPs: "No"
   blocks:
-    - cidr: "10.10.16.0/24"
+    - cidr: "10.10.16.150/29"
 ---
 # yaml-language-server: $schema=https://datreeio.github.io/CRDs-catalog/cilium.io/ciliumbgpadvertisement_v2.json
 apiVersion: cilium.io/v2
 kind: CiliumBGPAdvertisement
 metadata:
-  name: bgp-advertisement-config
+  name: l3-bgp-advertisement
   labels:
     advertise: bgp
 spec:
@@ -22,15 +22,13 @@ spec:
       service:
         addresses:
           - LoadBalancerIP
-      selector:
-        matchExpressions:
-          - { key: somekey, operator: NotIn, values: ["never-used-value"] }
+      selector: {}
 ---
 # yaml-language-server: $schema=https://datreeio.github.io/CRDs-catalog/cilium.io/ciliumbgppeerconfig_v2.json
 apiVersion: cilium.io/v2
 kind: CiliumBGPPeerConfig
 metadata:
-  name: bgp-peer-config-v4
+  name: l3-bgp-peer-config
 spec:
   families:
     - afi: ipv4
@@ -43,17 +41,17 @@ spec:
 apiVersion: cilium.io/v2
 kind: CiliumBGPClusterConfig
 metadata:
-  name: bgp-cluster-config
+  name: l3-bgp-cluster-config
 spec:
   nodeSelector:
     matchLabels:
       kubernetes.io/os: linux
   bgpInstances:
-    - name: instance-64514
+    - name: cilium
       localASN: 64514
       peers:
-        - name: peer-64513-v4
+        - name: unifi
           peerASN: 64513
-          peerAddress: 192.168.1.1
+          peerAddress: 10.10.16.1
           peerConfigRef:
-            name: bgp-peer-config-v4
+            name: l3-bgp-peer-config
