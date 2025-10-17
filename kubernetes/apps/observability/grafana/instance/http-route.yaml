@@ -5,7 +5,7 @@ kind: HTTPRoute
 metadata:
   name: grafana
 spec:
-  hostnames: ["grafana.${PUBLIC_DOMAIN}"]
+  hostnames: "grafana.${PUBLIC_DOMAIN}"
   parentRefs:
     - name: internal
       namespace: network
