@@ -22,10 +22,10 @@ spec:
             gethomepage.dev/icon: "alertmanager"
             gethomepage.dev/group: "Observability"
           enabled: true
-          hostnames: "alertmanager.${PUBLIC_DOMAIN}"
+          hostnames: ["alertmanager.${PUBLIC_DOMAIN}"]
           parentRefs:
             - name: internal
-              namespace: network
+              namespace: kube-system
               sectionName: https
       alertmanagerSpec:
         alertmanagerConfiguration:
@@ -57,10 +57,10 @@ spec:
             gethomepage.dev/icon: "prometheus"
             gethomepage.dev/group: "Observability"
           enabled: true
-          hostnames: "prometheus.${PUBLIC_DOMAIN}"
+          hostnames: ["prometheus.${PUBLIC_DOMAIN}"]
           parentRefs:
             - name: internal
-              namespace: network
+              namespace: kube-system
               sectionName: https
       prometheusSpec:
         externalUrl: https://prometheus.${PUBLIC_DOMAIN}
