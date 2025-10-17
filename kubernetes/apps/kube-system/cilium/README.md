@@ -25,8 +25,6 @@ router bgp 64513
   neighbor 10.10.16.145 peer-group talos-clus01
   neighbor 10.10.16.146 peer-group talos-clus01
 
-
-
   address-family ipv4 unicast
     neighbor talos-clus01 activate
     neighbor talos-clus01 next-hop-self
@@ -35,4 +33,5 @@ router bgp 64513
     neighbor talos-clus01 route-map DENY-ALL-OUT out
     neighbor talos-clus01 maximum-prefix 16 90 warning-only
   exit-address-family
+exit
 ```
