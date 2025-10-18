@@ -17,8 +17,6 @@ metadata:
   name: cilium
   annotations:
     grafana.integreatly.org/overwrite: "true"
-  annotations:
-    grafana.integreatly.org/overwrite: "true"
 spec:
   folder: Cilium
   allowCrossNamespaceImport: true
@@ -37,8 +35,6 @@ apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
   name: cilium-operator
-  annotations:
-    grafana.integreatly.org/overwrite: "true"
   annotations:
     grafana.integreatly.org/overwrite: "true"
 spec:

@@ -10,8 +10,8 @@ kind: Kustomization
 #       - cilium-metrics.json=resources/cilium-metrics.json
 #       - cilium-operator.json=resources/cilium-operator.json
 resources:
-  # - ./cilium-dashboard.yaml
+  - ./cilium-dashboard.yaml
   - ./kubernetes-dashboard.yaml
   - ./prometheus-dashboard.yaml
-# generatorOptions:
-#   disableNameSuffixHash: true
+generatorOptions:
+  disableNameSuffixHash: true
