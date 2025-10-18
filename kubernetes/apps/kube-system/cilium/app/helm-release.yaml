@@ -34,7 +34,7 @@ spec:
     # NOTE: devices might need to be set if you have more than one active NIC on your hosts
     # devices: eno+ eth+
     dashboards:
-      enabled: true
+      enabled: false
     endpointRoutes:
       enabled: true
     envoy:
