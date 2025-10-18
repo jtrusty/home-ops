@@ -5,6 +5,7 @@ kind: GrafanaDashboard
 metadata:
   name: node-exporter-full
 spec:
+  folder: Prometheus
   allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:
