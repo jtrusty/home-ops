@@ -102,7 +102,7 @@ spec:
     matchLabels:
       grafana.internal/instance: grafana
   configMapRef:
-    name: grafana-dashboards-cilium
+    name: grafana-dashboards
     key: cilium-metrics.json
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/grafana.integreatly.org/grafanadashboard_v1beta1.json
@@ -117,5 +117,5 @@ spec:
     matchLabels:
       grafana.internal/instance: grafana
   configMapRef:
-    name: grafana-dashboards-cilium
+    name: grafana-dashboards
     key: cilium-operator.json
