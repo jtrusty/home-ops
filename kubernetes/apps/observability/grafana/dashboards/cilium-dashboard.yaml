@@ -1,10 +1,22 @@
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/grafana.integreatly.org/grafanafolder_v1beta1.json
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaFolder
+metadata:
+  name: cilium
+spec:
+  instanceSelector:
+    matchLabels:
+      grafana.internal/instance: grafana
+  title: Cilium
+---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/grafana.integreatly.org/grafanadashboard_v1beta1.json
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
   name: cilium
 spec:
+  folder: cilium
   allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:
@@ -22,6 +34,7 @@ kind: GrafanaDashboard
 metadata:
   name: cilium-operator
 spec:
+  folder: cilium
   allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:
