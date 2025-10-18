@@ -94,7 +94,7 @@ spec:
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
-  name: cilium-metrics-custom
+  name: cilium-metrics
 spec:
   folder: Cilium
   allowCrossNamespaceImport: true
@@ -109,7 +109,7 @@ spec:
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
-  name: cilium-operator-custom
+  name: cilium-operator
 spec:
   folder: Cilium
   allowCrossNamespaceImport: true
