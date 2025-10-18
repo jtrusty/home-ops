@@ -5,5 +5,4 @@ kind: Kustomization
 resources:
   - ./cilium-dashboard.yaml
   - ./kubernetes-dashboard.yaml
-  - ./node-exporter-dashboard.yaml
   - ./prometheus-dashboard.yaml
