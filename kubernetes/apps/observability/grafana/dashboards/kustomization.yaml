@@ -2,16 +2,16 @@
 # yaml-language-server: $schema=https://json.schemastore.org/kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-configMapGenerator:
-  - name: grafana-dashboards
-    behavior: create
-    literals: []
-    files:
-      - cilium-metrics.json=resources/cilium-metrics.json
-      - cilium-operator.json=resources/cilium-operator.json
+# configMapGenerator:
+#   - name: grafana-dashboards
+#     behavior: create
+#     literals: []
+#     files:
+#       - cilium-metrics.json=resources/cilium-metrics.json
+#       - cilium-operator.json=resources/cilium-operator.json
 resources:
-  - ./cilium-dashboard.yaml
+  # - ./cilium-dashboard.yaml
   - ./kubernetes-dashboard.yaml
   - ./prometheus-dashboard.yaml
-generatorOptions:
-  disableNameSuffixHash: true
+# generatorOptions:
+#   disableNameSuffixHash: true
