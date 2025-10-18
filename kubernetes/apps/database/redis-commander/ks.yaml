@@ -3,17 +3,14 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app it-tools
-  namespace: &namespace default
+  name: &app redis-commander
+  namespace: &namespace database
 spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
   interval: 1h
-  path: ./kubernetes/apps/default/it-tools/app
-  dependsOn:
-    - name: cloudflare-tunnel
-      namespace: network
+  path: ./kubernetes/apps/database/redis-commander/app
   postBuild:
     substituteFrom:
       - name: cluster-secrets

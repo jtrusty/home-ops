@@ -1,13 +1,3 @@
-# kube-prometheus-stack
-
-## TrueNAS Scale Apps
-
-### graphite-exporter-mapping
-
-
-
-
-```
 mappings:
   ##########################################################################
   # SCALE namespaces you're receiving: scale.<profile>.(cgroup|net|system|…)
@@ -395,4 +385,3 @@ mappings:
       host: "${1}"
       plugin: "zfs_arc_v2"
       type: "${3}"
-```
