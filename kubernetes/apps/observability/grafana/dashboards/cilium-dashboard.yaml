@@ -16,7 +16,7 @@ kind: GrafanaDashboard
 metadata:
   name: cilium
 spec:
-  folder: cilium
+  folder: Cilium
   allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:
@@ -34,7 +34,7 @@ kind: GrafanaDashboard
 metadata:
   name: cilium-operator
 spec:
-  folder: cilium
+  folder: Cilium
   allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:
