@@ -13,6 +13,5 @@ resources:
   - ./cilium-dashboard.yaml
   - ./kubernetes-dashboard.yaml
   - ./prometheus-dashboard.yaml
-  - ./cilium-custom-dashboards.yaml
 generatorOptions:
   disableNameSuffixHash: true
