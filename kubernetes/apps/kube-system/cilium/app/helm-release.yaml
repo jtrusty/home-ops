@@ -34,7 +34,7 @@ spec:
     # NOTE: devices might need to be set if you have more than one active NIC on your hosts
     # devices: eno+ eth+
     dashboards:
-      enabled: true
+      enabled: false # we use separate GrafanaDashboard resources
     endpointRoutes:
       enabled: true
     envoy:
@@ -45,7 +45,7 @@ spec:
     gatewayAPI:
       enabled: true
     hubble:
-      enabled: false
+      enabled: true
     ipam:
       mode: kubernetes
     ipv4NativeRoutingCIDR: "10.42.0.0/16"
