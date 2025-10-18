@@ -3,43 +3,13 @@
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: ScrapeConfig
 metadata:
-  name: node-exporter
+  name: truenas-graphite-exporter
 spec:
   staticConfigs:
     - targets:
-        - truenas.internal:9100
+        - truenas.internal:9108   # graphite_exporter metrics endpoint
   metricsPath: /metrics
   relabelings:
     - action: replace
       targetLabel: job
-      replacement: node-exporter
----
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/monitoring.coreos.com/scrapeconfig_v1alpha1.json
-apiVersion: monitoring.coreos.com/v1alpha1
-kind: ScrapeConfig
-metadata:
-  name: smartctl-exporter
-spec:
-  staticConfigs:
-    - targets:
-        - truenas.internal:9633
-  metricsPath: /metrics
-  relabelings:
-    - action: replace
-      targetLabel: job
-      replacement: smartctl-exporter
----
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/monitoring.coreos.com/scrapeconfig_v1alpha1.json
-apiVersion: monitoring.coreos.com/v1alpha1
-kind: ScrapeConfig
-metadata:
-  name: zfs-exporter
-spec:
-  staticConfigs:
-    - targets:
-        - truenas.internal:9134
-  metricsPath: /metrics
-  relabelings:
-    - action: replace
-      targetLabel: job
-      replacement: zfs-exporter
+      replacement: graphite-exporter
