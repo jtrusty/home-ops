@@ -92,7 +92,7 @@ spec:
         enabled: true
         type: persistentVolumeClaim
         globalMounts:
-          - path: /redis-commander/config
+          - path: /redis-commander
         storageClass: ceph-block
         accessMode: ReadWriteOnce
         size: 1Gi
