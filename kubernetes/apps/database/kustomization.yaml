@@ -7,5 +7,5 @@ components:
   - ../../components/sops
 resources:
   - ./namespace.yaml
-  - ./pgadmin/ks.yaml
+  # - ./pgadmin/ks.yaml
   # - ./redisinsight/ks.yaml

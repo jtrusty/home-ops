@@ -95,7 +95,7 @@ spec:
         type: persistentVolumeClaim
         globalMounts:
           - path: /var/lib/pgadmin
-        storageClass: ceph-block
+        storageClass: rook-ceph-block
         accessMode: ReadWriteOnce
         size: 1Gi
         retain: true
