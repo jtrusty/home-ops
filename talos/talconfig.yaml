@@ -82,8 +82,6 @@ nodes:
       secureboot: false
     talosImageURL: factory.talos.dev/installer/bb0399c2a5dee832dd964871b3e712a43d6a31138ec0055e4733a2c0f0412dde
     controlPlane: false
-    patches:
-      - "@./patches/talos-clus01-wk01/labels.yaml"
     networkInterfaces:
       - interface: "eth0"
         dhcp: false
@@ -102,8 +100,6 @@ nodes:
       secureboot: false
     talosImageURL: factory.talos.dev/installer/bb0399c2a5dee832dd964871b3e712a43d6a31138ec0055e4733a2c0f0412dde
     controlPlane: false
-    patches:
-      - "@./patches/talos-clus01-wk02/labels.yaml"
     networkInterfaces:
       - interface: "eth0"
         dhcp: false
@@ -122,8 +118,6 @@ nodes:
       secureboot: false
     talosImageURL: factory.talos.dev/installer/bb0399c2a5dee832dd964871b3e712a43d6a31138ec0055e4733a2c0f0412dde
     controlPlane: false
-    patches:
-      - "@./patches/talos-clus01-wk03/labels.yaml"
     networkInterfaces:
       - interface: "eth0"
         dhcp: false
@@ -142,8 +136,6 @@ nodes:
       secureboot: false
     talosImageURL: factory.talos.dev/installer/402134c742e0d63a25f5c42467e86eae50468dfb48c0be2a82e73f789b42ae63
     controlPlane: false
-    patches:
-      - "@./patches/talos-clus01-wk04/labels.yaml"
     networkInterfaces:
       - interface: "eth0"
         dhcp: false
@@ -162,8 +154,6 @@ nodes:
       secureboot: false
     talosImageURL: factory.talos.dev/installer/402134c742e0d63a25f5c42467e86eae50468dfb48c0be2a82e73f789b42ae63
     controlPlane: false
-    patches:
-      - "@./patches/talos-clus01-wk05/labels.yaml"
     networkInterfaces:
       - interface: "eth0"
         dhcp: false
@@ -182,8 +172,6 @@ nodes:
       secureboot: false
     talosImageURL: factory.talos.dev/installer/402134c742e0d63a25f5c42467e86eae50468dfb48c0be2a82e73f789b42ae63
     controlPlane: false
-    patches:
-      - "@./patches/talos-clus01-wk06/labels.yaml"
     networkInterfaces:
       - interface: "eth0"
         dhcp: false
