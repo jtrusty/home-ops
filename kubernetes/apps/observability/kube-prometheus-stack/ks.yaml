@@ -31,7 +31,7 @@ metadata:
   namespace: &namespace observability
 spec:
   dependsOn:
-    - name: prometheus-operator
+    - name: kube-prometheus-stack
       namespace: *namespace
   interval: 1h
   path: ./kubernetes/apps/observability/prometheus/rules
