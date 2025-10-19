@@ -22,6 +22,25 @@ spec:
         strategy: RollingUpdate
         annotations:
           reloader.stakater.com/auto: "true"
+
+        initContainers:
+          perms:
+            image:
+              repository: busybox
+              tag: "1.36"
+            securityContext:
+              runAsUser: 0
+              runAsGroup: 0
+              readOnlyRootFilesystem: false
+              allowPrivilegeEscalation: false
+              capabilities:
+                add: ["CHOWN"]
+            command: ["sh", "-c"]
+            args:
+              - >
+                mkdir -p /redis-commander/ &&
+                chmod -R 775 /redis-commander/
+
         containers:
           app:
             image:
@@ -87,14 +106,14 @@ spec:
               - identifier: app
                 port: *port
 
-    persistence:
-      data:
-        enabled: true
-        type: persistentVolumeClaim
-        globalMounts:
-          - path: /redis-commander
-        storageClass: ceph-block
-        accessMode: ReadWriteOnce
-        size: 1Gi
-        retain: true
+    # persistence:
+    #   data:
+    #     enabled: true
+    #     type: persistentVolumeClaim
+    #     globalMounts:
+    #       - path: /redis-commander
+    #     storageClass: ceph-block
+    #     accessMode: ReadWriteOnce
+    #     size: 1Gi
+    #     retain: true
 ---
