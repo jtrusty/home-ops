@@ -31,6 +31,7 @@ spec:
             command:
               - sh
               - -c
+              - ls -la /repository
               - |
                 if [ ! -f /repository/kopia.repository ]; then
                   kopia repository create filesystem --path=/repository --password="$KOPIA_PASSWORD"
