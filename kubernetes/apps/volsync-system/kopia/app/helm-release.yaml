@@ -14,6 +14,20 @@ spec:
       kopia:
         annotations:
           reloader.stakater.com/auto: "true"
+
+        initContainers:
+        - name: init-kopia-repo
+          image: ghcr.io/home-operations/kopia:0.21.1
+          command:
+            - sh
+            - -c
+            - |
+              if [ ! -f /repository/kopia.repository ]; then
+                kopia repository create filesystem --path=/repository --override-existing --no-check-for-updates --password='';
+              else
+                echo "Kopia repository already initialized";
+              fi
+
         containers:
           app:
             image:
