@@ -98,7 +98,7 @@ spec:
           - "{{ .Release.Name }}.${PUBLIC_DOMAIN}"
         parentRefs:
           - name: internal
-            namespace: network
+            namespace: kube-system
             sectionName: https
     configMaps:
       config:
