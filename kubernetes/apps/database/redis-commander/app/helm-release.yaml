@@ -86,3 +86,15 @@ spec:
           - backendRefs:
               - identifier: app
                 port: *port
+
+    persistence:
+      data:
+        enabled: true
+        type: persistentVolumeClaim
+        globalMounts:
+          - path: /redis-commander/config
+        storageClass: ceph-block
+        accessMode: ReadWriteOnce
+        size: 1Gi
+        retain: true
+---
