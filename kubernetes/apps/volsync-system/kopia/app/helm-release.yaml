@@ -30,7 +30,7 @@ spec:
               - -c
               - |
                 if [ ! -f /repository/kopia.repository ]; then
-                  kopia repository create filesystem --path=/repository --no-check-for-updates --password='';
+                  kopia repository create filesystem --path=/repository
                 else
                   echo "Kopia repository already initialized";
                 fi
