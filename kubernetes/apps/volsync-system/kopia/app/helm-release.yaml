@@ -37,6 +37,7 @@ spec:
                 else
                   echo "Kopia repository already initialized"
                 fi
+              - ls -la /repository
 
         containers:
           app:
