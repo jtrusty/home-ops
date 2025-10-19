@@ -63,22 +63,27 @@ spec:
                   failureThreshold: 3
               readiness: *probes
             securityContext:
+              runAsNonRoot: true
+              # nginx user
+              runAsUser: 1000
+              runAsGroup: 1000
+              # requires write access for various files
+              readOnlyRootFilesystem: false
               allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: {drop: ["ALL"]}
+              capabilities: { drop: ["ALL"] }
             resources:
               requests:
                 cpu: 10m
               limits:
                 memory: 1Gi
+
     defaultPodOptions:
       securityContext:
-        runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
+        fsGroup: 101
         fsGroupChangePolicy: OnRootMismatch
+        seccompProfile: { type: RuntimeDefault }
         supplementalGroups: [10010]
+
     service:
       app:
         ports:
