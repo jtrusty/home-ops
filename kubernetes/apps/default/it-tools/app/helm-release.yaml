@@ -112,15 +112,15 @@ spec:
                 port: *port
 
     persistence:
-        nginx-cache:
-          type: emptyDir
-          medium: Memory
-          sizeLimit: 128Mi
-          globalMounts:
-            - path: /var/cache/nginx
-        nginx-run:
-          type: emptyDir
-          medium: Memory
-          sizeLimit: 64Mi
-          globalMounts:
-            - path: /var/run
+      nginx-cache:
+        type: emptyDir
+        medium: Memory
+        sizeLimit: 128Mi
+        globalMounts:
+          - path: /var/cache/nginx
+      nginx-run:
+        type: emptyDir
+        medium: Memory
+        sizeLimit: 64Mi
+        globalMounts:
+          - path: /var/run
