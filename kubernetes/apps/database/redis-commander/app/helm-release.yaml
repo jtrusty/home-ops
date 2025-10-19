@@ -106,14 +106,14 @@ spec:
               - identifier: app
                 port: *port
 
-    # persistence:
-    #   data:
-    #     enabled: true
-    #     type: persistentVolumeClaim
-    #     globalMounts:
-    #       - path: /redis-commander
-    #     storageClass: ceph-block
-    #     accessMode: ReadWriteOnce
-    #     size: 1Gi
-    #     retain: true
+    persistence:
+      data:
+        enabled: true
+        type: persistentVolumeClaim
+        globalMounts:
+          - path: /redis-commander
+        storageClass: ceph-block
+        accessMode: ReadWriteOnce
+        size: 1Gi
+        retain: true
 ---
