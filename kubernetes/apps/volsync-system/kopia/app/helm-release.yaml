@@ -25,14 +25,17 @@ spec:
               runAsGroup: 0
               readOnlyRootFilesystem: false
               allowPrivilegeEscalation: false
+            envFrom:
+              - secretRef:
+                  name: kopia-secret
             command:
               - sh
               - -c
               - |
                 if [ ! -f /repository/kopia.repository ]; then
-                  kopia repository create filesystem --path=/repository
+                  kopia repository create filesystem --path=/repository --password="$KOPIA_PASSWORD"
                 else
-                  echo "Kopia repository already initialized";
+                  echo "Kopia repository already initialized"
                 fi
 
         containers:
