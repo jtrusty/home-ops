@@ -6,7 +6,7 @@ namespace: documentation
 components:
   - ../../components/sops
 resources:
-  - ./namespace.yaml
-  - ./chartdb/ks.yaml
-  - ./drawio/ks.yaml
-  - ./excalidraw/ks.yaml
+  # - ./namespace.yaml
+  # - ./chartdb/ks.yaml
+  # - ./drawio/ks.yaml
+  # - ./excalidraw/ks.yaml
