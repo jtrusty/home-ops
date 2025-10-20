@@ -7,5 +7,5 @@ components:
   - ../../components/sops
 resources:
   - ./namespace.yaml
-  # - ./atuin/ks.yaml
-  # - ./it-tools/ks.yaml
+  - ./atuin/ks.yaml
+  - ./it-tools/ks.yaml
