@@ -183,6 +183,8 @@ nodes:
             routes:
               - network: "0.0.0.0/0"
                 gateway: "10.10.16.1"
+    patches:
+      - "@./patches/talos-clus01-wk06/machine.yaml"
 # Global patches
 patches:
   - "@./patches/global/machine-features.yaml"
