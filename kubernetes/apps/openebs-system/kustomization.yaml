@@ -6,5 +6,5 @@ namespace: openebs-system
 components:
   - ../../components/sops
 resources:
-  - ./namespace.yaml
-  - ./openebs/ks.yaml
+  # - ./namespace.yaml
+  # - ./openebs/ks.yaml
