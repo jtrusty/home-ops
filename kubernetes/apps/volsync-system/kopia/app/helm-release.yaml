@@ -83,6 +83,7 @@ spec:
         ports:
           http:
             port: *port
+
     route:
       app:
         hostnames:
@@ -103,7 +104,7 @@ spec:
                   "path": "/repository"
                 }
               },
-              "hostname": "volsync.{{ .Release.Namespace }}.svc.cluster.local",
+              "hostname": "volsync.volsync-system.svc.cluster.local",
               "username": "volsync",
               "description": "volsync",
               "enableActions": false
