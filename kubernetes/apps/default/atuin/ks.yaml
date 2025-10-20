@@ -19,6 +19,7 @@ spec:
         kind: Secret
     substitute:
       APP: *app
+      VOLSYNC_CLAIM: *app
       VOLSYNC_CAPACITY: 5Gi
   prune: true
   retryInterval: 2m
