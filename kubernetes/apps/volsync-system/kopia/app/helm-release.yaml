@@ -21,8 +21,8 @@ spec:
               repository: ghcr.io/home-operations/kopia
               tag: 0.21.1@sha256:f666b5f2c1ea4649cd2bd703507d4b81c2b515782e8476ba4a145b091a704a53
             securityContext:
-              runAsUser: 10010
-              runAsGroup: 10010
+              runAsUser: 0
+              runAsGroup: 0
               readOnlyRootFilesystem: false
               allowPrivilegeEscalation: false
             envFrom:
@@ -68,8 +68,8 @@ spec:
             securityContext:
               runAsNonRoot: true
               # nginx user
-              runAsUser: 1000
-              runAsGroup: 1000
+              runAsUser: 4001
+              runAsGroup: 4001
               # requires write access for various files
               readOnlyRootFilesystem: false
               allowPrivilegeEscalation: false
@@ -82,10 +82,9 @@ spec:
 
     defaultPodOptions:
       securityContext:
-        fsGroup: 1000
+        fsGroup: 4001
         fsGroupChangePolicy: OnRootMismatch
         seccompProfile: { type: RuntimeDefault }
-        suppplementalGroups: [10010]
 
     service:
       app:
