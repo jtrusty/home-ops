@@ -11,7 +11,7 @@ spec:
       app.kubernetes.io/name: *app
   interval: 1h
   dependsOn:
-    - name: external-secrets-store
+    - name: external-secrets
       namespace: security
   path: ./kubernetes/apps/rook-ceph/rook-ceph/app
   postBuild:
@@ -49,7 +49,7 @@ spec:
   dependsOn:
     - name: rook-ceph
       namespace: *namespace
-    - name: external-secrets-store
+    - name: external-secrets
       namespace: security
   path: ./kubernetes/apps/rook-ceph/rook-ceph/external-cluster
   postBuild:
