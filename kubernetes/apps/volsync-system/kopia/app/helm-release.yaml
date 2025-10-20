@@ -75,30 +75,38 @@ spec:
             namespace: kube-system
             sectionName: https
 
-    # configMaps:
-    #   config:
-    #     data:
-    #       repository.config: |-
-    #         {
-    #           "storage": {
-    #             "type": "filesystem",
-    #             "config": {
-    #               "path": "/repository"
-    #             }
-    #           },
-    #           "hostname": "volsync.{{ .Release.Namespace }}.svc.cluster.local",
-    #           "username": "volsync",
-    #           "description": "volsync",
-    #           "enableActions": false
-    #         }
+    configMaps:
+      config:
+        data:
+          repository.config: |-
+            {
+              "storage": {
+                "type": "filesystem",
+                "config": {
+                  "path": "/repository"
+                }
+              },
+              "hostname": "volsync.volsync-system.svc.cluster.local",
+              "username": "volsync",
+              "description": "volsync",
+              "enableActions": false
+            }
 
     persistence:
-      # config-file:
-      #   type: configMap
-      #   identifier: config
-      #   globalMounts:
-      #     - path: /config/repository.config
-      #       subPath: repository.config
+      config-file:
+        type: configMap
+        identifier: config
+        globalMounts:
+          - path: /config/repository.config
+            subPath: repository.config
+
+      config:
+        type: emptyDir
+        advancedMounts:
+          kopia:
+            app:
+              - path: /config
+                subPath: config
 
       repository:
         type: nfs
