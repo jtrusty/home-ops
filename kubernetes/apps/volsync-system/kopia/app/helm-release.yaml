@@ -82,7 +82,7 @@ spec:
 
     defaultPodOptions:
       securityContext:
-        fsGroup: 101
+        fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
         seccompProfile: { type: RuntimeDefault }
         supplementalGroups: [10010]
@@ -116,6 +116,7 @@ spec:
               "description": "volsync",
               "enableActions": false
             }
+
     persistence:
       config-file:
         type: configMap
