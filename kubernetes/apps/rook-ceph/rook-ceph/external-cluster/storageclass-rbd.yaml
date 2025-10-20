@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://kubernetesjsonschema.dev/v1.27.0/storageclass.json
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -6,20 +7,21 @@ metadata:
   annotations:
     storageclass.kubernetes.io/is-default-class: "true"
 provisioner: rook-ceph.rbd.csi.ceph.com
-allowVolumeExpansion: true
-parameters:
-  # External cluster config secret name/namespace
-  csi.storage.k8s.io/provisioner-secret-name: rook-csi-rbd-provisioner
-  csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
-  csi.storage.k8s.io/controller-expand-secret-name: rook-csi-rbd-provisioner
-  csi.storage.k8s.io/controller-expand-secret-namespace: rook-ceph
-  csi.storage.k8s.io/node-stage-secret-name: rook-csi-rbd-node
-  csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
-  # Pool and clusterID are provided by external cluster details
-  clusterID: rook-ceph
-  pool: ceph-pool-k8s
-  imageFeatures: layering
+isDefault: true
 reclaimPolicy: Delete
+allowVolumeExpansion: true
+volumeBindingMode: WaitForFirstConsumer
+parameters:
+  compression_mode: aggressive
+  compression_algorithm: zstd
+  imageFormat: "2"
+  imageFeatures: layering,fast-diff,object-map,deep-flatten,exclusive-lock
+  csi.storage.k8s.io/provisioner-secret-name: rook-csi-rbd-provisioner
+  csi.storage.k8s.io/provisioner-secret-namespace: "{{ .Release.Namespace }}"
+  csi.storage.k8s.io/controller-expand-secret-name: rook-csi-rbd-provisioner
+  csi.storage.k8s.io/controller-expand-secret-namespace: "{{ .Release.Namespace }}"
+  csi.storage.k8s.io/node-stage-secret-name: rook-csi-rbd-node
+  csi.storage.k8s.io/node-stage-secret-namespace: "{{ .Release.Namespace }}"
+  csi.storage.k8s.io/fstype: ext4
 mountOptions:
   - discard
-volumeBindingMode: WaitForFirstConsumer
