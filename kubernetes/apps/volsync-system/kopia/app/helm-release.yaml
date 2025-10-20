@@ -93,20 +93,12 @@ spec:
             }
 
     persistence:
-      # config-file:
-      #   type: configMap
-      #   identifier: config
-      #   globalMounts:
-      #     - path: /config/repository.config
-      #       subPath: repository.config
-
-      config:
-        type: emptyDir
-        advancedMounts:
-          kopia:
-            app:
-              - path: /config
-                subPath: config
+      config-file:
+        type: configMap
+        identifier: config
+        globalMounts:
+          - path: /config/repository.config
+            subPath: repository.config
 
       repository:
         type: nfs
