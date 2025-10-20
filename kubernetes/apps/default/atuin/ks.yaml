@@ -18,7 +18,7 @@ spec:
       - name: cluster-secrets
         kind: Secret
     substitute:
-      APP: atuin
+      APP: *app
       VOLSYNC_CAPACITY: 5Gi
   prune: true
   retryInterval: 2m
