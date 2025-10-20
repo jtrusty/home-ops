@@ -109,7 +109,7 @@ spec:
                 name: "repository",
                 nfs: Object.spec.template.spec.volumes.nfs{
                   server: "truenas.internal",
-                  path: "/mnt/zpool1/volsync-kopia"
+                  path: "/mnt/zpool1/volsync"
                 }
               }
             }
