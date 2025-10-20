@@ -80,12 +80,6 @@ spec:
         data:
           repository.config: |-
             {
-              "storage": {
-                "type": "filesystem",
-                "config": {
-                  "path": "/repository"
-                }
-              },
               "hostname": "volsync.{{ .Release.Namespace }}.svc.cluster.local",
               "username": "volsync",
               "description": "volsync",
