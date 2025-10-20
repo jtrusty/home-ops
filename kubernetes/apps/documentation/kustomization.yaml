@@ -3,10 +3,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: documentation
-components:
-  - ../../components/sops
+# components:
+#   - ../../components/sops
 resources:
-  - ./namespace.yaml
+  # - ./namespace.yaml
   # - ./chartdb/ks.yaml
   # - ./drawio/ks.yaml
   # - ./excalidraw/ks.yaml
