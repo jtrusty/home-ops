@@ -15,7 +15,7 @@ spec:
       name: nfs-slow
       parameters:
         server: truenas.internal
-        share: /mnt/zpool1/k8s
+        share: /mnt/zpool1/kubernetes
       mountOptions:
         - nfsvers=4.2
         - nconnect=16
