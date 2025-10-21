@@ -25,12 +25,14 @@ spec:
             envFrom:
               - secretRef:
                   name: kopia-secret
+            command:
+              - /bin/sh
+              - -c
             args:
-              - repository
-              - create
-              - filesystem
-              - --path=/repository
-              - --config-file=/config/repository.config
+              - |
+                if [ ! -f /repository/config ]; then
+                  kopia repository create filesystem --path=/repository --config-file=/config/repository.config;
+                fi
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
