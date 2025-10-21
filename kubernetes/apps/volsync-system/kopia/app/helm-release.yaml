@@ -29,13 +29,6 @@ spec:
                   name: kopia-secret
             args:
               - --without-password
-            command:
-                - sh
-                - -c
-                - |
-                  if ! kopia repository status >/dev/null 2>&1; then
-                    kopia repository create filesystem --path=/repository
-                  fi
             probes:
               liveness: &probes
                 enabled: true
