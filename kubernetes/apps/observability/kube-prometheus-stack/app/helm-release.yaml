@@ -24,9 +24,8 @@ spec:
           enabled: true
           hostnames: ["alertmanager.${PUBLIC_DOMAIN}"]
           parentRefs:
-            - name: internal
-              namespace: kube-system
-              sectionName: https
+            - name: envoy-internal
+              namespace: network
       alertmanagerSpec:
         alertmanagerConfiguration:
           name: alertmanager
@@ -59,9 +58,8 @@ spec:
           enabled: true
           hostnames: ["prometheus.${PUBLIC_DOMAIN}"]
           parentRefs:
-            - name: internal
-              namespace: kube-system
-              sectionName: https
+            - name: envoy-internal
+              namespace: network
       prometheusSpec:
         externalUrl: https://prometheus.${PUBLIC_DOMAIN}
         version: v2.55.1 # override 'unsupported Prometheus version' error

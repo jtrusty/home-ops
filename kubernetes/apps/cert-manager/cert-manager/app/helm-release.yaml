@@ -5,13 +5,13 @@ kind: HelmRelease
 metadata:
   name: cert-manager
 spec:
-  interval: 1h
   chartRef:
     kind: OCIRepository
     name: cert-manager
   install:
     remediation:
       retries: -1
+  interval: 1h
   upgrade:
     cleanupOnFail: true
     remediation:

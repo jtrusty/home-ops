@@ -88,9 +88,8 @@ spec:
           gethomepage.dev/icon: "sh-atuin"
           gethomepage.dev/group: "Default"
         parentRefs:
-          - name: internal
-            namespace: kube-system
-            sectionName: https
+          - name: envoy-internal
+            namespace: network
         rules:
           - backendRefs:
               - identifier: app

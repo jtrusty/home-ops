@@ -32,8 +32,8 @@ spec:
             env:
               NO_AUTOUPDATE: true
               TUNNEL_METRICS: 0.0.0.0:8080
-              TUNNEL_ORIGIN_ENABLE_HTTP2: true
-              TUNNEL_TRANSPORT_PROTOCOL: http2
+              TUNNEL_POST_QUANTUM: true # disable when using http2
+              TUNNEL_TRANSPORT_PROTOCOL: quic # or http2
             envFrom:
               - secretRef:
                   name: cloudflare-tunnel-secret
@@ -73,6 +73,18 @@ spec:
           http:
             port: *port
 
+    configMaps:
+      config:
+        data:
+          config.yaml: |-
+            ingress:
+              - hostname: "*.${PUBLIC_DOMAIN}"
+                originRequest:
+                  http2Origin: true
+                  originServerName: external.${PUBLIC_DOMAIN}
+                service: https://envoy-external.{{ .Release.Namespace }}.svc.cluster.local:443
+              - service: http_status:404
+
     serviceMonitor:
       app:
         endpoints:
@@ -81,8 +93,7 @@ spec:
     persistence:
       config-file:
         type: configMap
-        name: cloudflare-tunnel-configmap
+        identifier: config
         globalMounts:
           - path: /etc/cloudflared/config.yaml
             subPath: config.yaml
-            readOnly: true
