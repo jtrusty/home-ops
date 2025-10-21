@@ -80,6 +80,7 @@ spec:
           gethomepage.dev/description: "magical shell history"
           gethomepage.dev/icon: "sh-atuin"
           gethomepage.dev/group: "Default"
+        hostnames: ["{{ .Release.Name }}.${PUBLIC_DOMAIN}"]
         parentRefs:
           - name: envoy-internal
             namespace: network
