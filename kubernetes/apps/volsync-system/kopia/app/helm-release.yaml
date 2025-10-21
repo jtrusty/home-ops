@@ -15,33 +15,6 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
 
-        initContainers:
-          create-kopia-repository:
-            image:
-              repository: ghcr.io/home-operations/kopia
-              tag: 0.21.1@sha256:f666b5f2c1ea4649cd2bd703507d4b81c2b515782e8476ba4a145b091a704a53
-            env:
-              TZ: America/Chicago
-            envFrom:
-              - secretRef:
-                  name: kopia-secret
-            command:
-              - /bin/sh
-              - -c
-            args:
-              - |
-                if [ ! -f /config/repository.config ]; then
-                  kopia repository create filesystem --path=/repository --config-file=/config/repository.config;
-                fi
-            securityContext:
-              runAsNonRoot: true
-              runAsUser: 1000
-              runAsGroup: 1000
-              supplementalGroups: [10009]
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: {drop: ["ALL"]}
-
         containers:
           app:
             image:
@@ -103,30 +76,30 @@ spec:
             namespace: kube-system
             sectionName: https
 
-    # configMaps:
-    #   config:
-    #     data:
-    #       repository.config: |-
-    #         {
-    #           "storage": {
-    #             "type": "filesystem",
-    #             "config": {
-    #               "path": "/repository"
-    #             }
-    #           },
-    #           "hostname": "volsync.{{ .Release.Namespace }}.svc.cluster.local",
-    #           "username": "volsync",
-    #           "description": "volsync",
-    #           "enableActions": false
-    #         }
+    configMaps:
+      config:
+        data:
+          repository.config: |-
+            {
+              "storage": {
+                "type": "filesystem",
+                "config": {
+                  "path": "/repository"
+                }
+              },
+              "hostname": "volsync.{{ .Release.Namespace }}.svc.cluster.local",
+              "username": "volsync",
+              "description": "volsync",
+              "enableActions": false
+            }
 
     persistence:
-      # config-file:
-      #   type: configMap
-      #   identifier: config
-      #   globalMounts:
-      #     - path: /config/repository.config
-      #       subPath: repository.configs
+      config-file:
+        type: configMap
+        identifier: config
+        globalMounts:
+          - path: /config/repository.config
+            subPath: repository.configs
 
       repository:
         type: nfs
