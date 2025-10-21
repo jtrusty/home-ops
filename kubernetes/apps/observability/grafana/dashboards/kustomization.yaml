@@ -9,6 +9,7 @@ configMapGenerator:
     files:
       - truenas-scale.json=resources/truenas-scale.json
 resources:
+  - ./cilium-dashboard.yaml
   - ./external-secrets-dashboard.yaml
   - ./kubernetes-dashboard.yaml
   - ./prometheus-dashboard.yaml
