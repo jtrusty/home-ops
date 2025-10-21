@@ -35,7 +35,7 @@ spec:
                   kopia repository create filesystem --path=/repository --config-file=/config/repository.config;
                 fi
             securityContext:
-              runAsNonRoot: true
+              runAsNonRoot: false
               runAsUser: 0
               runAsGroup: 0
               allowPrivilegeEscalation: false
