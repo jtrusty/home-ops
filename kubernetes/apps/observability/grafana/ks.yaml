@@ -7,6 +7,9 @@ metadata:
   namespace: &namespace observability
 spec:
   interval: 1h
+  dependsOn:
+    - name: external-secrets-store
+      namespace: security
   path: ./kubernetes/apps/observability/grafana/app
   postBuild:
     substituteFrom:
