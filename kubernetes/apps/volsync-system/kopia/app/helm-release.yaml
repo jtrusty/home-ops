@@ -99,7 +99,7 @@ spec:
         identifier: config
         globalMounts:
           - path: /config/repository.config
-            subPath: repository.configs
+            subPath: repository.config
 
       repository:
         type: nfs
