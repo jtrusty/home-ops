@@ -13,13 +13,14 @@ spec:
       envoyDeployment:
         replicas: 2
         container:
+          image: mirror.gcr.io/envoyproxy/envoy:v1.36.2
           resources:
             requests:
               cpu: 100m
             limits:
               memory: 1Gi
       envoyService:
-        externalTrafficPolicy: Cluster
+        externalTrafficPolicy: Local
   shutdown:
     drainTimeout: 180s
   telemetry:
@@ -47,13 +48,13 @@ kind: Gateway
 metadata:
   name: envoy-external
   annotations:
-    external-dns.alpha.kubernetes.io/target: external.${PUBLIC_DOMAIN}
+    external-dns.alpha.kubernetes.io/target: &hostname external.${PUBLIC_DOMAIN}
 spec:
   gatewayClassName: envoy
   infrastructure:
     annotations:
-      external-dns.alpha.kubernetes.io/hostname: external.${PUBLIC_DOMAIN}
-      lbipam.cilium.io/ips: "#{ cloudflare_gateway_addr }#"
+      external-dns.alpha.kubernetes.io/hostname: *hostname
+      lbipam.cilium.io/ips: 10.10.16.153
   listeners:
     - name: http
       protocol: HTTP
@@ -78,13 +79,13 @@ kind: Gateway
 metadata:
   name: envoy-internal
   annotations:
-    external-dns.alpha.kubernetes.io/target: internal.${PUBLIC_DOMAIN}
+    external-dns.alpha.kubernetes.io/target: &hostname internal.${PUBLIC_DOMAIN}
 spec:
   gatewayClassName: envoy
   infrastructure:
     annotations:
-      external-dns.alpha.kubernetes.io/hostname: internal.${PUBLIC_DOMAIN}
-      lbipam.cilium.io/ips: "#{ cluster_gateway_addr }#"
+      external-dns.alpha.kubernetes.io/hostname: *hostname
+      lbipam.cilium.io/ips: 10.10.16.152
   listeners:
     - name: http
       protocol: HTTP
