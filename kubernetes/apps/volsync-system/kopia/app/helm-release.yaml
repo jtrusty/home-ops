@@ -15,6 +15,32 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
 
+        initContainers:
+          create-kopia-repository:
+            image:
+              repository: ghcr.io/home-operations/kopia
+              tag: 0.21.1@sha256:f666b5f2c1ea4649cd2bd703507d4b81c2b515782e8476ba4a145b091a704a53
+            env:
+              TZ: America/Chicago
+            envFrom:
+              - secretRef:
+                  name: kopia-secret
+            args:
+              - repository
+              - create
+              - filesystem
+              - --path=/repository
+              - --config-file=/config/repository.config
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: {drop: ["ALL"]}
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 512Mi
+
         containers:
           app:
             image:
