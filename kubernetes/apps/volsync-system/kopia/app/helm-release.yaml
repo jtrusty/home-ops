@@ -30,7 +30,7 @@ spec:
               - -c
             args:
               - |
-                if [ ! -f /repository/config ]; then
+                if [ ! -f /config/repository.config ]; then
                   kopia repository create filesystem --path=/repository --config-file=/config/repository.config;
                 fi
             securityContext:
