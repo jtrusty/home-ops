@@ -8,6 +8,7 @@ spec:
   postBuild:
     substituteFrom:
       - name: cluster-secrets
+  sourceRef:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
