@@ -5,17 +5,10 @@ kind: HelmRelease
 metadata:
   name: echo
 spec:
-  interval: 1h
   chartRef:
     kind: OCIRepository
     name: echo
-  install:
-    remediation:
-      retries: -1
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      retries: 3
+  interval: 1h
   values:
     controllers:
       echo:
@@ -75,9 +68,8 @@ spec:
       app:
         hostnames: ["{{ .Release.Name }}.${PUBLIC_DOMAIN}"]
         parentRefs:
-          - name: external
-            namespace: kube-system
-            sectionName: https
+          - name: envoy-external
+            namespace: network
         rules:
           - backendRefs:
               - identifier: app
