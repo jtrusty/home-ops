@@ -17,4 +17,4 @@ spec:
         disabled: false
         interval: 45s
   cephVersion:
-    image: quay.io/ceph/ceph:v19.2.3 # needs to match the version in proxmox
+    image: quay.io/ceph/ceph:v20.1.1 # needs to match the version in proxmox
