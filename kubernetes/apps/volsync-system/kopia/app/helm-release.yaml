@@ -33,6 +33,7 @@ spec:
                 if [ ! -f /config/repository.config ]; then
                   kopia repository create filesystem --path=/repository --config-file=/config/repository.config;
                 fi
+                sleep 3000
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
