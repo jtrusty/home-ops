@@ -30,22 +30,16 @@ spec:
               - -c
             args:
               - |
-                chown -R 1000:1000 /config /repository
                 if [ ! -f /config/repository.config ]; then
                   kopia repository create filesystem --path=/repository --config-file=/config/repository.config;
                 fi
             securityContext:
-              runAsNonRoot: false
-              runAsUser: 0
-              runAsGroup: 0
+              runAsNonRoot: true
+              runAsUser: 1000
+              runAsGroup: 1000
               allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: false
+              readOnlyRootFilesystem: true
               capabilities: {drop: ["ALL"]}
-            resources:
-              requests:
-                cpu: 10m
-              limits:
-                memory: 512Mi
 
         containers:
           app:
