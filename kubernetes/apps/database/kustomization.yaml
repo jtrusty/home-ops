@@ -6,6 +6,6 @@ namespace: database
 # components:
 #   - ../../components/sops
 resources:
-  # - ./namespace.yaml
+  - ./namespace.yaml
   # - ./pgadmin/ks.yaml
-  # - ./redisinsight/ks.yaml
+  - ./redisinsight/ks.yaml
