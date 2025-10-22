@@ -13,5 +13,8 @@ configMapGenerator:
   - name: truenas-ca
     files:
       - ca.crt=./resources/truenas-ca.crt
+  - name: minio-ca
+    files:
+      - ca.crt=./resources/minio-ca.crt
 generatorOptions:
   disableNameSuffixHash: true

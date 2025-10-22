@@ -37,12 +37,7 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: &app minio-proxy
-  labels:
-    app.kubernetes.io/name: *app
-  annotations:
-    gateway.envoyproxy.io/tls: "passthrough"
-    gateway.envoyproxy.io/backend-protocol: "HTTPS"
-    gateway.envoyproxy.io/force-ssl-redirect: "true"
+  namespace: default
 spec:
   hostnames: ["minio.${PUBLIC_DOMAIN}"]
   parentRefs:
@@ -52,3 +47,21 @@ spec:
     - backendRefs:
         - name: *app
           port: 9002
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/envoyproxy/gateway/refs/heads/main/charts/gateway-helm/crds/generated/gateway.envoyproxy.io_backendtlspolicies.yaml
+apiVersion: gateway.networking.k8s.io/v1alpha3
+kind: BackendTLSPolicy
+metadata:
+  name: minio-proxy-tls
+  namespace: default
+spec:
+  targetRefs:
+    - group: ""
+      kind: Service
+      name: minio-proxy
+  validation:
+    hostname: "localhost" # must match a SAN on the MinIO cert
+    caCertificateRefs:
+      - group: ""
+        kind: ConfigMap
+        name: minio-ca
