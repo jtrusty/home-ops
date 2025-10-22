@@ -47,3 +47,21 @@ spec:
     - backendRefs:
         - name: *app
           port: 443
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/envoyproxy/gateway/refs/heads/main/charts/gateway-helm/crds/generated/gateway.envoyproxy.io_backendtlspolicies.yaml
+apiVersion: gateway.networking.k8s.io/v1alpha3
+kind: BackendTLSPolicy
+metadata:
+  name: truenas-proxy-tls
+  namespace: default
+spec:
+  targetRefs:
+    - group: ""
+      kind: Service
+      name: truenas-proxy
+  validation:
+    hostname: "localhost" # must match a SAN on the TrueNAS cert
+    caCertificateRefs:
+      - group: ""
+        kind: ConfigMap
+        name: truenas-ca

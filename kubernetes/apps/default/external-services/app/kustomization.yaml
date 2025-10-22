@@ -9,3 +9,9 @@ resources:
   - ./proxmox-pve-node3.yaml
   - ./truenas.yaml
   - ./unifi.yaml
+configMapGenerator:
+  - name: truenas-ca
+    files:
+      - ca.crt=./resources/truenas-ca.crt
+generatorOptions:
+  disableNameSuffixHash: true
