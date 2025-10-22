@@ -59,5 +59,8 @@ spec:
       kind: Service
       name: truenas-proxy
   validation:
-    hostname: "truenas.${PUBLIC_DOMAIN}"
-    wellKnownCACertificates: System
+    hostname: "localhost"
+    caCertificateRefs:
+      - group: ""
+        kind: ConfigMap
+        name: truenas-ca
