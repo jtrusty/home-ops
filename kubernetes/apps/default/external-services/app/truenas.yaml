@@ -22,7 +22,7 @@ metadata:
   name: &app truenas-proxy
   namespace: default
   labels:
-    kubernetes.io/name: *app
+    app.kubernetes.io/name: *app
     kubernetes.io/service-name: *app
 addressType: IPv4
 ports:
@@ -32,12 +32,14 @@ ports:
 endpoints:
   - addresses: ["10.10.100.30"]
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/gateway.networking.k8s.io/tlsroute_v1alpha3.json
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/gateway.networking.k8s.io/tlsroute_v1alpha2.json
 apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: TLSRoute
 metadata:
   name: &app truenas-proxy
   namespace: default
+  labels:
+    app.kubernetes.io/name: *app
 spec:
   parentRefs:
     - name: envoy-internal
