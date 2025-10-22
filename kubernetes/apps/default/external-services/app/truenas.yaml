@@ -21,7 +21,7 @@ metadata:
   name: &app truenas-proxy
   labels:
     kubernetes.io/name: *app
-    kubernetes.io/service-name: truenas-proxy
+    kubernetes.io/service-name: *app
 addressType: IPv4
 ports:
   - name: https
@@ -34,7 +34,7 @@ endpoints:
 apiVersion: gateway.networking.k8s.io/v1
 kind: TLSRoute
 metadata:
-  name: truenas-proxy
+  name: &app truenas-proxy
   labels:
     kubernetes.io/name: *app
 spec:
@@ -44,5 +44,5 @@ spec:
   hostnames: ["truenas.${PUBLIC_DOMAIN}"]
   rules:
     - backendRefs:
-        - name: truenas-proxy
+        - name: *app
           port: 443
