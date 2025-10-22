@@ -55,10 +55,10 @@ metadata:
   namespace: default
 spec:
   targetRefs:
-    group: ""
-    kind: Service
-    name: truenas-proxy
-    namespace: default
+    - group: ""
+      kind: Service
+      name: truenas-proxy
+      namespace: default
   tls:
     hostname: "truenas.${PUBLIC_DOMAIN}"
     allowInsecure: true
