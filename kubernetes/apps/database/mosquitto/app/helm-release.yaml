@@ -29,10 +29,11 @@ spec:
                 cpu: 10m
               limits:
                 memory: 100Mi
+
         statefulset:
           volumeClaimTemplates:
             - name: config
-              storageClass: ceph-block
+              storageClass: rook-ceph-block
               accessMode: ReadWriteOnce
               size: 5Gi
 
