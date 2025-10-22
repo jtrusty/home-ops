@@ -73,9 +73,9 @@ spec:
     #   source: &previousCluster postgres16-vector-v0
 
     # Use this to setup a new cluster with extensions
-    initdb:
-      postInitSQL:
-        - CREATE EXTENSION IF NOT EXISTS vchord CASCADE;
+    # initdb:
+    #   postInitSQL:
+    #     - CREATE EXTENSION IF NOT EXISTS vchord CASCADE;
 
 
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
