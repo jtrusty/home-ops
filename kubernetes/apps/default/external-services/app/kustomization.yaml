@@ -19,5 +19,8 @@ configMapGenerator:
   - name: udm-ca
     files:
       - ca.crt=./resources/udm-ca.crt
+  - name: proxmox-ca
+    files:
+      - ca.crt=./resources/proxmox-ca.crt
 generatorOptions:
   disableNameSuffixHash: true
