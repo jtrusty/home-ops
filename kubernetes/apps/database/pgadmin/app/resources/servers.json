@@ -1,9 +1,9 @@
 {
   "Servers": {
     "1": {
-      "Name": "postgres",
+      "Name": "postgres-legacy",
       "Group": "Servers",
-      "Host": "postgres",
+      "Host": "10.10.16.105",
       "Port": 5432,
       "MaintenanceDB": "postgres",
       "Username": "postgres",
