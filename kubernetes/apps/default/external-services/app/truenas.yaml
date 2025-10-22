@@ -14,23 +14,21 @@ spec:
       port: 443
       targetPort: 443
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/discovery.k8s.io/endpointslice_v1.json
-apiVersion: discovery.k8s.io/v1
-kind: EndpointSlice
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/core.v1.json
+apiVersion: v1
+kind: Endpoints
 metadata:
-  name: &app truenas-proxy
+  name: &app proxmox-pve-node2-proxy
   labels:
-    kubernetes.io/name: *app
+    app.kubernetes.io/name: *app
     kubernetes.io/service-name: *app
-addressType: IPv4
-ports:
-  - name: https
-    appProtocol: https
-    protocol: TCP
-    port: 443
-endpoints:
+subsets:
   - addresses:
       - "10.10.100.30"
+    ports:
+      - name: https
+        protocol: TCP
+        port: 443
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/gateway.networking.k8s.io/httproute_v1.json
 apiVersion: gateway.networking.k8s.io/v1
