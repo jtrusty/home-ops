@@ -40,7 +40,7 @@ spec:
               readiness: *probes
             securityContext:
               allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
+              readOnlyRootFilesystem: false # needed for pgadmin to function properly
               capabilities: {drop: ["ALL"]}
             resources:
               requests:
