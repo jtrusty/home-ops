@@ -29,19 +29,14 @@ ports:
     protocol: TCP
     port: 443
 endpoints:
-  - addresses:
-      - "192.168.1.1"
+  - addresses: ["192.168.1.1"]
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/gateway.networking.k8s.io/httproute_v1.json
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: &app udm-proxy
-  labels:
-    app.kubernetes.io/name: *app
-  annotations:
-    gateway.envoyproxy.io/tls: "passthrough"
-    gateway.envoyproxy.io/backend-protocol: "HTTPS"
+  namespace: default
 spec:
   hostnames: ["unifi.${PUBLIC_DOMAIN}"]
   parentRefs:
@@ -51,3 +46,21 @@ spec:
     - backendRefs:
         - name: *app
           port: 443
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/envoyproxy/gateway/refs/heads/main/charts/gateway-helm/crds/generated/gateway.envoyproxy.io_backendtlspolicies.yaml
+apiVersion: gateway.networking.k8s.io/v1alpha3
+kind: BackendTLSPolicy
+metadata:
+  name: udm-proxy-tls
+  namespace: default
+spec:
+  targetRefs:
+    - group: ""
+      kind: Service
+      name: udm-proxy
+  validation:
+    hostname: "unifi.local" # must match a SAN on the MinIO cert
+    caCertificateRefs:
+      - group: ""
+        kind: ConfigMap
+        name: udm-ca

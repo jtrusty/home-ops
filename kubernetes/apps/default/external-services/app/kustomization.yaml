@@ -16,5 +16,8 @@ configMapGenerator:
   - name: minio-ca
     files:
       - ca.crt=./resources/minio-ca.crt
+  - name: udm-ca
+    files:
+      - ca.crt=./resources/udm-ca.crt
 generatorOptions:
   disableNameSuffixHash: true
