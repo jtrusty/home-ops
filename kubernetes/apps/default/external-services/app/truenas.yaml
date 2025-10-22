@@ -10,7 +10,7 @@ spec:
   type: ClusterIP
   clusterIP: None
   ports:
-    - protocol: TCP
+    - name: https
       port: 443
       targetPort: 443
 ---
@@ -25,30 +25,24 @@ metadata:
 addressType: IPv4
 ports:
   - name: https
-    appProtocol: https
     protocol: TCP
     port: 443
 endpoints:
-  - addresses:
-      - "10.10.100.30"
+  - addresses: ["10.10.100.30"]
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/gateway.networking.k8s.io/httproute_v1.json
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/gateway.networking.k8s.io/tlsroute_v1.json
 apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
+kind: TLSRoute
 metadata:
-  name: &app truenas-proxy
+  name: truenas-proxy
   labels:
-    app.kubernetes.io/name: *app
-  annotations:
-    gateway.envoyproxy.io/tls: "passthrough"
-    gateway.envoyproxy.io/backend-protocol: "HTTPS"
-    gateway.envoyproxy.io/force-ssl-redirect: "true"
+    kubernetes.io/name: *app
 spec:
-  hostnames: ["truenas.${PUBLIC_DOMAIN}"]
   parentRefs:
     - name: envoy-internal
       namespace: network
+  hostnames: ["truenas.${PUBLIC_DOMAIN}"]
   rules:
     - backendRefs:
-        - name: *app
+        - name: truenas-proxy
           port: 443
