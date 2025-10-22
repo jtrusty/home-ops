@@ -24,7 +24,7 @@ metadata:
     kubernetes.io/service-name: *app
 subsets:
   - addresses:
-      - "10.10.100.30"
+      - ip: "10.10.100.30"
     ports:
       - name: https
         protocol: TCP
