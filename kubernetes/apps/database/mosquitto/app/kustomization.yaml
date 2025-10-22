@@ -2,11 +2,6 @@
 # yaml-language-server: $schema=https://json.schemastore.org/kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: database
-components:
-  - ../../components/sops
 resources:
-  - ./namespace.yaml
-  - ./mosquitto/ks.yaml
-  - ./pgadmin/ks.yaml
-  - ./redisinsight/ks.yaml
+  - ./helm-release.yaml
+  - ./oci-repository.yaml
