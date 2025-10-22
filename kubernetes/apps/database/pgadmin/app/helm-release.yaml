@@ -12,7 +12,8 @@ spec:
   values:
     controllers:
       pgadmin:
-        strategy: RollingUpdate
+        annotations:
+          reloader.stakater.com/auto: "true"
 
         containers:
           app:
