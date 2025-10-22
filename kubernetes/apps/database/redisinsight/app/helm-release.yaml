@@ -12,7 +12,6 @@ spec:
   values:
     controllers:
       redisinsight:
-        strategy: RollingUpdate
         annotations:
           reloader.stakater.com/auto: "true"
 
