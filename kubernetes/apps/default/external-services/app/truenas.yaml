@@ -59,6 +59,7 @@ spec:
     group: ""
     kind: Service
     name: truenas-proxy
+    namespace: default
   tls:
     hostname: "truenas.${PUBLIC_DOMAIN}"
     allowInsecure: true
