@@ -4,6 +4,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: &app truenas-proxy
+  namespace: default
   labels:
     app.kubernetes.io/name: *app
 spec:
@@ -19,6 +20,7 @@ apiVersion: discovery.k8s.io/v1
 kind: EndpointSlice
 metadata:
   name: &app truenas-proxy
+  namespace: default
   labels:
     kubernetes.io/name: *app
     kubernetes.io/service-name: *app
@@ -35,6 +37,7 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: &app truenas-proxy
+  namespace: default
 spec:
   hostnames: ["truenas.${PUBLIC_DOMAIN}"]
   parentRefs:
@@ -44,3 +47,19 @@ spec:
     - backendRefs:
         - name: *app
           port: 443
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/gateway.envoyproxy.io/backendtlspolicy_v1alpha1.json
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: BackendTLSPolicy
+metadata:
+  name: truenas-proxy-tls
+  namespace: default
+spec:
+  targetRef:
+    group: ""
+    kind: Service
+    name: truenas-proxy
+    namespace: default
+  tls:
+    allowInsecure: true
+    sni: "truenas.${PUBLIC_DOMAIN}"
