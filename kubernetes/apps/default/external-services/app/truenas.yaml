@@ -47,3 +47,20 @@ spec:
     - backendRefs:
         - name: *app
           port: 443
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/gateway.envoyproxy.io/backendtlspolicy_v1alpha1.json
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: BackendTLSPolicy
+metadata:
+  name: truenas-proxy-tls
+  namespace: default
+spec:
+  targetRef:
+    group: ""            # core
+    kind: Service
+    name: truenas-proxy
+  tls:
+    # If TrueNAS uses a self-signed cert you haven’t imported, allow temporarily:
+    allowInsecure: true
+    # (Better: provide your CA bundle via 'validation' block instead of allowInsecure)
+    sni: "truenas.${PUBLIC_DOMAIN}"
