@@ -60,4 +60,4 @@ spec:
       name: truenas-proxy
   validation:
     hostname: "truenas.${PUBLIC_DOMAIN}"
-    allowInsecure: true
+    wellKnownCACertificates: System
