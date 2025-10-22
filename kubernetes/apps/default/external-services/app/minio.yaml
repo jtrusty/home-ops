@@ -40,9 +40,8 @@ metadata:
   labels:
     app.kubernetes.io/name: *app
   annotations:
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    gateway.envoyproxy.io/tls: "passthrough"
+    gateway.envoyproxy.io/backend-protocol: "HTTPS"
 spec:
   hostnames: ["minio.${PUBLIC_DOMAIN}"]
   parentRefs:
