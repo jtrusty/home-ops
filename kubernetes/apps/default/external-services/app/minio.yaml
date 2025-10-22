@@ -1,0 +1,53 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/core.v1.json
+apiVersion: v1
+kind: Service
+metadata:
+  name: &app minio-proxy
+  labels:
+    app.kubernetes.io/name: *app
+spec:
+  type: ClusterIP
+  clusterIP: None
+  ports:
+    - protocol: TCP
+      port: 9002
+      targetPort: 9002
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/discovery.k8s.io/endpointslice_v1.json
+apiVersion: discovery.k8s.io/v1
+kind: EndpointSlice
+metadata:
+  name: &app minio-proxy
+  labels:
+    kubernetes.io/name: *app
+addressType: IPv4
+ports:
+  - name: https
+    appProtocol: https
+    protocol: TCP
+    port: 9002
+endpoints:
+  - addresses:
+      - "truenas.internal"
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/gateway.networking.k8s.io/httproute_v1.json
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: &app minio-proxy
+  labels:
+    app.kubernetes.io/name: *app
+  annotations:
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+spec:
+  hostnames: ["minio.${PUBLIC_DOMAIN}"]
+  parentRefs:
+    - name: envoy-internal
+      namespace: network
+  rules:
+    - backendRefs:
+        - name: *app
+          port: 9002
