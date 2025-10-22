@@ -32,35 +32,18 @@ ports:
 endpoints:
   - addresses: ["10.10.100.30"]
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/gateway.networking.k8s.io/httproute_v1.json
-apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/gateway.networking.k8s.io/tlsroute_v1alpha3.json
+apiVersion: gateway.networking.k8s.io/v1alpha3
+kind: TLSRoute
 metadata:
-  name: &app truenas-proxy
+  name: truenas-proxy
   namespace: default
 spec:
-  hostnames: ["truenas.${PUBLIC_DOMAIN}"]
   parentRefs:
     - name: envoy-internal
       namespace: network
+  hostnames: ["truenas.${PUBLIC_DOMAIN}"]
   rules:
     - backendRefs:
-        - name: *app
+        - name: truenas-proxy
           port: 443
----
-apiVersion: gateway.networking.k8s.io/v1alpha3
-kind: BackendTLSPolicy
-metadata:
-  name: truenas-proxy-tls
-  namespace: default
-spec:
-  targetRefs:
-    - group: ""
-      kind: Service
-      name: truenas-proxy
-  validation:
-    hostname: "localhost"
-    caCertificateRefs:
-      - group: ""
-        kind: ConfigMap
-        name: truenas-ca
