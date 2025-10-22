@@ -54,7 +54,7 @@ metadata:
   name: truenas-proxy-tls
   namespace: default
 spec:
-  targetRef:
+  targetRefs:
     group: ""
     kind: Service
     name: truenas-proxy
