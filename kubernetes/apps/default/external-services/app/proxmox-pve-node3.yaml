@@ -13,22 +13,21 @@ spec:
       port: 8006
       targetPort: 8006
 ---
-apiVersion: discovery.k8s.io/v1
-kind: EndpointSlice
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/core.v1.json
+apiVersion: v1
+kind: Endpoints
 metadata:
   name: &app proxmox-pve-node3-proxy
   labels:
     app.kubernetes.io/name: *app
     kubernetes.io/service-name: *app
-addressType: IPv4
-ports:
-  - name: https
-    appProtocol: https
-    protocol: TCP
-    port: 8006
-endpoints:
+subsets:
   - addresses:
       - "10.10.100.13"
+    ports:
+      - name: https
+        protocol: TCP
+        port: 8006
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/gateway.networking.k8s.io/httproute_v1.json
 apiVersion: gateway.networking.k8s.io/v1
