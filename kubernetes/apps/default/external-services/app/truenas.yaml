@@ -33,7 +33,7 @@ endpoints:
   - addresses: ["10.10.100.30"]
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/gateway.networking.k8s.io/tlsroute_v1alpha3.json
-apiVersion: gateway.networking.k8s.io/v1alpha3
+apiVersion: gateway.networking.k8s.io/v1
 kind: TLSRoute
 metadata:
   name: truenas-proxy
