@@ -1,0 +1,86 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/postgresql.cnpg.io/cluster_v1.json
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgres-v17-immich
+spec:
+  imageName: ghcr.io/tensorchord/cloudnative-vectorchord:17.5-0.3.0
+
+  instances: 3
+
+  primaryUpdateStrategy: unsupervised
+
+  storage:
+    size: 20Gi
+    storageClass: rook-ceph-block
+
+  walStorage:
+    size: 8Gi
+    storageClass: rook-ceph-block
+
+  enableSuperuserAccess: true
+
+  superuserSecret:
+    name: cloudnative-pg-secret
+
+  postgresql:
+    parameters:
+      pg_stat_statements.max: "10000"
+      pg_stat_statements.track: all
+      timezone: ${TIMEZONE}
+      max_connections: "600"
+      shared_buffers: 512MB
+    shared_preload_libraries:
+      - "vchord.so"
+
+  resources:
+    requests:
+      cpu: 500m
+    limits:
+      memory: 4Gi
+
+  monitoring:
+    enablePodMonitor: true
+    # Ref: https://github.com/cloudnative-pg/cloudnative-pg/issues/2501
+    podMonitorMetricRelabelings:
+      - { sourceLabels: ["cluster"], targetLabel: cnpg_cluster, action: replace }
+      - { regex: cluster, action: labeldrop }
+
+  backup:
+    retentionPolicy: 30d
+    barmanObjectStore: &barmanObjectStore
+      data:
+        compression: bzip2
+      wal:
+        compression: bzip2
+      destinationPath: s3://cloudnative-pg/
+      endpointURL: http://truenas.internal:9000
+      # Note: serverName version needs to be inclemented
+      # when recovering from an existing cnpg cluster
+      serverName: &currentCluster postgres16-vector-v0
+      s3Credentials:
+        accessKeyId:
+          name: cloudnative-pg-secret
+          key: AWS_ACCESS_KEY_ID
+        secretAccessKey:
+          name: cloudnative-pg-secret
+          key: AWS_SECRET_ACCESS_KEY
+
+  bootstrap:
+    # Use this to recover a net-new cluster from a backup
+    # recovery:
+    #   source: &previousCluster postgres16-vector-v0
+
+    # Use this to setup a new cluster with extensions
+    initdb:
+      postInitSQL:
+        - CREATE EXTENSION IF NOT EXISTS vchord CASCADE;
+
+
+  # Note: externalClusters is needed when recovering from an existing cnpg cluster
+  # externalClusters:
+  #   - name: *previousCluster
+  #     barmanObjectStore:
+  #       <<: *barmanObjectStore
+  #       serverName: *previousCluster
