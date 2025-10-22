@@ -73,13 +73,11 @@ spec:
       # Run the pods as a non-root user
       securityContext:
         runAsNonRoot: true
-        runAsUser: 65534
-        runAsGroup: 65534
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
         seccompProfile: { type: RuntimeDefault }
-
-      # Schedule the pods on worker nodes
-      nodeSelector:
-        node.kubernetes.io/worker: "true"
 
       # Spread the pods evenly across nodes
       topologySpreadConstraints:
