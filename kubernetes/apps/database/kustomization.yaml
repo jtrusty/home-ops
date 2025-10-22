@@ -9,5 +9,5 @@ resources:
   - ./namespace.yaml
   - ./dragonfly/ks.yaml
   - ./mosquitto/ks.yaml
-  - ./pgadmin/ks.yaml
+  # - ./pgadmin/ks.yaml
   - ./redisinsight/ks.yaml
