@@ -36,7 +36,7 @@ endpoints:
 apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: TLSRoute
 metadata:
-  name: truenas-proxy
+  name: &app truenas-proxy
   namespace: default
 spec:
   parentRefs:
@@ -45,5 +45,5 @@ spec:
   hostnames: ["truenas.${PUBLIC_DOMAIN}"]
   rules:
     - backendRefs:
-        - name: truenas-proxy
+        - name: *app
           port: 443
