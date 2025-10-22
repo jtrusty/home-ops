@@ -48,12 +48,12 @@ spec:
               limits:
                 memory: 500Mi
 
-    # defaultPodOptions:
-    #   securityContext:
+    defaultPodOptions:
+      securityContext:
     #     runAsNonRoot: true
-    #     runAsUser: 5050 # pgadmin user
-    #     runAsGroup: 5050 # pgadmin group
-    #     fsGroup: 5050
+        runAsUser: 5050 # pgadmin user
+        runAsGroup: 5050 # pgadmin group
+        fsGroup: 5050
     #     fsGroupChangePolicy: OnRootMismatch
     #     seccompProfile: { type: RuntimeDefault }
 
