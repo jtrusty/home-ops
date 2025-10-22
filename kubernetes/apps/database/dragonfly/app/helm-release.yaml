@@ -68,9 +68,7 @@ spec:
               readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
 
-    # Configure the default options for pods
     defaultPodOptions:
-      # Run the pods as a non-root user
       securityContext:
         runAsNonRoot: true
         runAsUser: 1000
