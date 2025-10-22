@@ -6,3 +6,11 @@ resources:
   - ./external-secret.yaml
   - ./helm-release.yaml
   - ./oci-repository.yaml
+configMapGenerator:
+  - name: pgadmin-servers
+    files:
+      - resources/servers.json
+generatorOptions:
+  disableNameSuffixHash: true
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled

@@ -82,15 +82,20 @@ spec:
                 port: *port
 
     persistence:
-      data:
+      config:
         enabled: true
-        type: persistentVolumeClaim
+        existingClaim: "{{ .Release.Name }}"
+        advancedMounts:
+          main:
+            main:
+              - path: /var/lib/pgadmin
+      server-json:
+        enabled: true
+        type: configMap
+        name: pgadmin-servers
         globalMounts:
-          - path: /var/lib/pgadmin
-        storageClass: rook-ceph-block
-        accessMode: ReadWriteOnce
-        size: 1Gi
-        retain: true
+          - path: /pgadmin4/servers.json
+            subPath: servers.json
 ---
 
 
