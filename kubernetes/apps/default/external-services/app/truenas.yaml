@@ -42,6 +42,7 @@ metadata:
   annotations:
     gateway.envoyproxy.io/tls: "passthrough"
     gateway.envoyproxy.io/backend-protocol: "HTTPS"
+    gateway.envoyproxy.io/force-ssl-redirect: "true"
 spec:
   hostnames: ["truenas.${PUBLIC_DOMAIN}"]
   parentRefs:
