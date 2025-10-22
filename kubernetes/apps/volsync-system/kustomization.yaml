@@ -8,4 +8,5 @@ components:
 resources:
   - ./namespace.yaml
   - ./kopia/ks.yaml
+  - ./snapshot-controller/ks.yaml
   - ./volsync/ks.yaml
