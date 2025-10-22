@@ -3,97 +3,77 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: &app postgres16
+  name: postgres-v17
+  namespace: default
 spec:
-  instances: 3
-
-  imageName: ghcr.io/cloudnative-pg/postgresql:16.3-1
-
+  # using only 1 replica: very difficult to drain the node where postgres is running
+  # using more than 1 replica: write amplification issues when leveraging replicated storage (e.g. ceph)
+  instances: 2
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.4
   primaryUpdateStrategy: unsupervised
-
   storage:
-    size: 100Gi
-    storageClass: ${CLUSTER_STORAGE_BLOCK}
-
-  walStorage:
     size: 20Gi
-    storageClass: ${CLUSTER_STORAGE_BLOCK}
-
+    storageClass: rook-ceph-block
+  enableSuperuserAccess: true
   superuserSecret:
     name: cloudnative-pg-secret
-
-  enableSuperuserAccess: true
-
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:
-          - key: node.kubernetes.io/worker
-            operator: In
-            values:
-            - "true"
-
-  # Spread the pods evenly across nodes
-  topologySpreadConstraints:
-    - maxSkew: 1
-      topologyKey: kubernetes.io/hostname
-      whenUnsatisfiable: DoNotSchedule
-      labelSelector:
-        matchLabels:
-          app.kubernetes.io/name: *app
-
   postgresql:
     parameters:
-      max_connections: "400"
-      shared_buffers: 256MB
-
-  nodeMaintenanceWindow:
-    inProgress: false
-    reusePVC: true
-
-  resources:
-    requests:
-      cpu: 500m
-    limits:
-      memory: 4Gi
-
+      max_connections: "300"
+      shared_buffers: 512MB
+      pg_stat_statements.max: "10000"
+      pg_stat_statements.track: all
   monitoring:
     enablePodMonitor: true
-    # Ref: https://github.com/cloudnative-pg/cloudnative-pg/issues/2501
-    podMonitorMetricRelabelings:
-      - { sourceLabels: ["cluster"], targetLabel: cnpg_cluster, action: replace }
-      - { regex: cluster, action: labeldrop }
-
+  # https://github.com/cloudnative-pg/cloudnative-pg/issues/2570
+  enablePDB: false
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "250m"
+    limits:
+      memory: "4Gi"
   backup:
     retentionPolicy: 30d
-    barmanObjectStore: &barmanObjectStore
-      data:
-        compression: bzip2
+    barmanObjectStore:
       wal:
         compression: bzip2
-      destinationPath: s3://cloudnative-pg/
-      endpointURL: https://s3.trusty.pw
-      # Note: serverName version needs to be inclemented
-      # when recovering from an existing cnpg cluster
-      serverName: &currentCluster postgres16-v7
+        maxParallel: 8
+      destinationPath: s3://postgresql/
+      endpointURL: http://nas.home:9000
+      serverName: postgres-v17
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-secret
-          key: AWS_ACCESS_KEY_ID
+          key: aws-access-key-id
         secretAccessKey:
           name: cloudnative-pg-secret
-          key: AWS_SECRET_ACCESS_KEY
+          key: aws-secret-access-key
 
-  # Note: previousCluster needs to be set to the name of the previous
-  # cluster when recovering from an existing cnpg cluster
-  bootstrap:
-    recovery:
-      source: &previousCluster postgres16-v3
+  # bootstrap:
+  # use this to recover a net-new cluster from a backup
+  #   recovery:
+  #     source: postgres-backup # TODO: fix this to the real name of the backup when on the new cluster
 
-  # Note: externalClusters is needed when recovering from an existing cnpg cluster
+    # # use this to 'migrate' from an existing cnpg cluster (e.g. "postgres-v15") to the new cluster
+    # initdb:
+    #   import:
+    #     type: monolith
+    #     databases:
+    #       - "*"
+    #     roles:
+    #       - "*"
+    #     source:
+    #       externalCluster: postgres-v15
+
   externalClusters:
-    - name: *previousCluster
-      barmanObjectStore:
-        <<: *barmanObjectStore
-        serverName: *previousCluster
+    # this represents an existing cnpg cluster to migrate from (e.g. upgrading from postgres v14 to postgres v15)
+    - name: postgres-v15
+      connectionParameters:
+        host: postgres-v15-rw.default.svc.cluster.local
+        user: postgres
+        dbname: postgres
+        sslmode: require
+      password:
+        name: cloudnative-pg-secret
+        key: password
