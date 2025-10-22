@@ -39,7 +39,7 @@ spec:
                   failureThreshold: 3
               readiness: *probes
             securityContext:
-              allowPrivilegeEscalation: false # pgAdmin requires this to function properly
+              allowPrivilegeEscalation: true # pgAdmin requires this to function properly
             #   readOnlyRootFilesystem: false # pgAdmin needs to write to the file system
               # capabilities: {drop: ["ALL"]}
             resources:
