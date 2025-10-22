@@ -85,10 +85,9 @@ spec:
       config:
         enabled: true
         existingClaim: "{{ .Release.Name }}"
-        advancedMounts:
-          main:
-            main:
-              - path: /var/lib/pgadmin
+        globalMounts:
+          - path: /var/lib/pgadmin
+
       server-json:
         enabled: true
         type: configMap
