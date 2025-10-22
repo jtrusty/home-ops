@@ -49,18 +49,16 @@ spec:
           port: 443
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/gateway.networking.k8s.io/backendtlspolicy_v1.json
-apiVersion: gateway.networking.k8s.io/v1alpha3
+apiVersion: gateway.networking.k8s.io/v1
 kind: BackendTLSPolicy
 metadata:
   name: truenas-proxy-tls
   namespace: default
 spec:
   targetRef:
-    group: ""            # core
+    group: ""
     kind: Service
     name: truenas-proxy
   tls:
-    # If TrueNAS uses a self-signed cert you haven’t imported, allow temporarily:
+    hostname: "truenas.${PUBLIC_DOMAIN}"
     allowInsecure: true
-    # (Better: provide your CA bundle via 'validation' block instead of allowInsecure)
-    sni: "truenas.${PUBLIC_DOMAIN}"
