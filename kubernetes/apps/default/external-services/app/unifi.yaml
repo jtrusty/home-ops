@@ -14,21 +14,23 @@ spec:
       port: 443
       targetPort: 443
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/core.v1.json
-apiVersion: v1
-kind: Endpoints
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/discovery.k8s.io/endpointslice_v1.json
+apiVersion: discovery.k8s.io/v1
+kind: EndpointSlice
 metadata:
   name: &app udm-proxy
   labels:
     app.kubernetes.io/name: *app
     kubernetes.io/service-name: *app
-subsets:
+addressType: IPv4
+ports:
+  - name: https
+    appProtocol: https
+    protocol: TCP
+    port: 443
+endpoints:
   - addresses:
-      - ip: "192.168.1.1"
-    ports:
-      - name: https
-        protocol: TCP
-        port: 443
+      - "192.168.1.1"
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/gateway.networking.k8s.io/httproute_v1.json
 apiVersion: gateway.networking.k8s.io/v1
@@ -38,9 +40,8 @@ metadata:
   labels:
     app.kubernetes.io/name: *app
   annotations:
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    gateway.envoyproxy.io/tls: "passthrough"
+    gateway.envoyproxy.io/backend-protocol: "HTTPS"
 spec:
   hostnames: ["unifi.${PUBLIC_DOMAIN}"]
   parentRefs:

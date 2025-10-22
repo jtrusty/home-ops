@@ -41,7 +41,7 @@ metadata:
     app.kubernetes.io/name: *app
   annotations:
     gateway.envoyproxy.io/tls: "passthrough"
-    gateway.envoyproxy.io/backend-protocol: "HTTPS"
+    gateway.envoyproxy.io/backend-protocol: "HTTP"
 spec:
   hostnames: ["minio.${PUBLIC_DOMAIN}"]
   parentRefs:
