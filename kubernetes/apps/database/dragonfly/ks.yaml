@@ -10,8 +10,6 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: rook-ceph-external-cluster
-      namespace: rook-ceph
     - name: external-secrets-store
       namespace: security
   healthChecks:
