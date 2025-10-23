@@ -127,12 +127,12 @@ metadata:
   namespace: default
 spec:
   targetRefs:
-    - group: ""          # core
+    - group: ""
       kind: Service
       name: minio-s3-proxy
   validation:
-    hostname: "localhost"     # <- change if your 9000 cert has a different SAN
+    hostname: "localhost"
     caCertificateRefs:
-      - group: ""             # core
+      - group: ""
         kind: ConfigMap
-        name: minio-ca        # must contain key 'ca.crt' with the CA/leaf PEM
+        name: minio-ca
