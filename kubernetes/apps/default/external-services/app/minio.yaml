@@ -85,7 +85,7 @@ spec:
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: minio-s3-proxy
+  name: &app minio-s3-proxy
   namespace: default
 spec:
   hostnames: ["s3.${PUBLIC_DOMAIN}"]
@@ -98,7 +98,7 @@ spec:
             type: PathPrefix
             value: /
       backendRefs:
-        - name: minio-proxy
+        - name: *app
           port: 9000
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/envoyproxy/gateway/refs/heads/main/charts/gateway-helm/crds/generated/gateway.envoyproxy.io_backendtlspolicies.yaml
@@ -111,7 +111,7 @@ spec:
   targetRefs:
     - group: ""
       kind: Service
-      name: minio-proxy
+      name: minio-ui-proxy
   validation:
     hostname: "localhost" # must match a SAN on the MinIO cert
     caCertificateRefs:
