@@ -1,15 +1,17 @@
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/core.v1.json
 apiVersion: v1
 kind: Service
 metadata:
   name: &app proxmox-pve-node3-proxy
+  namespace: default
   labels:
     app.kubernetes.io/name: *app
 spec:
   type: ClusterIP
   clusterIP: None
   ports:
-    - protocol: TCP
+    - name: https
       port: 8006
       targetPort: 8006
 ---
