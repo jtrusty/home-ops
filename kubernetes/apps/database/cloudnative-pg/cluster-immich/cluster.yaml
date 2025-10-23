@@ -55,7 +55,7 @@ spec:
       wal:
         compression: bzip2
       destinationPath: s3://cloudnative-pg-immich/
-      endpointURL: https://minio.selfsvc.net:9000
+      endpointURL: https://s3.selfsvc.net:9000
       # Note: serverName version needs to be inclemented
       # when recovering from an existing cnpg cluster
       serverName: &currentCluster postgres16-vector-v0
