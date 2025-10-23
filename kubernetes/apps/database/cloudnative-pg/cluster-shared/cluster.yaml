@@ -7,7 +7,7 @@ metadata:
 spec:
   imageName: ghcr.io/cloudnative-pg/postgresql:18.0-202510201453-system-trixie@sha256:50f70d2a8edf69afd9e52006f9db2538bcb946c08775eab5ef61bb27085e8d7b
 
-  instances: 3
+  instances: 1
 
   primaryUpdateStrategy: unsupervised
 
