@@ -3,7 +3,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: postgres-v17-shared
+  name: &app postgres-v17-shared
 spec:
   imageName: ghcr.io/cloudnative-pg/postgresql:17.6.8
 

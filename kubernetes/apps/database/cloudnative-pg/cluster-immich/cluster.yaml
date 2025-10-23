@@ -3,7 +3,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: postgres-v17-immich
+  name: &app postgres-v17-immich
 spec:
   imageName: ghcr.io/tensorchord/cloudnative-vectorchord:17.5-0.3.0
 
