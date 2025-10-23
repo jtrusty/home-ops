@@ -3,9 +3,10 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: &app postgres-v17-shared
+  name: &app postgres-v18-shared
 spec:
-  imageName: ghcr.io/cloudnative-pg/postgresql:17.6.8
+  imageName: docker pull ghcr.io/cloudnative-pg/postgresql
+  tag: 18.0-202510201453-system-trixie@sha256:50f70d2a8edf69afd9e52006f9db2538bcb946c08775eab5ef61bb27085e8d7b
 
   instances: 3
 
@@ -65,7 +66,7 @@ spec:
       endpointURL: https://s3.selfsvc.net
       # Note: serverName version needs to be inclemented
       # when recovering from an existing cnpg cluster
-      serverName: &currentCluster postgres16-shared-v0
+      serverName: &currentCluster postgres-v18-shared-v0
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-secret

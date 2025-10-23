@@ -3,7 +3,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: ScheduledBackup
 metadata:
-  name: postgres-v17-shared-daily-backup
+  name: postgres-v18-shared-daily-backup
   namespace: database
 spec:
   # daily, 1am UCT
@@ -11,4 +11,4 @@ spec:
   immediate: true
   backupOwnerReference: self
   cluster:
-    name: postgres-v17-shared
+    name: postgres-v18-shared
