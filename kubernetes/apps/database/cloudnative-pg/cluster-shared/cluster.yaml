@@ -76,16 +76,16 @@ spec:
 
   bootstrap:
     # Use this to recover a net-new cluster from a backup
-    recovery:
-      source: &previousCluster postgres16-v7
+    # recovery:
+    #   source: &previousCluster postgres-v18-shared-v0
 
     # Use this to setup a new cluster with extensions
     # initdb:
 
 
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
-  externalClusters:
-    - name: *previousCluster
-      barmanObjectStore:
-        <<: *barmanObjectStore
-        serverName: *previousCluster
+  # externalClusters:
+  #   - name: *previousCluster
+  #     barmanObjectStore:
+  #       <<: *barmanObjectStore
+  #       serverName: *previousCluster
