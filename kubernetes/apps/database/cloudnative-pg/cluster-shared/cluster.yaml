@@ -3,9 +3,9 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: postgres-v17-immich
+  name: postgres-v17-shared
 spec:
-  imageName: ghcr.io/tensorchord/cloudnative-vectorchord:17.5-0.3.0
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.6.8
 
   instances: 3
 
@@ -31,8 +31,6 @@ spec:
       timezone: ${TIMEZONE}
       max_connections: "600"
       shared_buffers: 512MB
-    shared_preload_libraries:
-      - "vchord.so"
 
   resources:
     requests:
@@ -63,11 +61,11 @@ spec:
         compression: bzip2
       wal:
         compression: bzip2
-      destinationPath: s3://cloudnative-pg-immich/
+      destinationPath: s3://cloudnative-pg-shared/
       endpointURL: https://s3.selfsvc.net
       # Note: serverName version needs to be inclemented
       # when recovering from an existing cnpg cluster
-      serverName: &currentCluster postgres16-vector-v0
+      serverName: &currentCluster postgres16-shared-v0
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-secret
@@ -76,20 +74,18 @@ spec:
           name: cloudnative-pg-secret
           key: AWS_SECRET_ACCESS_KEY
 
-  # bootstrap:
+  bootstrap:
     # Use this to recover a net-new cluster from a backup
-    # recovery:
-    #   source: &previousCluster postgres16-vector-v0
+    recovery:
+      source: &previousCluster postgres16-v7
 
     # Use this to setup a new cluster with extensions
     # initdb:
-    #   postInitSQL:
-    #     - CREATE EXTENSION IF NOT EXISTS vchord CASCADE;
 
 
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
-  # externalClusters:
-  #   - name: *previousCluster
-  #     barmanObjectStore:
-  #       <<: *barmanObjectStore
-  #       serverName: *previousCluster
+  externalClusters:
+    - name: *previousCluster
+      barmanObjectStore:
+        <<: *barmanObjectStore
+        serverName: *previousCluster
