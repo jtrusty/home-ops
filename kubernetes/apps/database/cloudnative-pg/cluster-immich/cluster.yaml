@@ -65,6 +65,7 @@ spec:
         compression: bzip2
       destinationPath: s3://cloudnative-pg-immich/
       endpointURL: https://s3.selfsvc.net
+      s3ForcePathStyle: true
       # Note: serverName version needs to be inclemented
       # when recovering from an existing cnpg cluster
       serverName: &currentCluster postgres16-vector-v0

@@ -5,7 +5,7 @@ kind: Cluster
 metadata:
   name: &app postgres-v18-shared
 spec:
-  imageName:  ghcr.io/cloudnative-pg/postgresql:18.0-202510201453-system-trixie@sha256:50f70d2a8edf69afd9e52006f9db2538bcb946c08775eab5ef61bb27085e8d7b
+  imageName: ghcr.io/cloudnative-pg/postgresql:18.0-202510201453-system-trixie@sha256:50f70d2a8edf69afd9e52006f9db2538bcb946c08775eab5ef61bb27085e8d7b
 
   instances: 3
 
@@ -63,6 +63,7 @@ spec:
         compression: bzip2
       destinationPath: s3://cloudnative-pg-shared/
       endpointURL: https://s3.selfsvc.net
+      s3ForcePathStyle: true
       # Note: serverName version needs to be inclemented
       # when recovering from an existing cnpg cluster
       serverName: &currentCluster postgres-v18-shared-v0
