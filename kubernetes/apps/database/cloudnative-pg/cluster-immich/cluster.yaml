@@ -5,7 +5,7 @@ kind: Cluster
 metadata:
   name: &app postgres-v17-immich
 spec:
-  imageName: ghcr.io/tensorchord/cloudnative-vectorchord:17.5-0.3.0
+  imageName: ghcr.io/tensorchord/cloudnative-vectorchord:17-0.5.3@sha256:48bdf65dfd22111ccacc345d0bf4f1b944a4da88c9202f0448a695240a47c555
 
   instances: 3
 
