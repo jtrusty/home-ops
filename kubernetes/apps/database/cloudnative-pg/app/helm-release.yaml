@@ -13,9 +13,4 @@ spec:
     crds:
       create: true
     monitoring:
-    podMonitorEnabled: false
-    grafanaDashboard:
-      create: true
-      annotations:
-        kustomize.toolkit.fluxcd.io/substitute: disabled
-        grafana_folder: Database
+      podMonitorEnabled: false
