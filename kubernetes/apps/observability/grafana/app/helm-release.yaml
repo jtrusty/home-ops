@@ -137,8 +137,12 @@ spec:
               value: Prometheus
 
         cloudnative-pg:
-          url: https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/docs/src/samples/monitoring/grafana-dashboard.json
-          datasource: Prometheus
+          # renovate: dashboardName="CloudNativePG"
+          gnetId: 20417
+          revision: 5
+          datasource:
+            - name: DS_PROMETHEUS
+              value: Prometheus
 
         dragonfly:
           url: https://raw.githubusercontent.com/dragonflydb/dragonfly/main/tools/local/monitoring/grafana/provisioning/dashboards/dashboard.json
@@ -147,6 +151,7 @@ spec:
         envoy-gateway:
           url: https://raw.githubusercontent.com/envoyproxy/gateway/refs/heads/main/charts/gateway-addons-helm/dashboards/envoy-gateway-global.json
           datasource: Prometheus
+
         envoy-proxy:
           url: https://raw.githubusercontent.com/envoyproxy/gateway/refs/heads/main/charts/gateway-addons-helm/dashboards/envoy-proxy-global.json
           datasource: Prometheus
