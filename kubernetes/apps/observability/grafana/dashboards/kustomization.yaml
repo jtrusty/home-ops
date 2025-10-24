@@ -16,6 +16,7 @@ resources:
   # - ./prometheus-dashboard.yaml
   # - ./truenas-dashboard.yaml
   - ./networking.yaml
+  - ./observability.yaml
   - ./kubernetes.yaml
 generatorOptions:
   disableNameSuffixHash: true
