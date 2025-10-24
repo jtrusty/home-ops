@@ -32,8 +32,7 @@ kind: GrafanaDashboard
 metadata:
   name: kubernetes-global
 spec:
-  folderRef:
-    name: Kubernetes
+  folderRef: "Kubernetes"
   allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:
@@ -49,8 +48,7 @@ kind: GrafanaDashboard
 metadata:
   name: kubernetes-namespaces
 spec:
-  folderRef:
-    name: Kubernetes
+  folderRef: "Kubernetes"
   allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:
@@ -66,8 +64,7 @@ kind: GrafanaDashboard
 metadata:
   name: kubernetes-nodes
 spec:
-  folderRef:
-    name: Kubernetes
+  folderRef: "Kubernetes"
   allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:
@@ -83,8 +80,7 @@ kind: GrafanaDashboard
 metadata:
   name: kubernetes-pods
 spec:
-  folderRef:
-    name: Kubernetes
+  folderRef: "Kubernetes"
   allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:
@@ -100,8 +96,7 @@ kind: GrafanaDashboard
 metadata:
   name: kubernetes-volumes
 spec:
-  folderRef:
-    name: Kubernetes
+  folderRef: "Kubernetes"
   allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:
