@@ -17,6 +17,7 @@ metadata:
   name: coredns-dashboard
 spec:
   folderRef: "Networking"
+  allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:
       grafana.internal/instance: grafana
