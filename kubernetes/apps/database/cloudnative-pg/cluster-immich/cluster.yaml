@@ -49,40 +49,30 @@ spec:
         matchLabels:
           app.kubernetes.io/name: *app
 
-  backup:
-    retentionPolicy: 30d
-    barmanObjectStore: &barmanObjectStore
-      data:
-        compression: bzip2
-      wal:
-        compression: bzip2
-      destinationPath: s3://cloudnative-pg-immich/
-      endpointURL: https://s3.selfsvc.net
-      # Note: serverName version needs to be inclemented
-      # when recovering from an existing cnpg cluster
-      serverName: &currentCluster postgres16-vector-v0
-      s3Credentials:
-        accessKeyId:
-          name: cloudnative-pg-secret
-          key: AWS_ACCESS_KEY_ID
-        secretAccessKey:
-          name: cloudnative-pg-secret
-          key: AWS_SECRET_ACCESS_KEY
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters: &parameters
+        barmanObjectName: minio
+        serverName: &currentCluster postgres-v17-immich-v0
 
   # bootstrap:
     # Use this to recover a net-new cluster from a backup
     # recovery:
-    #   source: &previousCluster postgres16-vector-v0
-
-    # Use this to setup a new cluster with extensions
-    # initdb:
-    #   postInitSQL:
-    #     - CREATE EXTENSION IF NOT EXISTS vchord CASCADE;
-
+    #   source: &previousCluster postgres-v18-shared-v0
 
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
   # externalClusters:
   #   - name: *previousCluster
-  #     barmanObjectStore:
-  #       <<: *barmanObjectStore
-  #       serverName: *previousCluster
+  #     plugin:
+  #       name: barman-cloud.cloudnative-pg.io
+  #       parameters: *parameters
+  #   - name: *previousCluster
+  #     connectionParameters:
+  #       host: postgres-lb.database.svc.cluster.local
+  #       user: postgres
+  #       dbname: postgres
+  #       sslmode: require
+  #     password:
+  #       name: cloudnative-pg-secret
+  #       key: password
