@@ -1,0 +1,12 @@
+---
+# yaml-language-server: $schema=https://raw.k8s.io/monitoring-coreos/v0.71.0/monitoring.coreos.com-podmonitor-v1.json
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: cloudnative-pg-postgres-v18-immich
+spec:
+  selector:
+    matchLabels:
+      cnpg.io/cluster: postgres-v18-immich
+  podMetricsEndpoints:
+  - port: metrics
