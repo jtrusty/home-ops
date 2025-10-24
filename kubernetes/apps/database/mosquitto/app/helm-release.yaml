@@ -3,11 +3,11 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: mosquitto
+  name: &app mosquitto
 spec:
   chartRef:
     kind: OCIRepository
-    name: mosquitto
+    name: *app
   interval: 1h
   values:
     controllers:
