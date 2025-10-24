@@ -139,7 +139,7 @@ spec:
       forceDeployDashboards: true
       operator:
         dashboardsConfigMapRefEnabled: true
-        folder: Kube-Prometheus-Stack
+        folder: Default
         matchLabels:
           grafana.internal/instance: grafana
       sidecar:
@@ -180,16 +180,3 @@ spec:
                 expr: node_zfs_zpool_state{state!="online"} > 0
                 labels:
                   severity: critical
-
-  # patch mixins to remove instance selector labels from ConfigMaps created by Helm
-  postRenderers:
-    - kustomize:
-        patchesJson6902:
-          - target:
-              group: ""
-              version: v1
-              kind: ConfigMap
-              name: kube-prometheus-stack-k8s-coredns
-            patch: |-
-              - op: remove
-                path: /metadata/labels/grafana.internal~1instance
