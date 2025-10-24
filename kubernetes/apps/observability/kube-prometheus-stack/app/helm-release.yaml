@@ -26,6 +26,7 @@ spec:
           parentRefs:
             - name: envoy-internal
               namespace: network
+
       alertmanagerSpec:
         alertmanagerConfiguration:
           name: alertmanager
@@ -39,12 +40,15 @@ spec:
               resources:
                 requests:
                   storage: 1Gi
+
     kubeEtcd:
       service:
         selector:
           component: kube-apiserver # etcd runs on control plane nodes
+
     kubeProxy:
       enabled: false
+
     prometheus:
       route:
         main:
@@ -60,6 +64,7 @@ spec:
           parentRefs:
             - name: envoy-internal
               namespace: network
+
       prometheusSpec:
         externalUrl: https://prometheus.${PUBLIC_DOMAIN}
         version: v2.55.1 # override 'unsupported Prometheus version' error
@@ -98,6 +103,7 @@ spec:
               resources:
                 requests:
                   storage: 50Gi
+
     prometheus-node-exporter:
       fullnameOverride: node-exporter
       prometheus:
@@ -110,6 +116,7 @@ spec:
               sourceLabels:
                 - __meta_kubernetes_pod_node_name
               targetLabel: kubernetes_node
+
     kube-state-metrics:
       fullnameOverride: kube-state-metrics
       metricLabelsAllowlist:
@@ -126,6 +133,7 @@ spec:
               sourceLabels:
                 - __meta_kubernetes_pod_node_name
               targetLabel: kubernetes_node
+
     grafana:
       enabled: false
       forceDeployDashboards: true
@@ -138,6 +146,7 @@ spec:
         dashboards:
           label: grafana_dashboard_ignored # GrafanaDashboard is used instead, don't conflict with k8s-sidecar
           labelValue: "1"
+
     additionalPrometheusRulesMap:
       dockerhub-rules:
         groups:
@@ -149,6 +158,7 @@ spec:
                 expr: count(time() - container_last_seen{image=~"(docker.io).*",container!=""} < 30) > 100
                 labels:
                   severity: critical
+
       oom-rules:
         groups:
           - name: oom
@@ -159,6 +169,7 @@ spec:
                 expr: (kube_pod_container_status_restarts_total - kube_pod_container_status_restarts_total offset 10m >= 1) and ignoring (reason) min_over_time(kube_pod_container_status_last_terminated_reason{reason="OOMKilled"}[10m]) == 1
                 labels:
                   severity: critical
+
       zfs-rules:
         groups:
           - name: zfs
@@ -169,3 +180,16 @@ spec:
                 expr: node_zfs_zpool_state{state!="online"} > 0
                 labels:
                   severity: critical
+
+  # patch mixins to remove instance selector labels from ConfigMaps created by Helm
+  postRenderers:
+    - kustomize:
+        patchesJson6902:
+          - target:
+              group: ""
+              version: v1
+              kind: ConfigMap
+              name: kube-prometheus-stack-k8s-coredns
+            patch: |-
+              - op: remove
+                path: /metadata/labels/grafana.internal~1instance
