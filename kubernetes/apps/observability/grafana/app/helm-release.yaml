@@ -304,7 +304,7 @@ spec:
     route:
       main:
         enabled: true
-        hostnames: ["{{ Release.Name }}.${PUBLIC_DOMAIN}"]
+        hostnames: ["{{ .Release.Name }}.${PUBLIC_DOMAIN}"]
         parentRefs:
           - name: envoy-internal
             namespace: network
