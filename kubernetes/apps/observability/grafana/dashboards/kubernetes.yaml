@@ -140,7 +140,7 @@ spec:
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
-  name: apiserver
+  name: k8s-apiserver
 spec:
   folder: "Kubernetes"
   allowCrossNamespaceImport: true
@@ -158,7 +158,7 @@ spec:
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
-  name: etcd
+  name: k8s-etcd
 spec:
   folder: "Kubernetes"
   allowCrossNamespaceImport: true
@@ -171,3 +171,21 @@ spec:
   configMapRef:
     name: kube-prometheus-stack-etcd
     key: etcd.json
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/grafana.integreatly.org/grafanadashboard_v1beta1.json
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: k8s-kubelet
+spec:
+  folder: "Kubernetes"
+  allowCrossNamespaceImport: true
+  instanceSelector:
+    matchLabels:
+      grafana.internal/instance: grafana
+  datasources:
+    - datasourceName: prometheus
+      inputName: DS_PROMETHEUS
+  configMapRef:
+    name: kube-prometheus-stack-kubelet
+    key: kubelet.json
