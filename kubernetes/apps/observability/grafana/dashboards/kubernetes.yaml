@@ -33,7 +33,7 @@ kind: GrafanaDashboard
 metadata:
   name: kubernetes-global
 spec:
-  folderRef: "Kubernetes"
+  folder: "Kubernetes"
   allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:
