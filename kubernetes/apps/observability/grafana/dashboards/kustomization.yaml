@@ -10,11 +10,10 @@ configMapGenerator:
       - truenas-scale.json=resources/truenas-scale.json
       - cloudnative-pg.json=resources/cloudnative-pg.json
 resources:
-  - ./cilium-dashboard.yaml
-  - ./cloudnative-pg-dashboard.yaml
-  - ./external-secrets-dashboard.yaml
-  - ./kubernetes-dashboard.yaml
-  - ./prometheus-dashboard.yaml
-  - ./truenas-dashboard.yaml
+  # - ./cilium-dashboard.yaml
+  # - ./cloudnative-pg-dashboard.yaml
+  # - ./external-secrets-dashboard.yaml
+  # - ./prometheus-dashboard.yaml
+  # - ./truenas-dashboard.yaml
 generatorOptions:
   disableNameSuffixHash: true
