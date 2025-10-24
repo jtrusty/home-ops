@@ -68,11 +68,9 @@ spec:
       client:
         type: secret
         name: &clientCert barman-cloud-client-tls
-        namespace: cert-manager
       server:
         type: secret
         name: &serverCert barman-cloud-server-tls
-        namespace: cert-manager
     service:
       app:
         annotations:
