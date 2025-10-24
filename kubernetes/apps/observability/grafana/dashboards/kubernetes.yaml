@@ -15,6 +15,8 @@ apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
   name: k8s-resource-cluster
+  annotations:
+    grafana.integreatly.org/overwrite: "true"
 spec:
   folder: "Kubernetes"
   allowCrossNamespaceImport: true
@@ -33,6 +35,8 @@ apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
   name: k8s-resource-multicluster
+  annotations:
+    grafana.integreatly.org/overwrite: "true"
 spec:
   folder: "Kubernetes"
   allowCrossNamespaceImport: true
@@ -51,6 +55,8 @@ apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
   name: k8s-resource-namespace
+  annotations:
+    grafana.integreatly.org/overwrite: "true"
 spec:
   folder: "Kubernetes"
   allowCrossNamespaceImport: true
@@ -69,6 +75,8 @@ apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
   name: k8s-resource-node
+  annotations:
+    grafana.integreatly.org/overwrite: "true"
 spec:
   folder: "Kubernetes"
   allowCrossNamespaceImport: true
@@ -87,6 +95,8 @@ apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
   name: k8s-resource-pod
+  annotations:
+    grafana.integreatly.org/overwrite: "true"
 spec:
   folder: "Kubernetes"
   allowCrossNamespaceImport: true
@@ -105,6 +115,8 @@ apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
   name: k8s-resource-workload
+  annotations:
+    grafana.integreatly.org/overwrite: "true"
 spec:
   folder: "Kubernetes"
   allowCrossNamespaceImport: true
@@ -123,6 +135,8 @@ apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
   name: k8s-resource-workloads-namespace
+  annotations:
+    grafana.integreatly.org/overwrite: "true"
 spec:
   folder: "Kubernetes"
   allowCrossNamespaceImport: true
@@ -141,6 +155,8 @@ apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
   name: k8s-apiserver
+  annotations:
+    grafana.integreatly.org/overwrite: "true"
 spec:
   folder: "Kubernetes"
   allowCrossNamespaceImport: true
@@ -159,6 +175,8 @@ apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
   name: k8s-etcd
+  annotations:
+    grafana.integreatly.org/overwrite: "true"
 spec:
   folder: "Kubernetes"
   allowCrossNamespaceImport: true
@@ -177,6 +195,8 @@ apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
   name: k8s-kubelet
+  annotations:
+    grafana.integreatly.org/overwrite: "true"
 spec:
   folder: "Kubernetes"
   allowCrossNamespaceImport: true
@@ -195,6 +215,8 @@ apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
   name: k8s-controller-manager
+  annotations:
+    grafana.integreatly.org/overwrite: "true"
 spec:
   folder: "Kubernetes"
   allowCrossNamespaceImport: true
@@ -213,6 +235,8 @@ apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
   name: k8s-nodes
+  annotations:
+    grafana.integreatly.org/overwrite: "true"
 spec:
   folder: "Kubernetes"
   allowCrossNamespaceImport: true
@@ -231,6 +255,8 @@ apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
   name: k8s-nodes-aix
+  annotations:
+    grafana.integreatly.org/overwrite: "true"
 spec:
   folder: "Kubernetes"
   allowCrossNamespaceImport: true
@@ -249,6 +275,8 @@ apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
   name: k8s-node-cluster-rsrc-use
+  annotations:
+    grafana.integreatly.org/overwrite: "true"
 spec:
   folder: "Kubernetes"
   allowCrossNamespaceImport: true
@@ -262,12 +290,33 @@ spec:
     name: kube-prometheus-stack-node-cluster-rsrc-use
     key: node-cluster-rsrc-use.json
 ---
-
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/grafana.integreatly.org/grafanadashboard_v1beta1.json
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: k8s-node-rsrc-use
+  annotations:
+    grafana.integreatly.org/overwrite: "true"
+spec:
+  folder: "Kubernetes"
+  allowCrossNamespaceImport: true
+  instanceSelector:
+    matchLabels:
+      grafana.internal/instance: grafana
+  datasources:
+    - datasourceName: prometheus
+      inputName: DS_PROMETHEUS
+  configMapRef:
+    name: kube-prometheus-stack-node-rsrc-use
+    key: node-rsrc-use.json
+---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/grafana.integreatly.org/grafanadashboard_v1beta1.json
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
   name: k8s-nodes-darwin
+  annotations:
+    grafana.integreatly.org/overwrite: "true"
 spec:
   folder: "Kubernetes"
   allowCrossNamespaceImport: true
@@ -286,6 +335,8 @@ apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
   name: k8s-scheduler
+  annotations:
+    grafana.integreatly.org/overwrite: "true"
 spec:
   folder: "Kubernetes"
   allowCrossNamespaceImport: true

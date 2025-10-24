@@ -15,6 +15,8 @@ apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
   name: alertmanager-overview
+  annotations:
+    grafana.integreatly.org/overwrite: "true"
 spec:
   folder: "Observability"
   allowCrossNamespaceImport: true
@@ -33,6 +35,8 @@ apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
   name: grafana-overview
+  annotations:
+    grafana.integreatly.org/overwrite: "true"
 spec:
   folder: "Observability"
   allowCrossNamespaceImport: true
@@ -51,6 +55,8 @@ apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
   name: prometheus-overview
+  annotations:
+    grafana.integreatly.org/overwrite: "true"
 spec:
   folder: "Observability"
   allowCrossNamespaceImport: true
