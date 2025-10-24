@@ -6,7 +6,7 @@ metadata:
   name: coredns-dashboard
 spec:
   folderRef:
-    name: Networking
+    name: "Networking"
   instanceSelector:
     matchLabels:
       grafana.internal/instance: grafana
