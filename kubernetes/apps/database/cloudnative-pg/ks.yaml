@@ -53,7 +53,7 @@ spec:
     - name: cloudnative-pg
       namespace: *namespace
   interval: 1h
-  path: ./kubernetes/main/apps/database/cloudnative-pg/barman-cloud
+  path: ./kubernetes/apps/database/cloudnative-pg/barman-cloud
   postBuild:
     substituteFrom:
       - name: cluster-secrets
