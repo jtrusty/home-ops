@@ -1,10 +1,14 @@
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/grafana.integreatly.org/grafanafolder_v1beta1.json
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaFolder
 metadata:
   name: kubernetes
 spec:
   title: Kubernetes
+  instanceSelector:
+    matchLabels:
+      grafana.internal/instance: grafana
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/grafana.integreatly.org/grafanadashboard_v1beta1.json
 apiVersion: grafana.integreatly.org/v1beta1
@@ -12,8 +16,7 @@ kind: GrafanaDashboard
 metadata:
   name: kubernetes-api-server
 spec:
-  folderRef:
-    name: Kubernetes
+  folderRef: "Kubernetes"
   allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:
@@ -22,23 +25,6 @@ spec:
     - datasourceName: prometheus
       inputName: DS_PROMETHEUS
   url: https://grafana.com/api/dashboards/15761/revisions/19/download
----
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/grafana.integreatly.org/grafanadashboard_v1beta1.json
-apiVersion: grafana.integreatly.org/v1beta1
-kind: GrafanaDashboard
-metadata:
-  name: kubernetes-coredns
-spec:
-  folderRef:
-    name: Kubernetes
-  allowCrossNamespaceImport: true
-  instanceSelector:
-    matchLabels:
-      grafana.internal/instance: grafana
-  datasources:
-    - datasourceName: prometheus
-      inputName: DS_PROMETHEUS
-  url: https://grafana.com/api/dashboards/15762/revisions/21/download
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/grafana.integreatly.org/grafanadashboard_v1beta1.json
 apiVersion: grafana.integreatly.org/v1beta1
