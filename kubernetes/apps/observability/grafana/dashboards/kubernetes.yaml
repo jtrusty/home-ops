@@ -106,3 +106,21 @@ spec:
       inputName: DS_PROMETHEUS
   # K8s / Storage / Volumes / Cluster
   url: https://grafana.com/api/dashboards/11454/revisions/14/download
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/grafana.integreatly.org/grafanadashboard_v1beta1.json
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: k8s-resource-cluster
+spec:
+  folder: "Kubernetes"
+  allowCrossNamespaceImport: true
+  instanceSelector:
+    matchLabels:
+      grafana.internal/instance: grafana
+  datasources:
+    - datasourceName: prometheus
+      inputName: DS_PROMETHEUS
+  configMapRef:
+    name: kube-prometheus-stack-k8s-resources-cluster
+    key: k8s-resources-cluster.json
