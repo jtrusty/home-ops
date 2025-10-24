@@ -16,7 +16,7 @@ kind: GrafanaDashboard
 metadata:
   name: cloudnative-pg
 spec:
-  folder: Database
+  folder: "Database"
   allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:

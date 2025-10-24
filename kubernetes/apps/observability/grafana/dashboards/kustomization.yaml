@@ -11,10 +11,10 @@ configMapGenerator:
       - cloudnative-pg.json=resources/cloudnative-pg.json
 resources:
   # - ./cilium-dashboard.yaml
-  # - ./cloudnative-pg-dashboard.yaml
   # - ./external-secrets-dashboard.yaml
   # - ./prometheus-dashboard.yaml
   # - ./truenas-dashboard.yaml
+  - ./database.yaml
   - ./kubernetes.yaml
   - ./networking.yaml
   - ./observability.yaml
