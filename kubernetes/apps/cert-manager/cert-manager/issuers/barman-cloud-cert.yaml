@@ -1,11 +1,5 @@
 ---
-apiVersion: cert-manager.io/v1
-kind: Issuer
-metadata:
-  name: barman-cloud
-spec:
-  selfSigned: {}
----
+# yaml-language-server: $schema=https://raw.githubusercontent.com/cert-manager/cert-manager/release-1.12/deploy/crds/cert-manager.io_certificates.yaml
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
@@ -15,13 +9,14 @@ spec:
   duration: 2160h
   isCA: false
   issuerRef:
-    name: barman-cloud
+    name: self-signed
     kind: Issuer
     group: cert-manager.io
   renewBefore: 360h
   secretName: barman-cloud-client-tls
   usages: ["client auth"]
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/cert-manager/cert-manager/release-1.12/deploy/crds/cert-manager.io_certificates.yaml
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:

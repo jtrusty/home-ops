@@ -3,6 +3,9 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ./secret.sops.yaml
-  - ./self-signed.yaml
   - ./cluster-issuer.yaml
+  - ./secret.sops.yaml
+
+  - ./barman-cloud-cert.yaml
+  - ./eso-certificate.yaml
+
