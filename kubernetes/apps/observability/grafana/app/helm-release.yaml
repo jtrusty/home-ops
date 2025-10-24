@@ -145,7 +145,7 @@ spec:
               value: Prometheus
 
         dragonfly:
-          url: https://raw.githubusercontent.com/dragonflydb/dragonfly/main/tools/local/monitoring/grafana/provisioning/dashboards/dashboard.json
+          url: https://github.com/dragonflydb/dragonfly-operator/blob/main/monitoring/grafana-dashboard.json
           datasource: Prometheus
 
         envoy-gateway:
