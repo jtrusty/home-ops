@@ -23,6 +23,9 @@ spec:
   instanceSelector:
     matchLabels:
       grafana.internal/instance: grafana
+  datasources:
+    - datasourceName: prometheus
+      inputName: DS_PROMETHEUS
   configMapRef:
     name: kube-prometheus-stack-k8s-coredns
     key: k8s-coredns.json
