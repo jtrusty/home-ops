@@ -23,4 +23,7 @@ spec:
       grafana.internal/instance: grafana
   datasources:
     - datasourceName: prometheus
-  url: https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/docs/src/samples/monitoring/grafana-dashboard.json
+      inputName: DS_PROMETHEUS
+  configMapRef:
+    name: grafana-dashboards
+    key: cloudnative-pg.json
