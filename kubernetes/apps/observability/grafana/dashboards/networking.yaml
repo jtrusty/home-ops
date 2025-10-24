@@ -14,38 +14,6 @@ spec:
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
-  name: kubernetes-coredns
-spec:
-  folder: "Networking"
-  allowCrossNamespaceImport: true
-  instanceSelector:
-    matchLabels:
-      grafana.internal/instance: grafana
-  datasources:
-    - datasourceName: prometheus
-      inputName: DS_PROMETHEUS
-  url: https://grafana.com/api/dashboards/15762/revisions/21/download
----
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/grafana.integreatly.org/grafanadashboard_v1beta1.json
-apiVersion: grafana.integreatly.org/v1beta1
-kind: GrafanaDashboard
-metadata:
-  name: k8s-system-coredns
-spec:
-  folder: "Networking"
-  allowCrossNamespaceImport: true
-  instanceSelector:
-    matchLabels:
-      grafana.internal/instance: grafana
-  datasources:
-    - datasourceName: prometheus
-      inputName: DS_PROMETHEUS
-  url: "https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-system-coredns.json"
----
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/grafana.integreatly.org/grafanadashboard_v1beta1.json
-apiVersion: grafana.integreatly.org/v1beta1
-kind: GrafanaDashboard
-metadata:
   name: k8s-coredns
 spec:
   folder: "Networking"
