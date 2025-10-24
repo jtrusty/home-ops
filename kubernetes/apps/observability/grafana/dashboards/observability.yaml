@@ -61,5 +61,5 @@ spec:
     - datasourceName: prometheus
       inputName: DS_PROMETHEUS
   configMapRef:
-    name: kube-prometheus-stack-prometheus-overview
+    name: kube-prometheus-stack-prometheus
     key: prometheus.json
