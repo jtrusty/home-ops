@@ -5,6 +5,7 @@ kind: GrafanaDashboard
 metadata:
   name: grafana-operator
 spec:
+  folder: Observability
   allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:
