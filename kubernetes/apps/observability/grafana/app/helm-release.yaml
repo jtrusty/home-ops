@@ -50,13 +50,6 @@ spec:
         org: Stuff
         org_role: Editor
 
-    resources:
-      requests:
-        cpu: 23m
-        memory: 127M
-      limits:
-        memory: 219M
-
     dashboardProviders:
       dashboardproviders.yaml:
         apiVersion: 1
