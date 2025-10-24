@@ -16,7 +16,8 @@ kind: GrafanaDashboard
 metadata:
   name: kubernetes-api-server
 spec:
-  folderRef: "Kubernetes"
+  folderRef:
+    name: Kubernetes
   allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:
