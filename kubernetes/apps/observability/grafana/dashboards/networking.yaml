@@ -16,7 +16,7 @@ kind: GrafanaDashboard
 metadata:
   name: kubernetes-coredns
 spec:
-  folderRef: "Networking"
+  folder: "Networking"
   allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:
@@ -32,7 +32,7 @@ kind: GrafanaDashboard
 metadata:
   name: k8s-system-coredns
 spec:
-  folderRef: "Networking"
+  folder: "Networking"
   allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:
