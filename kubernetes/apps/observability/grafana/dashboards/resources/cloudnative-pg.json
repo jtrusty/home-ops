@@ -9299,19 +9299,19 @@
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 2,
-        "regex": "/\\cnpg_cluster\\b=\"(?<text>[^\"]+)/g",
+        "regex": "/\\bcluster\\b=\"(?<text>[^\"]+)/g",
         "skipUrlSync": false,
         "sort": 1,
         "type": "query"
       },
       {
-        "allValue": "$cnpg_cluster-([1-9][0-9]*)",
+        "allValue": "$cluster-([1-9][0-9]*)",
         "current": {},
         "datasource": {
           "type": "prometheus",
           "uid": "${DS_PROMETHEUS}"
         },
-        "definition": "cnpg_collector_up{namespace=~\"$namespace\",pod=~\"$cnpg_cluster-([1-9][0-9]*)$\"}",
+        "definition": "cnpg_collector_up{namespace=~\"$namespace\",pod=~\"$cluster-([1-9][0-9]*)$\"}",
         "description": "Database cluster instances",
         "hide": 0,
         "includeAll": true,
@@ -9321,7 +9321,7 @@
         "options": [],
         "query": {
           "qryType": 4,
-          "query": "cnpg_collector_up{namespace=~\"$namespace\",pod=~\"$cnpg_cluster-([1-9][0-9]*)$\"}",
+          "query": "cnpg_collector_up{namespace=~\"$namespace\",pod=~\"$cluster-([1-9][0-9]*)$\"}",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 2,
