@@ -66,9 +66,6 @@ spec:
     # recovery:
     #   source: &previousCluster postgres-v18-shared-v0
 
-    # Use this to setup a new cluster with extensions
-    # initdb:
-
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
   # externalClusters:
   #   - name: *previousCluster
