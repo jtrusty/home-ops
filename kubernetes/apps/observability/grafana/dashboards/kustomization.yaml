@@ -8,6 +8,7 @@ configMapGenerator:
     literals: []
     files:
       - truenas-scale.json=resources/truenas-scale.json
+      - cloudnative-pg.json=resources/cloudnative-pg.json
 resources:
   - ./cilium-dashboard.yaml
   - ./cloudnative-pg-dashboard.yaml
