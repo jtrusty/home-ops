@@ -136,13 +136,13 @@ spec:
             - name: DS_PROMETHEUS
               value: Prometheus
 
-        cloudnative-pg:
-          # renovate: dashboardName="CloudNativePG"
-          gnetId: 20417
-          revision: 5
-          datasource:
-            - name: DS_PROMETHEUS
-              value: Prometheus
+        # cloudnative-pg:
+        #   # renovate: dashboardName="CloudNativePG"
+        #   gnetId: 20417
+        #   revision: 5
+        #   datasource:
+        #     - name: DS_PROMETHEUS
+        #       value: Prometheus
 
         dragonfly:
           url: https://github.com/dragonflydb/dragonfly-operator/blob/main/monitoring/grafana-dashboard.json
@@ -162,9 +162,9 @@ spec:
           revision: 3
           datasource: Prometheus
 
-        external-secrets:
-          url: https://raw.githubusercontent.com/external-secrets/external-secrets/main/docs/snippets/dashboard.json
-          datasource: Prometheus
+        # external-secrets:
+        #   url: https://raw.githubusercontent.com/external-secrets/external-secrets/main/docs/snippets/dashboard.json
+        #   datasource: Prometheus
 
         node-exporter-full:
           # renovate: dashboardName="Node Exporter Full"
@@ -186,13 +186,13 @@ spec:
           datasource:
             - {name: DS_PROMETHEUS, value: Prometheus,}
 
-        spegel:
-          # renovate: dashboardName="Spegel"
-          gnetId: 18089
-          revision: 1
-          datasource:
-            - name: DS_PROMETHEUS
-              value: Prometheus
+        # spegel:
+        #   # renovate: dashboardName="Spegel"
+        #   gnetId: 18089
+        #   revision: 1
+        #   datasource:
+        #     - name: DS_PROMETHEUS
+        #       value: Prometheus
 
         volsync:
           # renovate: dashboardName="VolSync Dashboard"
