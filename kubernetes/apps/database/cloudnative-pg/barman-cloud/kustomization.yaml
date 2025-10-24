@@ -7,5 +7,6 @@ resources:
   - https://raw.githubusercontent.com/cloudnative-pg/plugin-barman-cloud/refs/tags/v0.7.0/config/crd/bases/barmancloud.cnpg.io_objectstores.yaml
   - ./cert.yaml
   - ./helm-release.yaml
+  - ./object-store.yaml
   - ./oci-repository.yaml
   - ./rbac.yaml
