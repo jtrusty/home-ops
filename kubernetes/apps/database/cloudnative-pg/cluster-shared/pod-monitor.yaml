@@ -1,0 +1,16 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/monitoring-operator/prometheus-operator/main/example/prometheus-operator-crd/monitoring.coreos.com_podmonitors.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: cloudnative-pg-postgres-v18-shared
+spec:
+  selector:
+    matchLabels:
+      cnpg.io/cluster: postgres-v18-shared
+  podMetricsEndpoints:
+  - port: metrics
+  # Ref: https://github.com/cloudnative-pg/cloudnative-pg/issues/2501
+  podMonitorMetricRelabelings:
+    - { sourceLabels: ["cluster"], targetLabel: cnpg_cluster, action: replace }
+    - { regex: cluster, action: labeldrop }
