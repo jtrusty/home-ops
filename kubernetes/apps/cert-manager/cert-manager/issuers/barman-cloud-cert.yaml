@@ -6,13 +6,11 @@ metadata:
   name: barman-cloud-client
 spec:
   commonName: barman-cloud-client
-  duration: 2160h
   isCA: false
   issuerRef:
     name: self-signed
     kind: Issuer
     group: cert-manager.io
-  renewBefore: 360h
   secretName: barman-cloud-client-tls
   usages: ["client auth"]
 ---
@@ -24,12 +22,10 @@ metadata:
 spec:
   commonName: barman-cloud
   dnsNames: ["barman-cloud"]
-  duration: 2160h
   isCA: false
   issuerRef:
     name: barman-cloud
     kind: Issuer
     group: cert-manager.io
-  renewBefore: 360h
   secretName: barman-cloud-server-tls
   usages: ["server auth"]

@@ -165,6 +165,8 @@ nodes:
             routes:
               - network: "0.0.0.0/0"
                 gateway: "10.10.16.1"
+    patches:
+      - "@./patches/talos-clus01-wk05/machine.yaml"
   - hostname: "talos-clus01-wk06"
     ipAddress: "10.10.16.146"
     installDisk: "/dev/sda"

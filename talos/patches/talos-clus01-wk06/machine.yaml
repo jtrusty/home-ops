@@ -5,14 +5,12 @@ machine:
       - name: nvidia_uvm
       - name: nvidia_drm
       - name: nvidia_modeset
-  nodeLabels:
-    node-role.kubernetes.io/worker: ""
   sysctls:
     net.core.bpf_jit_harden: 1
   files:
     - op: overwrite
       path: /etc/nfsmount.conf
-      permissions: 0o664
+      permissions: 0o644
       content: |
         [ NFSMount_Global_Options ]
         nfsvers=4.2
