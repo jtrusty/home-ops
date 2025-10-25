@@ -161,7 +161,13 @@ spec:
           datasource: Prometheus
 
         cert-manager-2:
-          url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/cert-manager/dashboards/cert-manager.json
+          # renovate: dashboardName="Cert-manager-Kubernetes"
+          gnetId: 11001
+          revision: 1
+          datasource: Prometheus
+
+        cert-manager-3:
+          url: https://github.com/imusmanmalik/cert-manager-mixin/blob/main/dashboards/overview.json
           datasource: Prometheus
 
         cloudflared:
