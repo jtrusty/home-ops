@@ -122,98 +122,98 @@ spec:
 
     dashboards:
       default:
-        # cert-manager:
-        #   # renovate: dashboardName="Cert-manager-Kubernetes"
-        #   gnetId: 20842
-        #   revision: 3
-        #   datasource: Prometheus
+        cert-manager:
+          # renovate: dashboardName="Cert-manager-Kubernetes"
+          gnetId: 20842
+          revision: 3
+          datasource: Prometheus
 
-        # cloudflared:
-        #   # renovate: dashboardName="Cloudflare Tunnels (cloudflared)"
-        #   gnetId: 17457
-        #   revision: 6
-        #   datasource:
-        #     - name: DS_PROMETHEUS
-        #       value: Prometheus
+        cloudflared:
+          # renovate: dashboardName="Cloudflare Tunnels (cloudflared)"
+          gnetId: 17457
+          revision: 6
+          datasource:
+            - name: DS_PROMETHEUS
+              value: Prometheus
 
-        # cloudnative-pg:
-        #   # renovate: dashboardName="CloudNativePG"
-        #   gnetId: 20417
-        #   revision: 5
-        #   datasource:
-        #     - name: DS_PROMETHEUS
-        #       value: Prometheus
+        cloudnative-pg:
+          # renovate: dashboardName="CloudNativePG"
+          gnetId: 20417
+          revision: 5
+          datasource:
+            - name: DS_PROMETHEUS
+              value: Prometheus
 
-        # dragonfly:
-        #   url: https://github.com/dragonflydb/dragonfly-operator/blob/main/monitoring/grafana-dashboard.json
-        #   datasource: Prometheus
+        dragonfly:
+          url: https://github.com/dragonflydb/dragonfly-operator/blob/main/monitoring/grafana-dashboard.json
+          datasource: Prometheus
 
-        # envoy-gateway:
-        #   url: https://raw.githubusercontent.com/envoyproxy/gateway/refs/heads/main/charts/gateway-addons-helm/dashboards/envoy-gateway-global.json
-        #   datasource: Prometheus
+        envoy-gateway:
+          url: https://raw.githubusercontent.com/envoyproxy/gateway/refs/heads/main/charts/gateway-addons-helm/dashboards/envoy-gateway-global.json
+          datasource: Prometheus
 
-        # envoy-proxy:
-        #   url: https://raw.githubusercontent.com/envoyproxy/gateway/refs/heads/main/charts/gateway-addons-helm/dashboards/envoy-proxy-global.json
-        #   datasource: Prometheus
+        envoy-proxy:
+          url: https://raw.githubusercontent.com/envoyproxy/gateway/refs/heads/main/charts/gateway-addons-helm/dashboards/envoy-proxy-global.json
+          datasource: Prometheus
 
-        # external-dns:
-        #   # renovate: dashboardName="External-DNS"
-        #   gnetId: 15038
-        #   revision: 3
-        #   datasource: Prometheus
+        external-dns:
+          # renovate: dashboardName="External-DNS"
+          gnetId: 15038
+          revision: 3
+          datasource: Prometheus
 
-        # external-secrets:
-        #   url: https://raw.githubusercontent.com/external-secrets/external-secrets/main/docs/snippets/dashboard.json
-        #   datasource: Prometheus
+        external-secrets:
+          url: https://raw.githubusercontent.com/external-secrets/external-secrets/main/docs/snippets/dashboard.json
+          datasource: Prometheus
 
-        # node-exporter-full:
-        #   # renovate: dashboardName="Node Exporter Full"
-        #   gnetId: 1860
-        #   revision: 42
-        #   datasource:
-        #     - {name: DS_PROMETHEUS, value: Prometheus,}
+        node-exporter-full:
+          # renovate: dashboardName="Node Exporter Full"
+          gnetId: 1860
+          revision: 42
+          datasource:
+            - {name: DS_PROMETHEUS, value: Prometheus,}
 
-        # prometheus:
-        #   # renovate: depName="Prometheus"
-        #   gnetId: 19105
-        #   revision: 7
-        #   datasource: Prometheus
+        prometheus:
+          # renovate: depName="Prometheus"
+          gnetId: 19105
+          revision: 7
+          datasource: Prometheus
 
-        # smartctl-exporter:
-        #   # renovate: dashboardName="SMARTctl Exporter Dashboard"
-        #   gnetId: 22604
-        #   revision: 2
-        #   datasource:
-        #     - {name: DS_PROMETHEUS, value: Prometheus,}
+        smartctl-exporter:
+          # renovate: dashboardName="SMARTctl Exporter Dashboard"
+          gnetId: 22604
+          revision: 2
+          datasource:
+            - {name: DS_PROMETHEUS, value: Prometheus,}
 
-        # spegel:
-        #   # renovate: dashboardName="Spegel"
-        #   gnetId: 18089
-        #   revision: 1
-        #   datasource:
-        #     - name: DS_PROMETHEUS
-        #       value: Prometheus
+        spegel:
+          # renovate: dashboardName="Spegel"
+          gnetId: 18089
+          revision: 1
+          datasource:
+            - name: DS_PROMETHEUS
+              value: Prometheus
 
-        # volsync:
-        #   # renovate: dashboardName="VolSync Dashboard"
-        #   gnetId: 21356
-        #   revision: 3
-        #   datasource:
-        #     - name: DS_PROMETHEUS
-        #       value: Prometheus
-        #     - name: VAR_REPLICATIONDESTNAME
-        #       value: ".*-bootstrap"
+        volsync:
+          # renovate: dashboardName="VolSync Dashboard"
+          gnetId: 21356
+          revision: 3
+          datasource:
+            - name: DS_PROMETHEUS
+              value: Prometheus
+            - name: VAR_REPLICATIONDESTNAME
+              value: ".*-bootstrap"
 
       flux:
-        # flux-cluster:
-        #   url: https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/cluster.json
-        #   datasource: Prometheus
-        # flux-control-plane:
-        #   url: https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/control-plane.json
-        #   datasource: Prometheus
-        # flux-logs:
-        #   url: https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/logs.json
-        #   datasource: Prometheus
+        flux-cluster:
+          url: https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/cluster.json
+          datasource: Prometheus
+        flux-control-plane:
+          url: https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/control-plane.json
+          datasource: Prometheus
+        flux-logs:
+          url: https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/logs.json
+          datasource: Prometheus
 
       kubernetes:
         kubernetes-api-server:
@@ -252,31 +252,31 @@ spec:
           revision: 14
           datasource: Prometheus
 
-      # unpoller:
-      #   unifi-insights:
-      #     # renovate: dashboardName="UniFi-Poller: Client Insights - Prometheus"
-      #     gnetId: 11315
-      #     revision: 9
-      #     datasource: Prometheus
-      #   unifi-network-sites:
-      #     # renovate: dashboardName="UniFi-Poller: Network Sites - Prometheus"
-      #     gnetId: 11311
-      #     revision: 5
-      #     datasource: Prometheus
-      #   unifi-usw:
-      #     # renovate: dashboardName="UniFi-Poller: USW Insights - Prometheus"
-      #     gnetId: 11312
-      #     revision: 9
-      #     datasource:
-      #       - name: "DS_PROMETHEUS"
-      #         value: Prometheus
-      #   unifi-uap:
-      #     # renovate: dashboardName="UniFi-Poller: UAP Insights - Prometheus"
-      #     gnetId: 11314
-      #     revision: 10
-      #     datasource:
-      #       - name: "DS_PROMETHEUS"
-      #         value: Prometheus
+      unpoller:
+        unifi-insights:
+          # renovate: dashboardName="UniFi-Poller: Client Insights - Prometheus"
+          gnetId: 11315
+          revision: 9
+          datasource: Prometheus
+        unifi-network-sites:
+          # renovate: dashboardName="UniFi-Poller: Network Sites - Prometheus"
+          gnetId: 11311
+          revision: 5
+          datasource: Prometheus
+        unifi-usw:
+          # renovate: dashboardName="UniFi-Poller: USW Insights - Prometheus"
+          gnetId: 11312
+          revision: 9
+          datasource:
+            - name: "DS_PROMETHEUS"
+              value: Prometheus
+        unifi-uap:
+          # renovate: dashboardName="UniFi-Poller: UAP Insights - Prometheus"
+          gnetId: 11314
+          revision: 10
+          datasource:
+            - name: "DS_PROMETHEUS"
+              value: Prometheus
 
     imageRenderer:
       enabled: true
