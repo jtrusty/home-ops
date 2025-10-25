@@ -36,7 +36,6 @@ spec:
       GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS: natel-discrete-panel,pr0ps-trackmap-panel,panodata-map-panel
       GF_SECURITY_COOKIE_SAMESITE: *app
       GF_SERVER_ROOT_URL: "https://{{ .Release.Name }}.${PUBLIC_DOMAIN}"
-      GF_SERVER_PROTOCOL: https
 
     grafana.ini:
       analytics:
