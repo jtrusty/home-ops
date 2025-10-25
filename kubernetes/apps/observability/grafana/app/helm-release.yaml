@@ -166,24 +166,17 @@ spec:
               value: Prometheus
 
       default:
-        cert-manager-kubernetes:
-          # renovate: dashboardName="Cert-manager-Kubernetes"
-          gnetId: 20842
-          revision: 3
-          datasource:
-            - name: DS_PROMETHEUS
-              value: Prometheus
 
         cert-manager:
           # renovate: dashboardName="cert-manager"
           gnetId: 11001
           revision: 1
-          datasource: Prometheus
+          datasource:
+            - name: DS_PROMETHEUS
+              value: Prometheus
 
         external-dns:
-          # renovate: dashboardName="External-DNS"
-          gnetId: 15038
-          revision: 3
+          url: /tmp/dashboards/external-dns.json
           datasource:
             - name: DS_PROMETHEUS
               value: Prometheus
