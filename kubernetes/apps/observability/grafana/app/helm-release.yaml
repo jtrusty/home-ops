@@ -340,6 +340,11 @@ spec:
         enabled: true
         searchNamespace: ALL
         labelValue: ""
+      extraEnv:
+        - name: DOWNLOAD_DASHBOARDS
+          value: "true"
+        - name: FILE_WRITE_ATOMIC
+          value: "true"
 
     testFramework:
       enabled: false
