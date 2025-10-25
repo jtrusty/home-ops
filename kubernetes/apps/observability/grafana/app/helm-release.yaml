@@ -128,6 +128,10 @@ spec:
           revision: 3
           datasource: Prometheus
 
+        cert-manager-2:
+          url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/cert-manager/dashboards/cert-manager.json
+          datasource: Prometheus
+
         cloudflared:
           # renovate: dashboardName="Cloudflare Tunnels (cloudflared)"
           gnetId: 17457
