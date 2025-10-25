@@ -4,8 +4,6 @@ apiVersion: monitoring.coreos.com/v1alpha1
 kind: ScrapeConfig
 metadata:
   name: truenas-graphite-exporter
-  labels:
-    role: truenas
 spec:
   staticConfigs:
     - targets: ["truenas.internal:9108"]   # graphite_exporter metrics endpoint
