@@ -158,7 +158,9 @@ spec:
           # renovate: dashboardName="Cert-manager-Kubernetes"
           gnetId: 20842
           revision: 3
-          datasource: Prometheus
+          datasource:
+            - name: DS_PROMETHEUS
+              value: Prometheus
 
         cert-manager-2:
           # renovate: dashboardName="Cert-manager-Kubernetes"
