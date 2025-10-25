@@ -79,6 +79,24 @@ spec:
             options:
               path: /var/lib/grafana/dashboards/kubernetes
 
+          - name: storage
+            orgId: 1
+            folder: Storage
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/storage
+
+          - name: database
+            orgId: 1
+            folder: Database
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/database
+
           - name: unpoller
             disableDeletion: false
             editable: true
@@ -121,6 +139,19 @@ spec:
             orgId: 1
 
     dashboards:
+      database:
+        cloudnative-pg:
+          # renovate: dashboardName="CloudNativePG"
+          gnetId: 20417
+          revision: 5
+          datasource:
+            - name: DS_PROMETHEUS
+              value: Prometheus
+
+        dragonfly:
+          url: https://github.com/dragonflydb/dragonfly-operator/blob/main/monitoring/grafana-dashboard.json
+          datasource: Prometheus
+
       default:
         cert-manager:
           # renovate: dashboardName="Cert-manager-Kubernetes"
@@ -139,18 +170,6 @@ spec:
           datasource:
             - name: DS_PROMETHEUS
               value: Prometheus
-
-        cloudnative-pg:
-          # renovate: dashboardName="CloudNativePG"
-          gnetId: 20417
-          revision: 5
-          datasource:
-            - name: DS_PROMETHEUS
-              value: Prometheus
-
-        dragonfly:
-          url: https://github.com/dragonflydb/dragonfly-operator/blob/main/monitoring/grafana-dashboard.json
-          datasource: Prometheus
 
         envoy-gateway:
           url: https://raw.githubusercontent.com/envoyproxy/gateway/refs/heads/main/charts/gateway-addons-helm/dashboards/envoy-gateway-global.json
@@ -197,16 +216,6 @@ spec:
           datasource:
             - name: DS_PROMETHEUS
               value: Prometheus
-
-        volsync:
-          # renovate: dashboardName="VolSync Dashboard"
-          gnetId: 21356
-          revision: 3
-          datasource:
-            - name: DS_PROMETHEUS
-              value: Prometheus
-            - name: VAR_REPLICATIONDESTNAME
-              value: ".*-bootstrap"
 
       flux:
         flux-cluster:
@@ -255,6 +264,17 @@ spec:
           gnetId: 11454
           revision: 14
           datasource: Prometheus
+
+      storage:
+        volsync:
+          # renovate: dashboardName="VolSync Dashboard"
+          gnetId: 21356
+          revision: 3
+          datasource:
+            - name: DS_PROMETHEUS
+              value: Prometheus
+            - name: VAR_REPLICATIONDESTNAME
+              value: ".*-bootstrap"
 
       unpoller:
         unifi-insights:
