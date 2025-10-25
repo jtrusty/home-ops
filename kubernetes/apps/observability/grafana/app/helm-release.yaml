@@ -139,11 +139,12 @@ spec:
             orgId: 1
 
     dashboards:
+
       database:
         cloudnative-pg:
           # renovate: dashboardName="CloudNativePG"
           gnetId: 20417
-          revision: 5
+          revision: 4
           datasource:
             - name: DS_PROMETHEUS
               value: Prometheus
