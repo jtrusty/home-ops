@@ -105,6 +105,10 @@ spec:
                 requests:
                   storage: 50Gi
 
+    prometheusOperator:
+      enableFeatures:
+        - ScrapeConfig
+
     prometheus-node-exporter:
       fullnameOverride: node-exporter
       prometheus:
