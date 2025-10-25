@@ -317,6 +317,14 @@ spec:
 
       storage:
 
+        truenas-scale:
+          # renovate: dashboardName="TrueNAS Scale - Graphite"
+          gnetId: 20439
+          revision: 1
+          datasource:
+            - name: DS_PROMETHEUS
+              value: Prometheus
+
         volsync:
           # renovate: dashboardName="VolSync Dashboard"
           gnetId: 21356
