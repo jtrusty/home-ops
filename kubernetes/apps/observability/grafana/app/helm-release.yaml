@@ -160,7 +160,7 @@ spec:
               value: Prometheus
 
         dragonfly:
-          url: https://github.com/dragonflydb/dragonfly-operator/blob/main/monitoring/grafana-dashboard.json
+          url: https://raw.githubusercontent.com/dragonflydb/dragonfly-operator/refs/heads/main/monitoring/grafana-dashboard.json
           datasource:
             - name: DS_PROMETHEUS
               value: Prometheus
@@ -171,9 +171,7 @@ spec:
           # renovate: dashboardName="cert-manager"
           gnetId: 11001
           revision: 1
-          datasource:
-            - name: DS_PROMETHEUS
-              value: Prometheus
+          datasource: Prometheus
 
         external-dns:
           url: /tmp/dashboards/external-dns.json
