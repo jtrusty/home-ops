@@ -27,8 +27,8 @@ nodes:
     talosImageURL: factory.talos.dev/installer/27c006c61185fc860f848e16cad265db959a24af02fe04a2a6c92965c34c697b
     controlPlane: true
     networkInterfaces:
-      - deviceSelector:
-          hardwareAddr: "bc:24:11:a5:d8:78"
+      - interface: "eth0"
+        dhcp: false
         vlans:
           - vlanId: 16
             addresses:
@@ -39,6 +39,7 @@ nodes:
                 gateway: "10.10.16.1"
             vip:
               ip: "10.10.16.130"
+
   - hostname: "talos-clus01-cp02"
     ipAddress: "10.10.16.132"
     installDisk: "/dev/sda"
@@ -47,8 +48,8 @@ nodes:
     talosImageURL: factory.talos.dev/installer/27c006c61185fc860f848e16cad265db959a24af02fe04a2a6c92965c34c697b
     controlPlane: true
     networkInterfaces:
-      - deviceSelector:
-          hardwareAddr: "bc:24:11:24:49:96"
+      - interface: "eth0"
+        dhcp: false
         vlans:
           - vlanId: 16
             addresses:
@@ -59,6 +60,7 @@ nodes:
                 gateway: "10.10.16.1"
             vip:
               ip: "10.10.16.130"
+
   - hostname: "talos-clus01-cp03"
     ipAddress: "10.10.16.133"
     installDisk: "/dev/sda"
@@ -67,8 +69,8 @@ nodes:
     talosImageURL: factory.talos.dev/installer/27c006c61185fc860f848e16cad265db959a24af02fe04a2a6c92965c34c697b
     controlPlane: true
     networkInterfaces:
-      - deviceSelector:
-          hardwareAddr: "bc:24:11:8d:5c:0d"
+      - interface: "eth0"
+        dhcp: false
         vlans:
           - vlanId: 16
             addresses:
@@ -79,6 +81,7 @@ nodes:
                 gateway: "10.10.16.1"
             vip:
               ip: "10.10.16.130"
+
   - hostname: "talos-clus01-wk01"
     ipAddress: "10.10.16.141"
     installDisk: "/dev/sda"
@@ -87,8 +90,8 @@ nodes:
     talosImageURL: factory.talos.dev/installer/bef9b5ce3c20cc34a10d3a9e0efb99c41043f5422f7aba45838d6913621968d7
     controlPlane: false
     networkInterfaces:
-      - deviceSelector:
-          hardwareAddr: "bc:24:11:39:7b:20"
+      - interface: "eth0"
+        dhcp: false
         vlans:
           - vlanId: 16
             addresses:
@@ -97,6 +100,7 @@ nodes:
             routes:
               - network: "0.0.0.0/0"
                 gateway: "10.10.16.1"
+
   - hostname: "talos-clus01-wk02"
     ipAddress: "10.10.16.142"
     installDisk: "/dev/sda"
@@ -105,8 +109,8 @@ nodes:
     talosImageURL: factory.talos.dev/installer/bef9b5ce3c20cc34a10d3a9e0efb99c41043f5422f7aba45838d6913621968d7
     controlPlane: false
     networkInterfaces:
-      - deviceSelector:
-          hardwareAddr: "bc:24:11:9a:56:31"
+      - interface: "eth0"
+        dhcp: false
         vlans:
           - vlanId: 16
             addresses:
@@ -115,6 +119,7 @@ nodes:
             routes:
               - network: "0.0.0.0/0"
                 gateway: "10.10.16.1"
+
   - hostname: "talos-clus01-wk03"
     ipAddress: "10.10.16.143"
     installDisk: "/dev/sda"
@@ -123,8 +128,8 @@ nodes:
     talosImageURL: factory.talos.dev/installer/bef9b5ce3c20cc34a10d3a9e0efb99c41043f5422f7aba45838d6913621968d7
     controlPlane: false
     networkInterfaces:
-      - deviceSelector:
-          hardwareAddr: "bc:24:11:a1:79:cb"
+      - interface: "eth0"
+        dhcp: false
         vlans:
           - vlanId: 16
             addresses:
@@ -133,6 +138,7 @@ nodes:
             routes:
               - network: "0.0.0.0/0"
                 gateway: "10.10.16.1"
+
   - hostname: "talos-clus01-wk04"
     ipAddress: "10.10.16.144"
     installDisk: "/dev/sda"
@@ -141,8 +147,8 @@ nodes:
     talosImageURL: factory.talos.dev/installer/402134c742e0d63a25f5c42467e86eae50468dfb48c0be2a82e73f789b42ae63
     controlPlane: false
     networkInterfaces:
-      - deviceSelector:
-          hardwareAddr: "bc:24:11:71:e6:88"
+      - interface: "eth0"
+        dhcp: false
         vlans:
           - vlanId: 16
             addresses:
@@ -151,6 +157,7 @@ nodes:
             routes:
               - network: "0.0.0.0/0"
                 gateway: "10.10.16.1"
+
   - hostname: "talos-clus01-wk05"
     ipAddress: "10.10.16.145"
     installDisk: "/dev/sda"
@@ -159,8 +166,8 @@ nodes:
     talosImageURL: factory.talos.dev/installer/402134c742e0d63a25f5c42467e86eae50468dfb48c0be2a82e73f789b42ae63
     controlPlane: false
     networkInterfaces:
-      - deviceSelector:
-          hardwareAddr: "bc:24:11:e0:c4:8d"
+      - interface: "eth0"
+        dhcp: false
         vlans:
           - vlanId: 16
             addresses:
@@ -169,6 +176,7 @@ nodes:
             routes:
               - network: "0.0.0.0/0"
                 gateway: "10.10.16.1"
+
   - hostname: "talos-clus01-wk06"
     ipAddress: "10.10.16.146"
     installDisk: "/dev/sda"
@@ -177,8 +185,8 @@ nodes:
     talosImageURL: factory.talos.dev/installer/402134c742e0d63a25f5c42467e86eae50468dfb48c0be2a82e73f789b42ae63
     controlPlane: false
     networkInterfaces:
-      - deviceSelector:
-          hardwareAddr: "bc:24:11:2f:e4:5d"
+      - interface: "eth0"
+        dhcp: false
         vlans:
           - vlanId: 16
             addresses:
