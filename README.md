@@ -210,6 +210,12 @@ There are **5 stages** outlined below for completing this project, make sure you
     kubectl -n kube-system describe certificates
     ```
 
+6. Set the label of worker nodes:
+
+    ```
+    for n in wk01 wk02 wk03 wk04 wk05 wk06; do kubectl label node talos-clus01-$n node-role.kubernetes.io/worker='' --overwrite || true; done
+    ```
+
 ### 🌐 Public DNS
 
 > [!TIP]

@@ -83,12 +83,11 @@ nodes:
               ip: "10.10.16.130"
 
   - hostname: "talos-clus01-wk01"
+    controlPlane: false
     ipAddress: "10.10.16.141"
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/bef9b5ce3c20cc34a10d3a9e0efb99c41043f5422f7aba45838d6913621968d7
-    controlPlane: false
     networkInterfaces:
       - interface: "eth0"
         dhcp: false
@@ -100,14 +99,15 @@ nodes:
             routes:
               - network: "0.0.0.0/0"
                 gateway: "10.10.16.1"
+    patches: ["@./patches/talos-clus01-wk01/machine.yaml"]
+    talosImageURL: factory.talos.dev/installer/bef9b5ce3c20cc34a10d3a9e0efb99c41043f5422f7aba45838d6913621968d7
 
   - hostname: "talos-clus01-wk02"
+    controlPlane: false
     ipAddress: "10.10.16.142"
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/bef9b5ce3c20cc34a10d3a9e0efb99c41043f5422f7aba45838d6913621968d7
-    controlPlane: false
     networkInterfaces:
       - interface: "eth0"
         dhcp: false
@@ -119,14 +119,15 @@ nodes:
             routes:
               - network: "0.0.0.0/0"
                 gateway: "10.10.16.1"
+    patches: ["@./patches/talos-clus01-wk02/machine.yaml"]
+    talosImageURL: factory.talos.dev/installer/bef9b5ce3c20cc34a10d3a9e0efb99c41043f5422f7aba45838d6913621968d7
 
   - hostname: "talos-clus01-wk03"
+    controlPlane: false
     ipAddress: "10.10.16.143"
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/bef9b5ce3c20cc34a10d3a9e0efb99c41043f5422f7aba45838d6913621968d7
-    controlPlane: false
     networkInterfaces:
       - interface: "eth0"
         dhcp: false
@@ -138,14 +139,15 @@ nodes:
             routes:
               - network: "0.0.0.0/0"
                 gateway: "10.10.16.1"
+    patches: ["@./patches/talos-clus01-wk03/machine.yaml"]
+    talosImageURL: factory.talos.dev/installer/bef9b5ce3c20cc34a10d3a9e0efb99c41043f5422f7aba45838d6913621968d7
 
   - hostname: "talos-clus01-wk04"
+    controlPlane: false
     ipAddress: "10.10.16.144"
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/402134c742e0d63a25f5c42467e86eae50468dfb48c0be2a82e73f789b42ae63
-    controlPlane: false
     networkInterfaces:
       - interface: "eth0"
         dhcp: false
@@ -157,14 +159,15 @@ nodes:
             routes:
               - network: "0.0.0.0/0"
                 gateway: "10.10.16.1"
+    patches: ["@./patches/talos-clus01-wk04/machine.yaml"]
+    talosImageURL: factory.talos.dev/installer/402134c742e0d63a25f5c42467e86eae50468dfb48c0be2a82e73f789b42ae63
 
   - hostname: "talos-clus01-wk05"
+    controlPlane: false
     ipAddress: "10.10.16.145"
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/402134c742e0d63a25f5c42467e86eae50468dfb48c0be2a82e73f789b42ae63
-    controlPlane: false
     networkInterfaces:
       - interface: "eth0"
         dhcp: false
@@ -176,14 +179,15 @@ nodes:
             routes:
               - network: "0.0.0.0/0"
                 gateway: "10.10.16.1"
+    patches: ["@./patches/talos-clus01-wk05/machine.yaml"]
+    talosImageURL: factory.talos.dev/installer/402134c742e0d63a25f5c42467e86eae50468dfb48c0be2a82e73f789b42ae63
 
   - hostname: "talos-clus01-wk06"
-    ipAddress: "10.10.16.146"
+    controlPlane: false
     installDisk: "/dev/sda"
+    ipAddress: "10.10.16.146"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/402134c742e0d63a25f5c42467e86eae50468dfb48c0be2a82e73f789b42ae63
-    controlPlane: false
     networkInterfaces:
       - interface: "eth0"
         dhcp: false
@@ -195,6 +199,8 @@ nodes:
             routes:
               - network: "0.0.0.0/0"
                 gateway: "10.10.16.1"
+    patches: ["@./patches/talos-clus01-wk06/machine.yaml"]
+    talosImageURL: factory.talos.dev/installer/402134c742e0d63a25f5c42467e86eae50468dfb48c0be2a82e73f789b42ae63
 
 # Global patches
 patches:
@@ -208,4 +214,5 @@ patches:
 controlPlane:
   patches:
     - "@./patches/controller/cluster.yaml"
+    - "@./patches/controller/machine-features.yaml"
 

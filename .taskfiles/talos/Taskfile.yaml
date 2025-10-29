@@ -3,6 +3,24 @@ version: '3'
 
 tasks:
 
+  generate-schematic-id:
+    desc: "Generate schematic IDs and update talosImageURL in talconfig.yaml"
+    vars:
+      schematics: "{{.TALOS_DIR}}/schematics"
+      talconfig: "{{.TALOS_DIR}}/talconfig.yaml"
+    cmds:
+      - |
+        for file in {{.schematics}}/*.yaml; do
+          node=$(basename "$file" .yaml)
+          id=$(curl -sX POST --data-binary @"$file" "https://factory.talos.dev/schematics" | jq -r '.id')
+          # Use yq to update talosImageURL for the correct node
+          yq -i '
+            (.nodes[] | select(.hostname == "'$node'")).talosImageURL |=
+            sub("installer/[^ ]+", "installer/'$id'")
+          ' {{.talconfig}}
+          echo "Updated $node with schematic ID $id"
+        done
+
   generate-config:
     desc: Generate Talos configuration
     dir: '{{.TALOS_DIR}}'
