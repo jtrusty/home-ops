@@ -1,0 +1,24 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/cert-manager.io/certificate_v1.json
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: &name bitwarden-tls-certs
+  namespace: security
+spec:
+  secretName: *name
+  dnsNames:
+    - bitwarden-sdk-server.security.svc.cluster.local
+    - localhost
+  ipAddresses:
+    - 127.0.0.1
+    - ::1
+  privateKey:
+    algorithm: RSA
+    encoding: PKCS8
+    size: 2048
+    rotationPolicy: Always
+  issuerRef:
+    name: selfsigned
+    kind: ClusterIssuer
+    group: cert-manager.io
