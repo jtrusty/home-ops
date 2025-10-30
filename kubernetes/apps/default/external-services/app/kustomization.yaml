@@ -1,0 +1,26 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ./minio.yaml
+  - ./proxmox-pve-node1.yaml
+  - ./proxmox-pve-node2.yaml
+  - ./proxmox-pve-node3.yaml
+  - ./truenas.yaml
+  - ./unifi.yaml
+configMapGenerator:
+  - name: truenas-ca
+    files:
+      - ca.crt=./resources/truenas-ca.crt
+  - name: minio-ca
+    files:
+      - ca.crt=./resources/minio-ca.crt
+  - name: udm-ca
+    files:
+      - ca.crt=./resources/udm-ca.crt
+  - name: proxmox-ca
+    files:
+      - ca.crt=./resources/proxmox-ca.crt
+generatorOptions:
+  disableNameSuffixHash: true

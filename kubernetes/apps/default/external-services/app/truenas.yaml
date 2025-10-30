@@ -1,0 +1,67 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/core.v1.json
+apiVersion: v1
+kind: Service
+metadata:
+  name: &app truenas-proxy
+  namespace: default
+  labels:
+    app.kubernetes.io/name: *app
+spec:
+  type: ClusterIP
+  clusterIP: None
+  ports:
+    - name: https
+      port: 443
+      targetPort: 443
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/discovery.k8s.io/endpointslice_v1.json
+apiVersion: discovery.k8s.io/v1
+kind: EndpointSlice
+metadata:
+  name: &app truenas-proxy
+  namespace: default
+  labels:
+    app.kubernetes.io/name: *app
+    kubernetes.io/service-name: *app
+addressType: IPv4
+ports:
+  - name: https
+    protocol: TCP
+    port: 443
+endpoints:
+  - addresses: ["10.10.100.30"]
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/gateway.networking.k8s.io/httproute_v1.json
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: &app truenas-proxy
+  namespace: default
+spec:
+  hostnames: ["truenas.${PUBLIC_DOMAIN}"]
+  parentRefs:
+    - name: envoy-internal
+      namespace: network
+  rules:
+    - backendRefs:
+        - name: *app
+          port: 443
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/envoyproxy/gateway/refs/heads/main/charts/gateway-helm/crds/generated/gateway.envoyproxy.io_backendtlspolicies.yaml
+apiVersion: gateway.networking.k8s.io/v1alpha3
+kind: BackendTLSPolicy
+metadata:
+  name: truenas-proxy-tls
+  namespace: default
+spec:
+  targetRefs:
+    - group: ""
+      kind: Service
+      name: truenas-proxy
+  validation:
+    hostname: "localhost" # must match a SAN on the TrueNAS cert
+    caCertificateRefs:
+      - group: ""
+        kind: ConfigMap
+        name: truenas-ca
