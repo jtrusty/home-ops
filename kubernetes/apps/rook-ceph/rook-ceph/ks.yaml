@@ -46,7 +46,7 @@ spec:
     - apiVersion: ceph.rook.io/v1
       kind: CephCluster
       namespace: rook-ceph
-      name: rook-ceph
+      name: external-cluster
   healthCheckExprs:
     - apiVersion: ceph.rook.io/v1
       kind: CephCluster
