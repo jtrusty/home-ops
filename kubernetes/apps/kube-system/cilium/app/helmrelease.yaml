@@ -37,7 +37,7 @@ spec:
     gatewayAPI:
       enabled: true
     hubble:
-      enabled: false
+      enabled: true
     ipam:
       mode: kubernetes
     ipv4NativeRoutingCIDR: "10.42.0.0/16"
@@ -49,7 +49,7 @@ spec:
       enabled: true
     loadBalancer:
       algorithm: maglev
-      mode: "snat"
+      mode: "dsr"
     localRedirectPolicy: true
     operator:
       dashboards:
