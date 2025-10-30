@@ -2,22 +2,33 @@ machine:
   sysctls:
     fs.inotify.max_user_watches: "1048576"     # Watchdog
     fs.inotify.max_user_instances: "8192"      # Watchdog
+    user.max_user_namespaces: "11255"          # User Namespaces
+
+    # Cilium
+    net.ipv4.conf.all.rp_filter: "0"           # all rp_filter
+    net.ipv4.conf.default.rp_filter: "0"       # default rp_filter
+    net.ipv4.conf.eth0.16.rp_filter: "0"       # eth0.16 rp_filter
+    net.ipv4.ip_forward: "1"                   # IP Forwarding
+
+    # Networking quality / performance
     net.core.default_qdisc: fq                 # Fair Queuing Discipline
     net.core.rmem_max: "67108864"              # Cloudflared | QUIC
     net.core.wmem_max: "67108864"              # Cloudflared | QUIC
+    net.ipv4.tcp_congestion_control: bbr       # BBR Congestion Control
+    net.ipv4.tcp_rmem: 4096 87380 33554432     # TCP Read Memory
+    net.ipv4.tcp_wmem: 4096 65536 33554432     # TCP Write Memory
+    net.ipv4.tcp_window_scaling: "1"           # TCP Window Scaling
+    net.ipv4.tcp_fastopen: "3"                 # TCP Fast Open
+    net.ipv4.tcp_mtu_probing: "1"              # MTU Probing
+
+    # ARP/NDP scaling
     net.ipv4.neigh.default.gc_thresh1: "4096"  # Prevent ARP cache overflows
     net.ipv4.neigh.default.gc_thresh2: "8192"  # Prevent ARP cache overflows
     net.ipv4.neigh.default.gc_thresh3: "16384" # Prevent ARP cache overflows
-    net.ipv4.tcp_congestion_control: bbr       # BBR Congestion Control
-    net.ipv4.tcp_fastopen: "3"                 # TCP Fast Open
-    net.ipv4.tcp_mtu_probing: "1"              # MTU Probing
-    net.ipv4.tcp_rmem: 4096 87380 33554432     # TCP Read Memory
-    net.ipv4.tcp_window_scaling: "1"           # TCP Window Scaling
-    net.ipv4.tcp_wmem: 4096 65536 33554432     # TCP Write Memory
     net.ipv6.neigh.default.gc_thresh1: "4096"  # Prevent NDP cache overflows
     net.ipv6.neigh.default.gc_thresh2: "8192"  # Prevent NDP cache overflows
     net.ipv6.neigh.default.gc_thresh3: "16384" # Prevent NDP cache overflows
+
+    # NFS tuning
     sunrpc.tcp_max_slot_table_entries: "128"   # TCP Max Slots
     sunrpc.tcp_slot_table_entries: "128"       # TCP Slots
-    user.max_user_namespaces: "11255"          # User Namespaces
-    vm.nr_hugepages: "1024"                    # Hugepages
