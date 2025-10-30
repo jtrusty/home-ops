@@ -1,0 +1,29 @@
+---
+# yaml-language-server: $schema=https://kubernetesjsonschema.dev/master-standalone/configmap-v1.json
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rook-ceph-mon-endpoints
+data:
+  data: "a=10.10.21.11:6789,b=10.10.21.12:6789,c=10.10.21.13:6789"
+  maxMonId: "2"
+  mapping: "{\"a\":\"pve-node1\",\"b\":\"pve-node2\",\"c\":\"pve-node3\"}"
+---
+# yaml-language-server: $schema=https://kubernetesjsonschema.dev/master-standalone/configmap-v1.json
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ceph-csi-config
+  namespace: rook-ceph
+data:
+  config.json: |
+    [
+      {
+        "clusterID": "rook-ceph",
+        "monitors": [
+          "10.10.21.11:6789",
+          "10.10.21.12:6789",
+          "10.10.21.13:6789"
+        ]
+      }
+    ]

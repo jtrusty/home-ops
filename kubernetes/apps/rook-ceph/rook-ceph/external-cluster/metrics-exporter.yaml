@@ -1,0 +1,55 @@
+---
+# yaml-language-server: $schema=https://kubernetesjsonschema.dev/master-standalone/service-v1.json
+apiVersion: v1
+kind: Service
+metadata:
+  name: ceph-mgr-exporter
+  namespace: rook-ceph
+  labels:
+    app.kubernetes.io/name: ceph-mgr-exporter
+spec:
+  ports:
+    - name: http-metrics
+      port: 9283
+      protocol: TCP
+      targetPort: 9283
+  selector: {}
+  type: ClusterIP
+---
+# yaml-language-server: $schema=https://kubernetesjsonschema.dev/master-standalone/endpoints-v1.json
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: ceph-mgr-exporter
+  namespace: rook-ceph
+  labels:
+    app.kubernetes.io/name: ceph-mgr-exporter
+subsets:
+  - addresses:
+      - ip: 10.10.21.11
+      - ip: 10.10.21.12
+      - ip: 10.10.21.13
+    ports:
+      - name: http-metrics
+        port: 9283
+        protocol: TCP
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/monitoring.coreos.com/servicemonitor_v1.json
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: ceph-mgr-exporter
+  namespace: rook-ceph
+  labels:
+    release: kube-prometheus-stack
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: ceph-mgr-exporter
+  namespaceSelector:
+    matchNames:
+      - rook-ceph
+  endpoints:
+    - port: http-metrics
+      interval: 30s
+      scheme: http

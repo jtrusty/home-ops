@@ -1,0 +1,13 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/volsync.backube/kopiamaintenance_v1alpha1.json
+apiVersion: volsync.backube/v1alpha1
+kind: KopiaMaintenance
+metadata:
+  name: manual
+  namespace: volsync-system
+spec:
+  enabled: true
+  trigger:
+    manual: "manual-kopia-maintenance"
+  repository:
+    repository: volsync-maintenance-secret
