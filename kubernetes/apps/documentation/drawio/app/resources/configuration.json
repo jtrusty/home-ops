@@ -1,0 +1,92 @@
+{
+  "libraries": [
+    {
+      "title": {
+        "main": "Custom"
+      },
+      "entries": [
+        {
+          "id": "Ubiquiti",
+          "title": {
+            "main": "Ubiquiti"
+          },
+          "desc": {
+            "main": "Collection of Ubiquiti Products"
+          },
+          "libs": [
+            {
+              "title": {
+                "main": "Ubiquiti - Rack Cloud Gateway"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Rack/ui-Rack-CloudGateways.xml"
+            },
+            {
+              "title": {
+                "main": "Ubiquiti - Rack Camera Security"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Rack/ui-Rack-Camera-Security.xml"
+            },
+            {
+              "title": {
+                "main": "Ubiquiti - Rack Accessories"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Rack/ui-Rack-Accessories-Rack-Mount.xml"
+            },
+            {
+              "title": {
+                "main": "Ubiquiti - Rack Switching"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Rack/ui-Rack-Switching.xml"
+            },
+            {
+              "title": {
+                "main": "Ubiquiti - Rack Integrations"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Rack/ui-Rack-Integrations.xml"
+            },
+            {
+              "title": {
+                "main": "Ubiquiti - Rack Advanced Hosting"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Rack/ui-Rack-Advanced-Hosting.xml"
+            }
+          ]
+        },
+        {
+          "id:": "Dell",
+          "title": {
+            "main": "Dell"
+          },
+          "desc": {
+            "main": "Collection of Dell Products"
+          },
+          "libs": [
+            {
+              "title": {
+                "main": "Dell - Rack PowerEdge"
+              },
+              "url": "https://raw.githubusercontent.com/dtc-tech/drawio-libs/refs/heads/main/Dell/Dell-PowerEdge-RackServers.drawio.xml"
+            }
+          ]
+        },
+        {
+          "id": "APC",
+          "title": {
+            "main": "APC"
+          },
+          "desc": {
+            "main": "Collection of APC Products"
+          },
+          "libs": [
+            {
+              "title": {
+                "main": "APC - Smart UPS"
+              },
+              "url": "https://raw.githubusercontent.com/dtc-tech/drawio-libs/refs/heads/main/APC/APC%20Smart%20UPS%20(US%20units).drawio.xml"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

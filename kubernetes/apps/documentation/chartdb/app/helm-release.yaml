@@ -1,0 +1,123 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: chartdb
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: chartdb
+  interval: 1h
+  dependsOn:
+    - name: cloudflare-tunnel
+      namespace: network
+  values:
+    controllers:
+      chartdb:
+        strategy: RollingUpdate
+
+        initContainers:
+          perms:
+            image:
+              repository: busybox
+              tag: "1.37"
+            securityContext:
+              runAsUser: 0
+              runAsGroup: 0
+              readOnlyRootFilesystem: false
+              allowPrivilegeEscalation: false
+              capabilities:
+                add: ["CHOWN"]
+            command: ["sh", "-c"]
+            args:
+              - >
+                mkdir -p /etc/nginx &&
+                chown -R 101:101 /etc/nginx &&
+                chmod -R 775 /etc/nginx
+
+        containers:
+          app:
+            image:
+              repository: ghcr.io/chartdb/chartdb
+              tag: 1.16.0@sha256:a0cd415e34ae4f018f78cc469d2269475c4325d7cf84e0f6cc3dc2b436ea54c5
+            env:
+              TZ: "America/Chicago"
+              # Optional: Uncomment and configure if you want AI features
+              # OPENAI_API_KEY: "your-openai-api-key"
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /
+                    port: &port 80
+                    initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+            securityContext:
+              runAsNonRoot: true
+              # nginx user
+              runAsUser: 101
+              runAsGroup: 101
+              # requires write access for various files
+              readOnlyRootFilesystem: true
+              allowPrivilegeEscalation: false
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 25m
+              limits:
+                memory: 128Mi
+
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 101
+        fsGroupChangePolicy: OnRootMismatch
+        seccompProfile: { type: RuntimeDefault }
+
+    service:
+      app:
+        ports:
+          http:
+            port: *port
+
+    serviceMonitor:
+      app:
+        endpoints:
+          - port: http
+
+    route:
+      app:
+        annotations:
+          # Homepage Automatic Service Discovery
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/name: "chartdb"
+          gethomepage.dev/description: "database diagramming tool"
+          gethomepage.dev/icon: "sh-chartdb"
+          gethomepage.dev/group: "Documentation"
+        hostnames: ["{{ .Release.Name }}.${PUBLIC_DOMAIN}"]
+        parentRefs:
+          - name: envoy-external
+            namespace: network
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: *port
+
+    persistence:
+        nginx-cache:
+          type: emptyDir
+          medium: Memory
+          sizeLimit: 128Mi
+          globalMounts:
+            - path: /var/cache/nginx
+        nginx-run:
+          type: emptyDir
+          medium: Memory
+          sizeLimit: 64Mi
+          globalMounts:
+            - path: /var/run
