@@ -8,7 +8,7 @@ spec:
   commonName: barman-cloud-client
   isCA: false
   issuerRef:
-    name: self-signed
+    name: selfsigned
     kind: Issuer
     group: cert-manager.io
   secretName: barman-cloud-client-tls
