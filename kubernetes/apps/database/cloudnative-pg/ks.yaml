@@ -84,7 +84,7 @@ spec:
   dependsOn:
     - name: cloudnative-pg
       namespace: *namespace
-    - name: rook-ceph-external-cluster
+    - name: rook-ceph-cluster
       namespace: rook-ceph
   interval: 1h
   path: ./kubernetes/apps/database/cloudnative-pg/cluster-immich
@@ -115,7 +115,7 @@ spec:
   dependsOn:
     - name: cloudnative-pg
       namespace: *namespace
-    - name: rook-ceph-external-cluster
+    - name: rook-ceph-cluster
       namespace: rook-ceph
   interval: 1h
   path: ./kubernetes/apps/database/cloudnative-pg/cluster-shared
