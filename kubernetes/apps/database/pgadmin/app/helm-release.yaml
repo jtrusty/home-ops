@@ -15,7 +15,18 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
 
-        containers:
+        initContainer:
+          app:
+            image:
+              repository: busybox
+              tag: 1.36.0
+            command:
+              - /bin/sh
+              - -c
+              - |
+                rm -rf /var/lib/pgadmin/*
+                chown 5050:5050 /var/lib/pgadmin -R
+
           app:
             image:
               repository: dpage/pgadmin4
