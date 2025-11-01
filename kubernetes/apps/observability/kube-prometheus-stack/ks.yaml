@@ -7,7 +7,7 @@ metadata:
   namespace: &namespace observability
 spec:
   dependsOn:
-    - name: rook-ceph-external-cluster
+    - name: rook-ceph-cluster
       namespace: rook-ceph
   interval: 1h
   path: ./kubernetes/apps/observability/kube-prometheus-stack/app
