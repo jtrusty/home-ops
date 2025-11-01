@@ -38,9 +38,6 @@ spec:
                   timeoutSeconds: 1
                   failureThreshold: 3
               readiness: *probes
-            securityContext:
-              allowPrivilegeEscalation: true # pgAdmin requires this to function properly
-              readOnlyRootFilesystem: false # pgAdmin needs to write to the file system
             resources:
               requests:
                 cpu: 100m
