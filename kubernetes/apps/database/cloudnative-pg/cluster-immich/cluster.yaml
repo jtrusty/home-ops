@@ -62,8 +62,8 @@ spec:
       source: &previousCluster postgres-v17-immich-v0
 
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
-  externalClusters:
-    - name: *previousCluster
-      plugin:
-        name: barman-cloud.cloudnative-pg.io
-        parameters: *parameters
+  # externalClusters:
+  #   - name: *previousCluster
+  #     plugin:
+  #       name: barman-cloud.cloudnative-pg.io
+  #       parameters: *parameters
