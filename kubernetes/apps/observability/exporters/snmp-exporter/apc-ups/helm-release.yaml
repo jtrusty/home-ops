@@ -13,7 +13,7 @@ spec:
     fullnameOverride: *app
     image:
       repository: quay.io/prometheus/snmp-exporter
-      tag: main@sha256:312e7550cee0cdcfba4a48d934e4fb3cd81871367d02487bcafb4ee0346f634d
+      tag: main
     extraArgs: ["--config.file=/config/snmp.yaml"]
     extraConfigmapMounts:
       - name: &config apc-ups-snmp-configmap
