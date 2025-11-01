@@ -16,7 +16,7 @@ spec:
           reloader.stakater.com/auto: "true"
 
         initContainer:
-          app:
+          fix-perms:
             image:
               repository: busybox
               tag: 1.36.0
