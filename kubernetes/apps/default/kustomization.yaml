@@ -11,4 +11,5 @@ resources:
 
   - ./atuin/ks.yaml
   - ./external-services/ks.yaml
+  - ./it-tools/ks.yaml
   - ./plex/ks.yaml
