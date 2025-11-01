@@ -40,7 +40,7 @@ spec:
           app:
             image:
               repository: ghcr.io/chartdb/chartdb
-              tag: 1.16.0@sha256:a0cd415e34ae4f018f78cc469d2269475c4325d7cf84e0f6cc3dc2b436ea54c5
+              tag: 1.17.0@sha256:69bfc974a38bd718b0d939e28fea0261686f1c0b08b7b9f136f30ceec76fbdd4
             env:
               TZ: "America/Chicago"
               # Optional: Uncomment and configure if you want AI features
