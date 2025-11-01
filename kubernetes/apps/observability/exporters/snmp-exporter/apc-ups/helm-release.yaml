@@ -1,0 +1,44 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app snmp-exporter-apc-ups
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: *app
+  interval: 1h
+  values:
+    fullnameOverride: *app
+    image:
+      repository: quay.io/prometheus/snmp-exporter
+      tag: main@sha256:312e7550cee0cdcfba4a48d934e4fb3cd81871367d02487bcafb4ee0346f634d
+    extraArgs: ["--config.file=/config/snmp.yaml"]
+    extraConfigmapMounts:
+      - name: &config apc-ups-snmp-configmap
+        mountPath: /config/snmp.yaml
+        subPath: snmp.yaml
+        configMap: *config
+        readOnly: true
+        defaultMode: 420
+    resources:
+      requests:
+        cpu: 10m
+        memory: 100Mi
+      limits:
+        memory: 100Mi
+    serviceMonitor:
+      enabled: true
+      params:
+        - name: apc-ups
+          module: [apcups]
+          target: apc-ups.internal
+          interval: 120s
+          auth: ["public_v1"]
+      path: /snmp
+      scrapeTimeout: 10s
+      relabelings:
+        - sourceLabels:
+            - __param_target
+          targetLabel: instance

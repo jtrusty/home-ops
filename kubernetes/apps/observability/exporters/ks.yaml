@@ -1,0 +1,68 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: &app graphite-exporter
+  namespace: &namespace observability
+spec:
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
+  dependsOn:
+    - name: kube-prometheus-stack
+      namespace: *namespace
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2
+      kind: HelmRelease
+      name: *app
+      namespace: *namespace
+  healthCheckExprs:
+    - apiVersion: helm.toolkit.fluxcd.io/v2
+      kind: HelmRelease
+      current: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'True')
+      failed: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'False')
+  interval: 1h
+  path: ./kubernetes/apps/observability/exporters/graphite-exporter
+  prune: true
+  retryInterval: 2m
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  targetNamespace: *namespace
+  wait: true
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: &app snmp-exporter-apc-ups
+  namespace: &namespace observability
+spec:
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
+  dependsOn:
+    - name: kube-prometheus-stack
+      namespace: *namespace
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2
+      kind: HelmRelease
+      name: *app
+      namespace: *namespace
+  healthCheckExprs:
+    - apiVersion: helm.toolkit.fluxcd.io/v2
+      kind: HelmRelease
+      current: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'True')
+      failed: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'False')
+  interval: 1h
+  path: ./kubernetes/apps/observability/exporters/snmp-exporter
+  prune: true
+  retryInterval: 2m
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  targetNamespace: *namespace
+  wait: true

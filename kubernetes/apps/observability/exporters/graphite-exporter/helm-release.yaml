@@ -1,0 +1,86 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app graphite-exporter
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: *app
+  interval: 1h
+  values:
+    controllers:
+      graphite-exporter:
+        annotations:
+          reloader.stakater.com/auto: "true"
+
+        replicas: 2
+        strategy: RollingUpdate
+
+        containers:
+          app:
+            image:
+              repository: quay.io/prometheus/graphite-exporter
+              tag: v0.16.0
+            args:
+              - "--graphite.mapping-config=/tmp/truenas_scale_graphite_mapping.conf"
+              - "--graphite.listen-address=:2003"
+              # - "--log.level=debug"
+            probes:
+              liveness: &probes
+                enabled: true
+              readiness: *probes
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: {drop: ["ALL"]}
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 128Mi
+
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+
+    service:
+      app:
+        type: LoadBalancer
+        annotations:
+          lbipam.cilium.io/ips: 10.10.16.157
+        externalTrafficPolicy: Local
+        ports:
+          graphite-tcp:
+            protocol: TCP
+            port: 2003
+            primary: true
+          graphite-udp:
+            protocol: UDP
+            port: 2003
+          metrics:
+            port: 9108
+
+    serviceMonitor:
+      app:
+        serviceName: *app
+        endpoints:
+          - port: metrics
+            scheme: http
+            path: /metrics
+            interval: 1m
+            scrapeTimeout: 10s
+
+    persistence:
+      graphite-mapping:
+        type: configMap
+        name: graphite-exporter-config
+        globalMounts:
+          - path: /tmp/truenas_scale_graphite_mapping.conf
+            subPath: truenas-scale-graphite-mapping.conf
+            readOnly: true
