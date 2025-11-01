@@ -59,7 +59,7 @@ spec:
   bootstrap:
     # Use this to recover a net-new cluster from a backup
     recovery:
-      source: &previousCluster postgres-v18-immich-v0
+      source: &previousCluster postgres-v17-immich-v0
 
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
   externalClusters:
