@@ -50,7 +50,7 @@ spec:
   plugins:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
-      parameters: &parameters
+      parameters:
         barmanObjectName: minio
         serverName: &currentCluster postgres-v18-shared-v1
 
@@ -60,8 +60,10 @@ spec:
       source: &previousCluster postgres-v18-shared-v0
 
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
-  # externalClusters:
-  #   - name: *previousCluster
-  #     plugin:
-  #       name: barman-cloud.cloudnative-pg.io
-  #       parameters: *parameters
+  externalClusters:
+    - name: *previousCluster
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters:
+          barmanObjectName: minio
+          serverName: *previousCluster
