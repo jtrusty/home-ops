@@ -5,7 +5,7 @@ kind: Dragonfly
 metadata:
   name: &app dragonfly
 spec:
-  image: ghcr.io/dragonflydb/dragonfly:v1.34.1
+  image: ghcr.io/dragonflydb/dragonfly:v1.34.2
   replicas: 3
 
   # Environment variables for the pods
