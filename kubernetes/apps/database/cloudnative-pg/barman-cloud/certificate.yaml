@@ -24,7 +24,7 @@ spec:
   dnsNames: ["barman-cloud"]
   isCA: false
   issuerRef:
-    name: barman-cloud
+    name: selfsigned
     kind: ClusterIssuer
     group: cert-manager.io
   secretName: barman-cloud-server-tls
