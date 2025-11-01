@@ -66,6 +66,6 @@ spec:
     - name: *previousCluster
       plugin:
         name: barman-cloud.cloudnative-pg.io
-      parameters:
-        barmanObjectName: minio
-        serverName: *previousCluster
+        parameters:
+          barmanObjectName: minio
+          serverName: *previousCluster
