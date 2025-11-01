@@ -85,3 +85,10 @@ spec:
           - backendRefs:
               - identifier: app
                 port: *port
+
+    persistence:
+      tmpfs:
+        type: emptyDir
+        globalMounts:
+          - path: /tmp
+            subPath: tmp
