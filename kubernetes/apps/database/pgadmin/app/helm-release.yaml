@@ -46,7 +46,6 @@ spec:
 
     defaultPodOptions:
       securityContext:
-        runAsNonRoot: true
         runAsUser: 5050 # pgadmin user
         runAsGroup: 5050 # pgadmin group
         fsGroup: 5050
@@ -85,7 +84,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: "{{ .Release.Name }}"
+        existingClaim: *app
         globalMounts:
           - path: /var/lib/pgadmin
 
