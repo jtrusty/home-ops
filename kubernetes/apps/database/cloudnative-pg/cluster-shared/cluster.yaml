@@ -1,0 +1,76 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/postgresql.cnpg.io/cluster_v1.json
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: &app postgres-v18-shared
+spec:
+  imageName: ghcr.io/cloudnative-pg/postgresql:18.0-202510201453-system-trixie@sha256:50f70d2a8edf69afd9e52006f9db2538bcb946c08775eab5ef61bb27085e8d7b
+
+  instances: 3
+
+  primaryUpdateStrategy: unsupervised
+
+  storage:
+    size: 40Gi
+    storageClass: rook-ceph-block
+
+  walStorage:
+    size: 8Gi
+    storageClass: rook-ceph-block
+
+  enableSuperuserAccess: true
+
+  superuserSecret:
+    name: cloudnative-pg-secret
+
+  postgresql:
+    parameters:
+      pg_stat_statements.max: "10000"
+      pg_stat_statements.track: all
+      timezone: ${TIMEZONE}
+      max_connections: "600"
+      shared_buffers: 512MB
+
+  resources:
+    requests:
+      cpu: 500m
+    limits:
+      memory: 4Gi
+
+  # Spread the pods evenly across nodes
+  topologySpreadConstraints:
+    - maxSkew: 1
+      topologyKey: kubernetes.io/hostname
+      whenUnsatisfiable: DoNotSchedule
+      labelSelector:
+        matchLabels:
+          app.kubernetes.io/name: *app
+
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters: &parameters
+        barmanObjectName: minio
+        serverName: &currentCluster postgres-v18-shared-v1
+
+  bootstrap:
+    # Use this to recover a net-new cluster from a backup
+    recovery:
+      source: &previousCluster postgres-v18-shared-v0
+
+  # Note: externalClusters is needed when recovering from an existing cnpg cluster
+  externalClusters:
+    - name: *previousCluster
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters: *parameters
+    - name: *previousCluster
+      connectionParameters:
+        host: postgres-lb.database.svc.cluster.local
+        user: postgres
+        dbname: postgres
+        sslmode: require
+      password:
+        name: cloudnative-pg-secret
+        key: password

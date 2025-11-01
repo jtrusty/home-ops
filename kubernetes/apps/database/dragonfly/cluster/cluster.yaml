@@ -1,0 +1,47 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/dragonflydb.io/dragonfly_v1alpha1.json
+apiVersion: dragonflydb.io/v1alpha1
+kind: Dragonfly
+metadata:
+  name: &app dragonfly
+spec:
+  image: ghcr.io/dragonflydb/dragonfly:v1.34.1
+  replicas: 3
+
+  # Environment variables for the pods
+  env:
+    - name: MAX_MEMORY
+      valueFrom:
+        resourceFieldRef:
+          resource: limits.memory
+          divisor: 1Mi
+
+  # Arguments for the command run in the pods
+  args:
+    - --maxmemory=$(MAX_MEMORY)Mi
+    - --proactor_threads=2
+    - --cluster_mode=emulated
+    - --lock_on_hashtags
+    - --default_lua_flags=allow-undeclared-keys # needed for immich
+
+  authentication:
+    passwordFromSecret:
+      name: dragonfly-secret
+      key: DRAGONFLY_PASSWORD
+
+  # Spread the pods evenly across nodes
+  topologySpreadConstraints:
+    - maxSkew: 1
+      topologyKey: kubernetes.io/hostname
+      whenUnsatisfiable: DoNotSchedule
+      labelSelector:
+        matchLabels:
+          app.kubernetes.io/name: *app
+
+  # Resource requests and limits for the pods
+  resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        memory: 1Gi

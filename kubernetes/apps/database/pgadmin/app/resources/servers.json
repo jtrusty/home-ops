@@ -1,0 +1,52 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "postgres-legacy",
+      "Group": "Servers",
+      "Host": "10.10.16.105",
+      "Port": 5432,
+      "MaintenanceDB": "postgres",
+      "Username": "postgres",
+      "SSLMode": "prefer",
+      "SSLCert": "<STORAGE_DIR>/.postgresql/postgresql.crt",
+      "SSLKey": "<STORAGE_DIR>/.postgresql/postgresql.key",
+      "SSLCompression": 0,
+      "Timeout": 10,
+      "UseSSHTunnel": 0,
+      "TunnelPort": "22",
+      "TunnelAuthentication": 0
+    },
+    "2": {
+      "Name": "immich",
+      "Group": "Servers",
+      "Host": "postgres-v17-immich-rw.database.svc.cluster.local",
+      "Port": 5432,
+      "MaintenanceDB": "postgres",
+      "Username": "postgres",
+      "SSLMode": "prefer",
+      "SSLCert": "<STORAGE_DIR>/.postgresql/postgresql.crt",
+      "SSLKey": "<STORAGE_DIR>/.postgresql/postgresql.key",
+      "SSLCompression": 0,
+      "Timeout": 10,
+      "UseSSHTunnel": 0,
+      "TunnelPort": "22",
+      "TunnelAuthentication": 0
+    },
+    "3": {
+      "Name": "shared",
+      "Group": "Servers",
+      "Host": "postgres-v18-shared-rw.database.svc.cluster.local",
+      "Port": 5432,
+      "MaintenanceDB": "postgres",
+      "Username": "postgres",
+      "SSLMode": "prefer",
+      "SSLCert": "<STORAGE_DIR>/.postgresql/postgresql.crt",
+      "SSLKey": "<STORAGE_DIR>/.postgresql/postgresql.key",
+      "SSLCompression": 0,
+      "Timeout": 10,
+      "UseSSHTunnel": 0,
+      "TunnelPort": "22",
+      "TunnelAuthentication": 0
+    }
+  }
+}

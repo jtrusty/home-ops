@@ -1,0 +1,92 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app redisinsight
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: *app
+  interval: 1h
+  values:
+    controllers:
+      redisinsight:
+        annotations:
+          reloader.stakater.com/auto: "true"
+
+        containers:
+          app:
+            image:
+              repository: redis/redisinsight
+              tag: 2.70.1@sha256:b7aa18e73329ebb2e3d9e949b8d35193bf5415ef35c16fd9a50e6f832922b296
+            env:
+              TZ: ${TIMEZONE}
+              RI_FILES_LOGGER: false
+              RI_STDOUT_LOGGER: true
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /
+                    port: &port 5540
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: {drop: ["ALL"]}
+            resources:
+              requests:
+                cpu: 10m
+                memory: 128Mi
+              limits:
+                memory: 512Mi
+
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+        seccompProfile: { type: RuntimeDefault }
+
+    service:
+      app:
+        ports:
+          http:
+            port: *port
+
+    serviceMonitor:
+      app:
+        endpoints:
+          - port: http
+
+    route:
+      app:
+        annotations:
+          # Homepage Automatic Service Discovery
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/name: "Redis Insight"
+          gethomepage.dev/description: "Web UI for Redis"
+          gethomepage.dev/icon: "https://raw.githubusercontent.com/RedisInsight/RedisInsight/main/resources/logo.svg"
+          gethomepage.dev/group: "Database"
+        hostnames: ["{{ .Release.Name }}.${PUBLIC_DOMAIN}"]
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: *port
+
+    persistence:
+      data:
+        existingClaim: *app
+---

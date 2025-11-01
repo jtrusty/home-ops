@@ -1,0 +1,20 @@
+---
+# yaml-language-server: $schema=https://kubernetesjsonschema.dev/v1.27.1/service-v1.json
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-shared-lb
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: "postgres-shared.${PUBLIC_DOMAIN}"
+    lbipam.cilium.io/ips: 10.10.16.155
+spec:
+  type: LoadBalancer
+  externalTrafficPolicy: Cluster
+  ports:
+    - name: postgres
+      port: 5432
+      protocol: TCP
+      targetPort: 5432
+  selector:
+    cnpg.io/cluster: postgres-v18-shared
+    role: primary
