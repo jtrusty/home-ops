@@ -19,10 +19,13 @@ spec:
           fix-perms:
             image:
               repository: busybox
-              tag: 1.36.0
+              tag: 1.36.0'
+            securityContext:
+              privileged: true
             command:
               - /bin/sh
               - -c
+            args:
               - |
                 rm -rf /var/lib/pgadmin/*
                 chown 5050:5050 /var/lib/pgadmin -R
