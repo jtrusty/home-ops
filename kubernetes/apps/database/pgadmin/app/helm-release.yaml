@@ -15,7 +15,7 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
 
-        initContainer:
+        initContainers:
           fix-perms:
             image:
               repository: busybox
