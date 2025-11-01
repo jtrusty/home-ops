@@ -9,7 +9,7 @@ spec:
   isCA: false
   issuerRef:
     name: selfsigned
-    kind: Issuer
+    kind: ClusterIssuer
     group: cert-manager.io
   secretName: barman-cloud-client-tls
   usages: ["client auth"]
@@ -25,7 +25,7 @@ spec:
   isCA: false
   issuerRef:
     name: barman-cloud
-    kind: Issuer
+    kind: ClusterIssuer
     group: cert-manager.io
   secretName: barman-cloud-server-tls
   usages: ["server auth"]
