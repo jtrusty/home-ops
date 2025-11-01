@@ -65,12 +65,3 @@ spec:
       plugin:
         name: barman-cloud.cloudnative-pg.io
         parameters: *parameters
-    - name: *previousCluster
-      connectionParameters:
-        host: postgres-lb.database.svc.cluster.local
-        user: postgres
-        dbname: postgres
-        sslmode: require
-      password:
-        name: cloudnative-pg-secret
-        key: password
