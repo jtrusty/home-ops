@@ -15,23 +15,6 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
 
-        initContainers:
-          fix-perms:
-            image:
-              repository: busybox
-              tag: 1.36.0
-            securityContext:
-              privileged: true
-              runAsUser: 0
-              runAsGroup: 0
-            command:
-              - /bin/sh
-              - -c
-            args:
-              - |
-                rm -rf /var/lib/pgadmin/*
-                chown 5050:5050 /var/lib/pgadmin -R
-
         containers:
           app:
             image:
