@@ -1,0 +1,31 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/cert-manager/cert-manager/release-1.12/deploy/crds/cert-manager.io_certificates.yaml
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: barman-cloud-client
+spec:
+  commonName: barman-cloud-client
+  isCA: false
+  issuerRef:
+    name: self-signed
+    kind: Issuer
+    group: cert-manager.io
+  secretName: barman-cloud-client-tls
+  usages: ["client auth"]
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/cert-manager/cert-manager/release-1.12/deploy/crds/cert-manager.io_certificates.yaml
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: barman-cloud-server
+spec:
+  commonName: barman-cloud
+  dnsNames: ["barman-cloud"]
+  isCA: false
+  issuerRef:
+    name: barman-cloud
+    kind: Issuer
+    group: cert-manager.io
+  secretName: barman-cloud-server-tls
+  usages: ["server auth"]
